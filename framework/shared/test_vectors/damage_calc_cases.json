@@ -1,0 +1,162 @@
+{
+    "description": "Damage calculation test cases",
+    "cases": [
+        {
+            "name": "basic_3_gem_single_combo",
+            "description": "3 water gems matched, 1 combo, no element advantage",
+            "input": {
+                "attacker_atk": 1000.0,
+                "attacker_element": 1,
+                "defender_element": 1,
+                "defender_defense": 0.0,
+                "gems_matched": 3,
+                "combo_count": 1,
+                "combo_index": 0
+            },
+            "expected": {
+                "base_damage": 1000.0,
+                "combo_multiplier": 1.0,
+                "element_multiplier": 1.0,
+                "final_damage": 1000
+            },
+            "note": "gem_damage = 1000 * (1 + (3-3)*0.25) = 1000. combo_mult = 1.0. elem = 1.0."
+        },
+        {
+            "name": "5_gems_3_combos_advantage",
+            "description": "5 water gems, 3 combos, water vs fire advantage",
+            "input": {
+                "attacker_atk": 1000.0,
+                "attacker_element": 1,
+                "defender_element": 2,
+                "defender_defense": 0.0,
+                "gems_matched": 5,
+                "combo_count": 3,
+                "combo_index": 2
+            },
+            "expected": {
+                "base_damage": 1500.0,
+                "combo_multiplier": 1.5,
+                "element_multiplier": 1.5,
+                "final_damage": 3375
+            },
+            "note": "gem_damage = 1000 * (1 + (5-3)*0.25) = 1500. combo_mult = 1 + (3-1)*0.25 = 1.5. elem = 1.5. total = 1500 * 1.5 * 1.5 = 3375."
+        },
+        {
+            "name": "disadvantage_with_defense",
+            "description": "Fire vs Water disadvantage with enemy defense",
+            "input": {
+                "attacker_atk": 2000.0,
+                "attacker_element": 2,
+                "defender_element": 1,
+                "defender_defense": 500.0,
+                "gems_matched": 4,
+                "combo_count": 2,
+                "combo_index": 1
+            },
+            "expected": {
+                "base_damage": 2500.0,
+                "combo_multiplier": 1.25,
+                "element_multiplier": 0.5,
+                "final_damage": 1063
+            },
+            "note": "gem_damage = 2000 * (1 + (4-3)*0.25) = 2500. combo = 1.25. elem = 0.5. pre_def = 2500 * 1.25 * 0.5 = 1562.5. post_def = 1562.5 - 500 = 1062.5 → 1063 (round half away from zero)."
+        },
+        {
+            "name": "minimum_damage_1",
+            "description": "Very high defense still deals minimum 1 damage",
+            "input": {
+                "attacker_atk": 100.0,
+                "attacker_element": 3,
+                "defender_element": 3,
+                "defender_defense": 99999.0,
+                "gems_matched": 3,
+                "combo_count": 1,
+                "combo_index": 0
+            },
+            "expected": {
+                "base_damage": 100.0,
+                "combo_multiplier": 1.0,
+                "element_multiplier": 1.0,
+                "final_damage": 1
+            },
+            "note": "100 - 99999 would be negative, clamped to 1."
+        },
+        {
+            "name": "light_vs_dark_mutual",
+            "description": "Light vs Dark is mutual advantage (both 1.5x)",
+            "input": {
+                "attacker_atk": 1000.0,
+                "attacker_element": 4,
+                "defender_element": 5,
+                "defender_defense": 0.0,
+                "gems_matched": 3,
+                "combo_count": 1,
+                "combo_index": 0
+            },
+            "expected": {
+                "base_damage": 1000.0,
+                "combo_multiplier": 1.0,
+                "element_multiplier": 1.5,
+                "final_damage": 1500
+            }
+        },
+        {
+            "name": "dark_vs_light_mutual",
+            "description": "Dark vs Light is also advantage (both directions)",
+            "input": {
+                "attacker_atk": 1000.0,
+                "attacker_element": 5,
+                "defender_element": 4,
+                "defender_defense": 0.0,
+                "gems_matched": 3,
+                "combo_count": 1,
+                "combo_index": 0
+            },
+            "expected": {
+                "base_damage": 1000.0,
+                "combo_multiplier": 1.0,
+                "element_multiplier": 1.5,
+                "final_damage": 1500
+            }
+        },
+        {
+            "name": "heart_no_advantage",
+            "description": "Heart element has no advantage against anything",
+            "input": {
+                "attacker_atk": 1000.0,
+                "attacker_element": 6,
+                "defender_element": 1,
+                "defender_defense": 0.0,
+                "gems_matched": 3,
+                "combo_count": 1,
+                "combo_index": 0
+            },
+            "expected": {
+                "base_damage": 1000.0,
+                "combo_multiplier": 1.0,
+                "element_multiplier": 1.0,
+                "final_damage": 1000
+            }
+        },
+        {
+            "name": "10_combo_high_gems",
+            "description": "High combo and gem count",
+            "input": {
+                "attacker_atk": 500.0,
+                "attacker_element": 1,
+                "defender_element": 2,
+                "defender_defense": 100.0,
+                "gems_matched": 8,
+                "combo_count": 10,
+                "combo_index": 9
+            },
+            "expected": {
+                "base_damage": 1125.0,
+                "combo_multiplier": 3.25,
+                "element_multiplier": 1.5,
+                "final_damage": 5384
+            },
+            "note": "gem_damage = 500 * (1 + (8-3)*0.25) = 500 * 2.25 = 1125. combo = 1 + 9*0.25 = 3.25. elem = 1.5. pre_def = 1125 * 3.25 * 1.5 = 5484.375. post_def = 5484.375 - 100 = 5384.375 → 5384 (round half away from zero)."
+        }
+    ]
+}

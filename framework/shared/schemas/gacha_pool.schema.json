@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobileforge.dev/schemas/gacha_pool.schema.json",
+  "title": "Gacha Pool Definition",
+  "description": "Defines a gacha banner/pool with weighted entries, pity threshold, and featured monster rate-ups. Used by GachaRoller to perform pulls.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "cost_currency",
+    "cost_amount",
+    "entries"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique pool identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the gacha banner."
+    },
+    "cost_currency": {
+      "type": "string",
+      "description": "Currency type required to pull (e.g. 'gems', 'tickets')."
+    },
+    "cost_amount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Amount of currency consumed per single pull."
+    },
+    "pity_threshold": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of pulls without a top-rarity result before a guaranteed top-rarity pull. 0 means no pity system."
+    },
+    "entries": {
+      "type": "array",
+      "description": "Weighted list of pullable entries in this pool.",
+      "items": {
+        "$ref": "#/definitions/gacha_entry"
+      },
+      "minItems": 1
+    },
+    "featured_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "Monster IDs that receive a rate-up in this banner."
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "gacha_entry": {
+      "type": "object",
+      "required": [
+        "monster_id",
+        "rarity",
+        "weight"
+      ],
+      "properties": {
+        "monster_id": {
+          "type": "integer",
+          "description": "Reference to the monster definition ID."
+        },
+        "rarity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8,
+          "description": "Star rarity of this entry."
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Relative weight for weighted random selection. Higher weight means more likely to be pulled."
+        },
+        "is_featured": {
+          "type": "boolean",
+          "description": "Whether this entry is a featured/rate-up monster in the current banner."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "elements": {
+        "1": "water",
+        "2": "fire",
+        "3": "grass",
+        "4": "light",
+        "5": "dark",
+        "6": "heart"
+    },
+    "advantages": [
+        {"attacker": 1, "defender": 2, "multiplier": 1.5},
+        {"attacker": 2, "defender": 3, "multiplier": 1.5},
+        {"attacker": 3, "defender": 1, "multiplier": 1.5},
+        {"attacker": 4, "defender": 5, "multiplier": 1.5},
+        {"attacker": 5, "defender": 4, "multiplier": 1.5}
+    ],
+    "disadvantages": [
+        {"attacker": 1, "defender": 3, "multiplier": 0.5},
+        {"attacker": 2, "defender": 1, "multiplier": 0.5},
+        {"attacker": 3, "defender": 2, "multiplier": 0.5}
+    ],
+    "default_multiplier": 1.0
+}

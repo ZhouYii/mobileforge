@@ -1,0 +1,20 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; but it can also be edited with a text editor.
+
+config_version=5
+
+[application]
+
+config/name="MobileForge"
+config/features=PackedStringArray("4.0")
+
+[autoload]
+
+EventBus="*res://addons/mobileforge/infrastructure/event_bus/event_bus.gd"
+GameData="*res://addons/mobileforge/infrastructure/game_data/game_data.gd"
+PlayerState="*res://addons/mobileforge/infrastructure/player_state/player_state.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/mobileforge/plugin.cfg")

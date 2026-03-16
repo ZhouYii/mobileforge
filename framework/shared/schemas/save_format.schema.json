@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobileforge.dev/schemas/save_format.schema.json",
+  "title": "Save File Envelope",
+  "description": "Top-level envelope for save files. Contains versioning, integrity checksum, timestamp, and the serialized player data payload.",
+  "type": "object",
+  "required": [
+    "version",
+    "timestamp",
+    "checksum",
+    "data"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Save format version number. Incremented when the data schema changes, used by SaveMigrator to apply migrations."
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp (seconds since epoch) when the save was created."
+    },
+    "checksum": {
+      "type": "string",
+      "description": "Integrity checksum of the serialized data payload. Algorithm is implementation-defined (e.g. SHA-256, CRC32)."
+    },
+    "data": {
+      "type": "object",
+      "description": "The serialized player state. Keys are section names, values are section data dictionaries.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

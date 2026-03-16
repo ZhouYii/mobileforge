@@ -1,0 +1,22 @@
+{
+  "statuses": [
+    {"id": 0,  "name": "none",           "description": "No status"},
+    {"id": 1,  "name": "frozen",         "description": "Cannot be moved"},
+    {"id": 2,  "name": "locked",         "description": "Cannot be matched this turn"},
+    {"id": 3,  "name": "burning",        "description": "Deals extra fire damage when matched"},
+    {"id": 4,  "name": "poisoned",       "description": "Reduces recovery when matched"},
+    {"id": 5,  "name": "enchanted",      "description": "Counts as two gems for combo calculation"},
+    {"id": 6,  "name": "cursed",         "description": "Deals damage to the player when matched"},
+    {"id": 7,  "name": "transmuted",     "description": "Element has been changed to a different type"},
+    {"id": 8,  "name": "petrified",      "description": "Cannot be moved and blocks adjacent swaps"},
+    {"id": 9,  "name": "shielded",       "description": "Must be matched twice to clear"},
+    {"id": 10, "name": "charged",        "description": "Explodes in a cross pattern when matched"},
+    {"id": 11, "name": "linked",         "description": "Clearing this gem also clears all linked gems"},
+    {"id": 12, "name": "weathered",      "description": "Element weakness/resistance is inverted"},
+    {"id": 13, "name": "timed",          "description": "Disappears after a set number of turns if not matched"}
+  ],
+  "exclusion_groups": [
+    {"name": "movement_block",  "types": [1, 8],  "description": "Only one movement-blocking status can apply at a time"},
+    {"name": "element_modify",  "types": [7, 12], "description": "Only one element-modifying status can apply at a time"}
+  ]
+}

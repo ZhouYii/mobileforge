@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobileforge.dev/schemas/skill_def.schema.json",
+  "title": "Skill Definition",
+  "description": "Defines a skill using the condition-outcome composition model. Each skill contains an array of rules, and each rule pairs one or more conditions with one or more outcomes. This structure supports active skills (with cooldowns), leader skills, and team skills uniformly.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "description",
+    "type",
+    "rules"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique skill identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the skill."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what the skill does."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["active", "leader", "team"],
+      "description": "Skill category. 'active' = manually activated with cooldown, 'leader' = passive effect when monster is leader, 'team' = triggers when specific team composition is met."
+    },
+    "max_cd": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum cooldown in turns before the skill can be used. Applicable to active skills."
+    },
+    "min_cd": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Minimum cooldown after the skill has been fully leveled. Applicable to active skills."
+    },
+    "max_level": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum skill level. Each level-up typically reduces cooldown by 1 turn for active skills."
+    },
+    "rules": {
+      "type": "array",
+      "description": "Ordered list of condition-outcome rules. Rules are evaluated top-to-bottom; all matching rules apply their outcomes.",
+      "items": {
+        "$ref": "#/definitions/rule"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "rule": {
+      "type": "object",
+      "description": "A single rule pairing conditions with outcomes. All conditions must be satisfied for the outcomes to trigger.",
+      "required": ["conditions", "outcomes"],
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "description": "All conditions that must be true for this rule's outcomes to fire. An empty array means the rule is unconditional.",
+          "items": {
+            "$ref": "#/definitions/condition"
+          }
+        },
+        "outcomes": {
+          "type": "array",
+          "description": "Effects that are applied when all conditions are met.",
+          "items": {
+            "$ref": "#/definitions/outcome"
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "condition": {
+      "type": "object",
+      "description": "A condition that must be satisfied. The 'type' field selects the condition evaluator, and 'params' supplies evaluator-specific arguments.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Condition type name (e.g. 'element_match', 'hp_below', 'combo_count_gte', 'dissolve_count')."
+        },
+        "params": {
+          "type": "object",
+          "description": "Condition-specific parameters. Structure depends on the condition type.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "outcome": {
+      "type": "object",
+      "description": "An effect to apply when the parent rule's conditions are met. The 'type' field selects the effect handler, and 'params' supplies handler-specific arguments.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Outcome type name (e.g. 'multiply_atk', 'convert_runes', 'heal_flat', 'extend_runetime')."
+        },
+        "params": {
+          "type": "object",
+          "description": "Outcome-specific parameters. Structure depends on the outcome type.",
+          "additionalProperties": true
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of turns the outcome lasts. 0 or omitted means the effect is instantaneous or permanent (context-dependent)."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

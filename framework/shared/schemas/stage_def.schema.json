@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobileforge.dev/schemas/stage_def.schema.json",
+  "title": "Stage Definition",
+  "description": "Defines a stage/dungeon with wave-based enemy encounters and completion rewards. Used by DungeonRunner to drive battle flow.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "stamina_cost",
+    "waves"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique stage identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the stage."
+    },
+    "stamina_cost": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Stamina consumed when entering this stage."
+    },
+    "waves": {
+      "type": "array",
+      "description": "Ordered list of enemy waves. Players must clear each wave in sequence.",
+      "items": {
+        "$ref": "#/definitions/wave"
+      },
+      "minItems": 1
+    },
+    "rewards": {
+      "type": "array",
+      "description": "Rewards granted upon stage completion.",
+      "items": {
+        "$ref": "#/definitions/reward"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "wave": {
+      "type": "object",
+      "required": [
+        "enemies"
+      ],
+      "properties": {
+        "enemies": {
+          "type": "array",
+          "description": "List of enemies in this wave.",
+          "items": {
+            "$ref": "#/definitions/enemy"
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "enemy": {
+      "type": "object",
+      "required": [
+        "name",
+        "element",
+        "hp",
+        "atk",
+        "defense",
+        "countdown",
+        "max_countdown"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name of the enemy."
+        },
+        "element": {
+          "type": "integer",
+          "enum": [1, 2, 3, 4, 5, 6],
+          "description": "Element affinity. 1=WATER, 2=FIRE, 3=GRASS, 4=LIGHT, 5=DARK, 6=HEART."
+        },
+        "hp": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Total hit points."
+        },
+        "atk": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Attack damage dealt when the countdown reaches 0."
+        },
+        "defense": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Flat damage reduction applied to incoming attacks."
+        },
+        "countdown": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Initial turns until the enemy attacks."
+        },
+        "max_countdown": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Countdown resets to this value after the enemy attacks."
+        }
+      },
+      "additionalProperties": false
+    },
+    "reward": {
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "amount"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["currency", "monster", "item"],
+          "description": "Reward category."
+        },
+        "id": {
+          "type": "integer",
+          "description": "Reference ID for the reward (currency ID, monster ID, or item ID)."
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Quantity of the reward."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

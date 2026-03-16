@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "name": "Aqua Temple - Normal",
+        "stamina_cost": 10,
+        "waves": [
+            {
+                "enemies": [
+                    {"name": "Water Slime", "element": 1, "hp": 5000, "atk": 300, "defense": 50, "countdown": 3, "max_countdown": 3},
+                    {"name": "Water Slime", "element": 1, "hp": 5000, "atk": 300, "defense": 50, "countdown": 2, "max_countdown": 3}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Water Elemental", "element": 1, "hp": 12000, "atk": 600, "defense": 100, "countdown": 2, "max_countdown": 2},
+                    {"name": "Water Sprite", "element": 1, "hp": 4000, "atk": 200, "defense": 30, "countdown": 1, "max_countdown": 2}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Water Dragon Boss", "element": 1, "hp": 50000, "atk": 1500, "defense": 200, "countdown": 1, "max_countdown": 2}
+                ]
+            }
+        ],
+        "rewards": [
+            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1000},
+            {"type": "monster", "id": 16, "item_id": 16, "count": 1}
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Fire Cavern - Normal",
+        "stamina_cost": 10,
+        "waves": [
+            {
+                "enemies": [
+                    {"name": "Fire Lizard", "element": 2, "hp": 5500, "atk": 350, "defense": 40, "countdown": 2, "max_countdown": 2},
+                    {"name": "Fire Lizard", "element": 2, "hp": 5500, "atk": 350, "defense": 40, "countdown": 3, "max_countdown": 3}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Lava Golem", "element": 2, "hp": 14000, "atk": 700, "defense": 120, "countdown": 2, "max_countdown": 3},
+                    {"name": "Fire Imp", "element": 2, "hp": 3500, "atk": 250, "defense": 20, "countdown": 1, "max_countdown": 1}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Inferno Phoenix Boss", "element": 2, "hp": 55000, "atk": 1800, "defense": 180, "countdown": 1, "max_countdown": 2}
+                ]
+            }
+        ],
+        "rewards": [
+            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1100},
+            {"type": "monster", "id": 17, "item_id": 17, "count": 1}
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Earth Forest - Normal",
+        "stamina_cost": 10,
+        "waves": [
+            {
+                "enemies": [
+                    {"name": "Treant Sapling", "element": 3, "hp": 6000, "atk": 280, "defense": 70, "countdown": 3, "max_countdown": 3},
+                    {"name": "Treant Sapling", "element": 3, "hp": 6000, "atk": 280, "defense": 70, "countdown": 2, "max_countdown": 3},
+                    {"name": "Moss Beetle", "element": 3, "hp": 3000, "atk": 200, "defense": 30, "countdown": 1, "max_countdown": 2}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Ancient Treant", "element": 3, "hp": 18000, "atk": 550, "defense": 150, "countdown": 3, "max_countdown": 3}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Earth Titan Boss", "element": 3, "hp": 60000, "atk": 1200, "defense": 300, "countdown": 2, "max_countdown": 2}
+                ]
+            }
+        ],
+        "rewards": [
+            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1200},
+            {"type": "monster", "id": 18, "item_id": 18, "count": 1}
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Light Shrine - Normal",
+        "stamina_cost": 12,
+        "waves": [
+            {
+                "enemies": [
+                    {"name": "Light Wisp", "element": 4, "hp": 4500, "atk": 320, "defense": 45, "countdown": 2, "max_countdown": 2},
+                    {"name": "Light Wisp", "element": 4, "hp": 4500, "atk": 320, "defense": 45, "countdown": 3, "max_countdown": 3}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Guardian Statue", "element": 4, "hp": 15000, "atk": 500, "defense": 200, "countdown": 3, "max_countdown": 3},
+                    {"name": "Holy Sprite", "element": 4, "hp": 5000, "atk": 400, "defense": 60, "countdown": 1, "max_countdown": 2}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Archangel Boss", "element": 4, "hp": 65000, "atk": 1600, "defense": 250, "countdown": 1, "max_countdown": 2}
+                ]
+            }
+        ],
+        "rewards": [
+            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1300},
+            {"type": "monster", "id": 19, "item_id": 19, "count": 1}
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Dark Abyss - Normal",
+        "stamina_cost": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {"name": "Shadow Wraith", "element": 5, "hp": 5500, "atk": 400, "defense": 35, "countdown": 2, "max_countdown": 2},
+                    {"name": "Shadow Wraith", "element": 5, "hp": 5500, "atk": 400, "defense": 35, "countdown": 1, "max_countdown": 2}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Dark Knight", "element": 5, "hp": 16000, "atk": 800, "defense": 130, "countdown": 2, "max_countdown": 2},
+                    {"name": "Dark Bat", "element": 5, "hp": 4000, "atk": 350, "defense": 25, "countdown": 1, "max_countdown": 1}
+                ]
+            },
+            {
+                "enemies": [
+                    {"name": "Abyssal Demon Boss", "element": 5, "hp": 75000, "atk": 2000, "defense": 220, "countdown": 1, "max_countdown": 2}
+                ]
+            }
+        ],
+        "rewards": [
+            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1500},
+            {"type": "monster", "id": 20, "item_id": 20, "count": 1}
+        ]
+    }
+]

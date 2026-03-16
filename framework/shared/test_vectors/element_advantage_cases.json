@@ -1,0 +1,20 @@
+{
+    "description": "Element advantage/disadvantage test cases",
+    "cases": [
+        {"attacker": 1, "defender": 2, "expected": 1.5, "note": "Water > Fire"},
+        {"attacker": 2, "defender": 3, "expected": 1.5, "note": "Fire > Grass"},
+        {"attacker": 3, "defender": 1, "expected": 1.5, "note": "Grass > Water"},
+        {"attacker": 4, "defender": 5, "expected": 1.5, "note": "Light > Dark"},
+        {"attacker": 5, "defender": 4, "expected": 1.5, "note": "Dark > Light"},
+        {"attacker": 1, "defender": 3, "expected": 0.5, "note": "Water < Grass"},
+        {"attacker": 2, "defender": 1, "expected": 0.5, "note": "Fire < Water"},
+        {"attacker": 3, "defender": 2, "expected": 0.5, "note": "Grass < Fire"},
+        {"attacker": 1, "defender": 1, "expected": 1.0, "note": "Same element = neutral"},
+        {"attacker": 6, "defender": 1, "expected": 1.0, "note": "Heart = neutral"},
+        {"attacker": 1, "defender": 6, "expected": 1.0, "note": "vs Heart = neutral"},
+        {"attacker": 4, "defender": 1, "expected": 1.0, "note": "Light vs non-Dark = neutral"},
+        {"attacker": 5, "defender": 2, "expected": 1.0, "note": "Dark vs non-Light = neutral"},
+        {"attacker": 1, "defender": 4, "expected": 1.0, "note": "Water vs Light = neutral"},
+        {"attacker": 1, "defender": 5, "expected": 1.0, "note": "Water vs Dark = neutral"}
+    ]
+}

@@ -1,0 +1,165 @@
+[
+    {
+        "id": 1,
+        "name": "Tidal Wave",
+        "description": "Deal water damage to all enemies",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [{"type": "area_damage", "params": {"element": 1, "multiplier": 10.0}}]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Meteor Strike",
+        "description": "Deal massive fire damage to a single enemy",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 6,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [{"type": "single_target_damage", "params": {"element": 2, "multiplier": 25.0, "target": "highest_hp"}}]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Nature's Gift",
+        "description": "Convert fire gems to earth gems",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [{"type": "gem_conversion", "params": {"from_element": 2, "to_element": 3}}]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Divine Healing",
+        "description": "Restore HP equal to 50x recovery for 3 turns",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [{"type": "heal_over_time", "params": {"recovery_multiplier": 50.0, "duration_turns": 3}}]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Shadow Pact",
+        "description": "Boost dark ATK by x2.0 for 2 turns, reduce HP by 25%",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 8,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [
+                    {"type": "atk_buff", "params": {"element": 5, "multiplier": 2.0, "duration_turns": 2}},
+                    {"type": "self_damage", "params": {"hp_percent": 0.25}}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Aqua Shield",
+        "description": "Reduce damage taken by 50% for 2 turns",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [{"type": "defense_buff", "params": {"damage_reduction": 0.5, "duration_turns": 2}}]
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Flame Delay",
+        "description": "Delay all enemies by 2 turns",
+        "type": "active",
+        "max_cd": 15,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [{"type": "delay_enemies", "params": {"turns": 2, "target": "all"}}]
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Combo Mastery",
+        "description": "For each combo above 5, increase ATK multiplier by x0.5 this turn",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "combo_gte", "params": {"min_combo": 5}}],
+                "outcomes": [{"type": "combo_scaling_atk", "params": {"bonus_per_combo": 0.5, "duration_turns": 1}}]
+            },
+            {
+                "conditions": [{"type": "combo_lt", "params": {"max_combo": 5}}],
+                "outcomes": [{"type": "atk_buff", "params": {"element": 0, "multiplier": 1.2, "duration_turns": 1}}]
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Purifying Light",
+        "description": "Change own element to light for 3 turns and boost REC by x2.0",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 6,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [
+                    {"type": "element_change", "params": {"target": "self", "to_element": 4, "duration_turns": 3}},
+                    {"type": "rec_buff", "params": {"multiplier": 2.0, "duration_turns": 3}}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Life Drain",
+        "description": "Deal dark damage to all enemies equal to 15x ATK, recover 30% of damage dealt",
+        "type": "active",
+        "max_cd": 11,
+        "min_cd": 6,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [{"type": "always_true", "params": {}}],
+                "outcomes": [
+                    {"type": "area_damage", "params": {"element": 5, "multiplier": 15.0}},
+                    {"type": "lifesteal", "params": {"percent_of_damage": 0.3}}
+                ]
+            }
+        ]
+    }
+]

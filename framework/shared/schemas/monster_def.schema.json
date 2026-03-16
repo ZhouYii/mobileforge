@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobileforge.dev/schemas/monster_def.schema.json",
+  "title": "Monster Definition",
+  "description": "Defines a monster card with stats, skills, and evolution data. Based on the Tower of Saviors monster system where each monster has element affinity, level-scaled stats, skill bindings, and an optional evolution path.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "element",
+    "rarity",
+    "max_level",
+    "base_hp",
+    "base_atk",
+    "base_rec",
+    "max_hp",
+    "max_atk",
+    "max_rec",
+    "cost",
+    "exp_curve"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique monster identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the monster."
+    },
+    "element": {
+      "type": "integer",
+      "enum": [1, 2, 3, 4, 5, 6],
+      "description": "Element affinity. 1=WATER, 2=FIRE, 3=GRASS, 4=LIGHT, 5=DARK, 6=HEART."
+    },
+    "rarity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Star rarity of the monster (1 through 8)."
+    },
+    "max_level": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum level this monster can reach."
+    },
+    "base_hp": {
+      "type": "number",
+      "description": "HP stat at level 1."
+    },
+    "base_atk": {
+      "type": "number",
+      "description": "ATK stat at level 1."
+    },
+    "base_rec": {
+      "type": "number",
+      "description": "REC (recovery) stat at level 1."
+    },
+    "max_hp": {
+      "type": "number",
+      "description": "HP stat at max level."
+    },
+    "max_atk": {
+      "type": "number",
+      "description": "ATK stat at max level."
+    },
+    "max_rec": {
+      "type": "number",
+      "description": "REC (recovery) stat at max level."
+    },
+    "cost": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Team cost consumed when this monster is placed on a team."
+    },
+    "active_skill_id": {
+      "type": ["integer", "null"],
+      "description": "Reference to the active skill definition, or null if the monster has no active skill."
+    },
+    "leader_skill_id": {
+      "type": ["integer", "null"],
+      "description": "Reference to the leader skill definition, or null if the monster has no leader skill."
+    },
+    "team_skill_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "List of team skill definition IDs this monster can participate in."
+    },
+    "evolve_to": {
+      "type": ["integer", "null"],
+      "description": "Monster ID of the evolution target, or null if this monster cannot evolve."
+    },
+    "evolve_materials": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "List of monster IDs required as materials to perform evolution."
+    },
+    "exp_curve": {
+      "type": "string",
+      "enum": ["standard", "slow", "fast", "super_slow"],
+      "description": "Experience curve that governs how much EXP is needed per level."
+    }
+  },
+  "additionalProperties": false
+}
