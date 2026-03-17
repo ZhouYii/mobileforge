@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "name": "Dragon Festival Exchange",
+        "currency": "event_tokens",
+        "items": [
+            {
+                "id": 1,
+                "name": "Water Dragon",
+                "type": "monster",
+                "item_id": 1,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 300,
+                "buy_limit": 1
+            },
+            {
+                "id": 2,
+                "name": "Fire Phoenix",
+                "type": "monster",
+                "item_id": 2,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 300,
+                "buy_limit": 1
+            },
+            {
+                "id": 3,
+                "name": "Elemental Shard x5",
+                "type": "monster",
+                "item_id": 101,
+                "count": 5,
+                "cost_currency": "event_tokens",
+                "cost_amount": 50,
+                "buy_limit": 10
+            },
+            {
+                "id": 4,
+                "name": "10,000 Coins",
+                "type": "currency",
+                "currency_reward": "coins",
+                "count": 10000,
+                "cost_currency": "event_tokens",
+                "cost_amount": 20,
+                "buy_limit": 0
+            },
+            {
+                "id": 5,
+                "name": "5 Gems",
+                "type": "currency",
+                "currency_reward": "gems",
+                "count": 5,
+                "cost_currency": "event_tokens",
+                "cost_amount": 100,
+                "buy_limit": 3
+            }
+        ]
+    }
+]

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InventoryItemDef",
+  "description": "Item definition for the MobileForge inventory system",
+  "type": "object",
+  "required": ["id", "name", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique item identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["material", "equipment", "consumable", "key_item"],
+      "description": "Item type determines stacking behavior"
+    },
+    "max_stack": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 9999,
+      "description": "Maximum stack size"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Filterable tags (e.g., 'weapon', 'armor', 'fire_element')"
+    },
+    "data": {
+      "type": "object",
+      "description": "Additional static data (stats, descriptions, etc.)",
+      "additionalProperties": true
+    }
+  }
+}

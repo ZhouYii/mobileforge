@@ -1,0 +1,78 @@
+{
+    "description": "Test vectors for gacha roller: weighted random distribution, pity trigger, rate display",
+    "pool": {
+        "id": 1,
+        "name": "Test Pool",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 10,
+        "entries": [
+            {"monster_id": 1, "rarity": 5, "weight": 5, "is_featured": true},
+            {"monster_id": 2, "rarity": 4, "weight": 20, "is_featured": false},
+            {"monster_id": 3, "rarity": 3, "weight": 75, "is_featured": false}
+        ]
+    },
+    "cases": [
+        {
+            "name": "pity_triggers_at_threshold",
+            "description": "After 9 non-5-star pulls (pity_count=9), the 10th pull must be 5-star",
+            "pity_count": 9,
+            "expected_min_rarity": 5,
+            "expected_is_pity": true
+        },
+        {
+            "name": "pity_does_not_trigger_below_threshold",
+            "description": "At pity_count=8, normal weighted random applies",
+            "pity_count": 8,
+            "expected_min_rarity": null,
+            "expected_is_pity": false
+        },
+        {
+            "name": "pity_resets_on_top_rarity",
+            "description": "Getting a 5-star naturally resets pity to 0",
+            "sequence": [
+                {"pity_before": 5, "result_rarity": 5, "pity_after": 0},
+                {"pity_before": 0, "result_rarity": 3, "pity_after": 1},
+                {"pity_before": 1, "result_rarity": 4, "pity_after": 2}
+            ]
+        },
+        {
+            "name": "displayed_rates_match_weights",
+            "description": "Rate display should show percentage based on entry weights",
+            "expected_rates": {
+                "5": 5.0,
+                "4": 20.0,
+                "3": 75.0
+            },
+            "total_weight": 100
+        },
+        {
+            "name": "multi_pull_pity_tracks_across_pulls",
+            "description": "In a 10-pull starting at pity=7, pull 3 is forced 5-star (pity reaches 9)",
+            "initial_pity": 7,
+            "pull_count": 10,
+            "comment": "Pull 1: pity=7→8 (if not 5*), Pull 2: pity=8→9 (if not 5*), Pull 3: pity=9→forced 5*, reset to 0"
+        },
+        {
+            "name": "weighted_distribution_statistical",
+            "description": "Over 10000 rolls with pity_count=0 (no pity), distribution should approximate weights",
+            "sample_size": 10000,
+            "tolerance_percent": 3.0,
+            "expected_distribution": {
+                "rarity_5": {"target_percent": 5.0, "min_percent": 2.0, "max_percent": 8.0},
+                "rarity_4": {"target_percent": 20.0, "min_percent": 17.0, "max_percent": 23.0},
+                "rarity_3": {"target_percent": 75.0, "min_percent": 72.0, "max_percent": 78.0}
+            }
+        },
+        {
+            "name": "empty_pool_handling",
+            "description": "Rolling from a pool with no entries should fail gracefully",
+            "pool_override": {
+                "id": 99,
+                "entries": [],
+                "pity_threshold": 0
+            },
+            "expected_error": true
+        }
+    ]
+}

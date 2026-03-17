@@ -1,0 +1,50 @@
+# ── Unity ──────────────────────────────────────
+unity-project/Library/
+unity-project/Temp/
+unity-project/Obj/
+unity-project/Build/
+unity-project/Builds/
+unity-project/Logs/
+unity-project/UserSettings/
+unity-project/MemoryCaptures/
+unity-project/Recordings/
+
+# Unity meta files for symlinked directories are managed by Unity
+# but the Library cache is never committed
+
+# ── Godot ─────────────────────────────────────
+framework/godot/.godot/
+
+# ── unity-decompiler ──────────────────────────
+# Ignore everything by default, then whitelist pipeline source code
+unity-decompiler/*
+# Whitelist: pipeline source
+!unity-decompiler/src/
+!unity-decompiler/src/**
+!unity-decompiler/scripts/
+!unity-decompiler/scripts/**
+!unity-decompiler/docs/
+!unity-decompiler/docs/**
+!unity-decompiler/analysis/manifest.json
+!unity-decompiler/CLAUDE.md
+!unity-decompiler/.gitignore
+!unity-decompiler/pyproject.toml
+!unity-decompiler/config.yaml
+!unity-decompiler/package.json
+# Re-ignore pycache within whitelisted dirs
+unity-decompiler/**/__pycache__/
+
+# ── Python ────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+
+# ── IDE ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS ────────────────────────────────────────
+.DS_Store
+Thumbs.db

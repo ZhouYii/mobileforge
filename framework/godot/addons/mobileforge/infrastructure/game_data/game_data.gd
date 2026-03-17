@@ -16,6 +16,17 @@ extends Node
 
 ## type_name -> { id -> Definition }
 var _tables: Dictionary = {}
+var _schema_validator: MFSchemaValidator = null
+
+
+## Set a schema validator instance. When set, definitions are validated on load.
+func set_schema_validator(validator: MFSchemaValidator) -> void:
+	_schema_validator = validator
+
+
+## Get the current schema validator (may be null).
+func get_schema_validator() -> MFSchemaValidator:
+	return _schema_validator
 
 
 func load_definitions(type: StringName, path: String) -> Error:
@@ -48,6 +59,18 @@ func load_definitions(type: StringName, path: String) -> Error:
 		lookup[def.id] = def
 
 	_tables[type] = lookup
+
+	# Validate against schema if one is registered
+	if _schema_validator != null and _schema_validator.has_schema(type):
+		var raw_entries: Array = []
+		for entry in parsed:
+			if entry is Dictionary:
+				raw_entries.append(entry)
+		var validation = _schema_validator.validate_definitions(type, raw_entries)
+		if not validation.is_valid:
+			for error in validation.errors:
+				push_warning("GameData schema validation [%s]: %s" % [type, error])
+
 	return OK
 
 

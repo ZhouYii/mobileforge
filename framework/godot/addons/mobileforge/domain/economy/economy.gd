@@ -56,6 +56,33 @@ func spend_stamina(cost: int) -> bool:
 	return spend("stamina", cost)
 
 
+## Refill stamina by spending gems. Allows exceeding max (overflow).
+## Returns true if refill was successful.
+func refill_stamina_with_gems() -> bool:
+	if _stamina_config == null:
+		return false
+	if not can_afford(_stamina_config.refill_cost_currency, _stamina_config.refill_cost_amount):
+		return false
+	spend(_stamina_config.refill_cost_currency, _stamina_config.refill_cost_amount)
+	# Grant full max_stamina worth, even if it overflows
+	earn("stamina", _stamina_config.max_stamina)
+	return true
+
+
+## Check if stamina is currently over the natural max.
+func is_stamina_overflowed() -> bool:
+	if _stamina_config == null:
+		return false
+	return get_balance("stamina") > _stamina_config.max_stamina
+
+
+## Get the natural max stamina cap.
+func get_max_stamina() -> int:
+	if _stamina_config == null:
+		return 0
+	return _stamina_config.max_stamina
+
+
 func _emit_currency_changed(currency: String, old_val: int, new_val: int) -> void:
 	if _event_bus != null and _event_bus.has_method("emit_event"):
 		_event_bus.emit_event(EventNames.CURRENCY_CHANGED, {

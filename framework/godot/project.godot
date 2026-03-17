@@ -1,20 +1,40 @@
 ; Engine configuration file.
 ; It's best edited using the editor UI and not directly,
-; but it can also be edited with a text editor.
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=5
 
 [application]
 
 config/name="MobileForge"
-config/features=PackedStringArray("4.0")
+run/main_scene="res://games/tower-of-saviors/godot/game/main.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
 
 EventBus="*res://addons/mobileforge/infrastructure/event_bus/event_bus.gd"
 GameData="*res://addons/mobileforge/infrastructure/game_data/game_data.gd"
 PlayerState="*res://addons/mobileforge/infrastructure/player_state/player_state.gd"
+SaveManager="*res://addons/mobileforge/infrastructure/save_manager/save_manager.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=960
+window/size/window_width_override=400
+window/size/window_height_override=600
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/mobileforge/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.05, 0.05, 0.08, 1)

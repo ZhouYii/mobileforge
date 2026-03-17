@@ -2,6 +2,8 @@ class_name MFBoardTypes extends RefCounted
 ## Data types for the board module. NO dependencies.
 
 ## Element IDs matching ToS: WATER=1, FIRE=2, GRASS=3, LIGHT=4, DARK=5, HEART=6
+## Special elements: JAMMER=7 (deals damage to player), BOMB=8 (explodes neighbors),
+## POISON=9 (damages player on match, cannot heal)
 enum Element {
 	NONE = 0,
 	WATER = 1,
@@ -10,7 +12,18 @@ enum Element {
 	LIGHT = 4,
 	DARK = 5,
 	HEART = 6,
+	JAMMER = 7,
+	BOMB = 8,
+	POISON = 9,
 }
+
+## Check if an element is a standard matchable element (not special).
+static func is_standard_element(elem: int) -> bool:
+	return elem >= 1 and elem <= 6
+
+## Check if an element is a hazard placed by enemies.
+static func is_hazard_element(elem: int) -> bool:
+	return elem >= 7 and elem <= 9
 
 ## Gem status types from ToS (14 types)
 enum GemStatus {
@@ -90,4 +103,6 @@ class CascadeStep extends RefCounted:
 	var removed_positions: Array[int] = []
 	var drops: Array[Dictionary] = []  ## Each: {"from": int, "to": int}
 	var spawned: Array[Dictionary] = []  ## Each: {"position": int, "element": int}
+	var hazard_effects: Array[Dictionary] = []  ## Special gem effects: {"type": String, "positions": Array, "damage": int}
+	var expired_statuses: Array[Dictionary] = []  ## Statuses that expired: {"position": int, "status": int}
 	var step_index: int = 0

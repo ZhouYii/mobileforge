@@ -5,11 +5,20 @@ extends Node
 var _queue: Array = []  # Array of {id, factory, params, priority, on_dismiss, popup_node, dimmer}
 var _container: Node
 var _event_bus: Object
+var _back_handler: MFBackHandler
 var _active_popup: Dictionary = {}  # The currently displayed popup entry
 
-func setup(container: Node, event_bus: Object = null) -> void:
+func setup(container: Node, event_bus: Object = null, back_handler: MFBackHandler = null) -> void:
 	_container = container
 	_event_bus = event_bus
+	_back_handler = back_handler
+	if _back_handler != null:
+		_back_handler.push(&"popup_stack", func() -> bool:
+			if _active_popup.is_empty():
+				return false
+			dismiss()
+			return true
+		)
 
 ## Show a popup. If another popup is active, this one is queued.
 ## priority: higher number = higher priority (shows first)
@@ -83,6 +92,9 @@ func _show_popup(entry: Dictionary) -> void:
 		popup_node.popup_id = entry.id
 		popup_node.dismissed.connect(_on_popup_dismissed)
 		popup_node.on_show(entry.params)
+	# Animated entrance
+	if popup_node is Control:
+		MFUIAnim.pop_in(popup_node, 0.25)
 
 	_emit(EventNames.POPUP_SHOWN, {"popup_id": entry.id})
 
@@ -100,16 +112,37 @@ func _cleanup_active(result: Variant) -> void:
 		entry.on_dismiss.call(result)
 
 	if entry.popup_node != null and is_instance_valid(entry.popup_node):
-		if entry.popup_node.get_parent() != null:
-			entry.popup_node.get_parent().remove_child(entry.popup_node)
-		entry.popup_node.queue_free()
+		if entry.popup_node is Control:
+			MFUIAnim.pop_out(entry.popup_node, 0.2, true)
+		else:
+			if entry.popup_node.get_parent() != null:
+				entry.popup_node.get_parent().remove_child(entry.popup_node)
+			entry.popup_node.queue_free()
 
 	if entry.dimmer != null and is_instance_valid(entry.dimmer):
-		if entry.dimmer.get_parent() != null:
-			entry.dimmer.get_parent().remove_child(entry.dimmer)
-		entry.dimmer.queue_free()
+		if entry.dimmer is Control:
+			MFUIAnim.fade_out(entry.dimmer, 0.2, true)
+		else:
+			if entry.dimmer.get_parent() != null:
+				entry.dimmer.get_parent().remove_child(entry.dimmer)
+			entry.dimmer.queue_free()
 
 	_emit(EventNames.POPUP_DISMISSED, {"popup_id": entry.id, "result": result})
+
+## Show a popup and await its dismissal result.
+## Usage: var result = await popup_stack.show_await("confirm", factory, params)
+func show_await(popup_id: StringName, factory: Callable, params: Dictionary = {}, priority: int = 0) -> Variant:
+	var result_holder := [null]
+	var resolved := [false]
+	show(popup_id, factory, params, priority, func(result):
+		result_holder[0] = result
+		resolved[0] = true
+	)
+	# Wait until the popup is dismissed
+	while not resolved[0]:
+		await get_tree().process_frame
+	return result_holder[0]
+
 
 func _emit(event: StringName, payload: Dictionary) -> void:
 	if _event_bus != null and _event_bus.has_method("emit_event"):

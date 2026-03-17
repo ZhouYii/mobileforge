@@ -41,6 +41,39 @@ const MONSTER_LEVELED := &"monster_leveled"
 const MONSTER_EVOLVED := &"monster_evolved"
 const MONSTER_FUSED := &"monster_fused"
 
+# Domain - Reward
+const REWARDS_GRANTED := &"rewards_granted"
+
+# Domain - Shop
+const SHOP_PURCHASE := &"shop_purchase"
+
+# Domain - Tutorial
+const TUTORIAL_STARTED := &"tutorial_started"
+const TUTORIAL_STEP := &"tutorial_step"
+const TUTORIAL_COMPLETED := &"tutorial_completed"
+
+# Domain - Battle Pass
+const BATTLE_PASS_TIER_UP := &"battle_pass_tier_up"
+const BATTLE_PASS_CLAIMED := &"battle_pass_claimed"
+const BATTLE_PASS_PREMIUM_ACTIVATED := &"battle_pass_premium_activated"
+
+# Domain - Quest
+const QUEST_ACTIVATED := &"quest_activated"
+const QUEST_PROGRESS := &"quest_progress"
+const QUEST_COMPLETED := &"quest_completed"
+const QUEST_CLAIMED := &"quest_claimed"
+
+# Domain - Inventory
+const INVENTORY_CHANGED := &"inventory_changed"
+const ITEM_EQUIPPED := &"item_equipped"
+const ITEM_UNEQUIPPED := &"item_unequipped"
+
+# Infrastructure - Badge
+const BADGE_CHANGED := &"badge_changed"
+
+# Infrastructure - Preferences
+const PREFERENCE_CHANGED := &"preference_changed"
+
 # Presentation
 const SCREEN_CHANGED := &"screen_changed"
 const POPUP_SHOWN := &"popup_shown"

@@ -1,0 +1,17 @@
+{
+    "name": "MobileForge.UIComponents",
+    "rootNamespace": "MobileForge.UIComponents",
+    "references": [
+        "MobileForge",
+        "TowerOfSaviors"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

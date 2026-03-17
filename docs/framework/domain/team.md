@@ -11,6 +11,7 @@ Handles **team building, validation, and stat aggregation** for dungeon runs. A 
 | `team_types` | Team, TeamSlot, ValidationResult, TeamStats | monster_types |
 | `team_builder` | TeamBuilder: slot assignment, validation, stat aggregation | team_types, monster_manager |
 | `team_skill_checker` | TeamSkillChecker: team composition condition evaluation | team_types, monster_types |
+| `helper_provider` | MFHelperProvider: generates randomized friend helper list from game data | monster_manager |
 
 ## Team Structure
 
@@ -212,6 +213,53 @@ Multiple team conditions can be combined in a single skill definition:
 ```
 
 This skill only activates if **all** conditions pass: the team must be all-Water AND all members must be EPIC or higher.
+
+## HelperProvider
+
+`MFHelperProvider` generates a randomized list of high-rarity monsters as available friend helpers for the 6th team slot. The default implementation is a **local mock** — it picks from existing game data rather than querying a network service. Games can subclass for network-backed friend lists.
+
+### HelperProvider API
+
+| Method | Parameters | Returns | Description |
+|---|---|---|---|
+| `new` | `monster_manager: MonsterManager, game_data_lookup: Callable, count: int = 5` | `MFHelperProvider` | Construct with a monster manager and a callable that returns all monster definitions |
+| `get_available_helpers` | — | `Array[HelperEntry]` | Get the current list of available helpers |
+| `refresh` | `seed: int = -1` | `void` | Re-randomize the helper list. Pass seed >= 0 for deterministic results (testing) |
+
+### HelperEntry Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `monster_id` | `int` | Definition ID of the helper monster |
+| `monster_def` | `MonsterDef` | Full monster definition |
+| `monster_instance` | `MonsterInstance` | Instance at max level (for stat calculation) |
+| `monster_stats` | `MonsterStats` | Pre-computed stats at max level |
+| `display_name` | `String` | Human-readable name for UI display |
+
+### Filtering Rules
+
+The default provider filters monsters by:
+- **Rarity >= 5** (5-star or higher)
+- **leader_skill_id >= 0** (must have a leader skill, since the friend's leader skill is the main benefit)
+
+### Wiring Example
+
+```gdscript
+# In your game's main script (e.g., tos_game.gd)
+var helper_provider = MFHelperProvider.new(
+    _monster_manager,
+    func(): return _game_data.get_all_definitions(&"monsters"),
+    5  # show 5 helper options
+)
+
+# Refresh before each dungeon entry
+helper_provider.refresh()
+var helpers = helper_provider.get_available_helpers()
+for h in helpers:
+    print("%s (%d HP, %d ATK)" % [h.display_name, h.monster_stats.hp, h.monster_stats.atk])
+```
+
+The callable pattern keeps the framework decoupled from the infrastructure layer — `HelperProvider` never imports `GameData` directly.
 
 ## Code Examples
 

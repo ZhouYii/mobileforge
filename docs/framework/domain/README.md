@@ -51,6 +51,81 @@ Key observations:
 - **TeamBuilder** depends only on MonsterManager (to validate that monsters exist and meet constraints).
 - All other modules are **independent leaf modules** with zero cross-module dependencies.
 
+## Full Module Dependency Graph
+
+```
+┌───────────────────────────────────────────────────────────────┐
+│                    DungeonRunner (ORCHESTRATOR)                │
+│                                                               │
+│  The ONLY domain module that sequences calls to others.       │
+│  All other modules are stateless utilities or data containers.│
+│                                                               │
+│  calls → BoardLogic.resolve_cascade()                         │
+│  calls → CombatResolver.resolve_player_attack()               │
+│  calls → SkillPipeline.activate_skill()                       │
+│  calls → EnemyAI.tick_countdowns() / decide_actions()         │
+│  calls → Economy.check_stamina() (on dungeon entry)           │
+│  calls → LootTable.roll_drops() (on wave clear)               │
+│  emits → EventBus signals                                     │
+└──────────────────────────┬────────────────────────────────────┘
+                           │ calls
+   ┌───────────┬───────────┼───────┬──────────┬────────────┐
+   ▼           ▼           ▼       ▼          ▼            ▼
+BoardLogic  CombatRes.  SkillPipe EnemyAI  Economy    LootTable
+(leaf)      (leaf)      │         │        (leaf)      (leaf)
+                        │deps:    │deps:
+                        │EvBus    │EvBus
+                        │Board    │CmbtRes
+                        │CmbtRes  │
+
+MonsterManager    TeamBuilder
+(leaf)            │deps:
+                  │ MonsterMgr
+
+GachaRoller (standalone, pure function, no deps)
+```
+
+## Intra-Module Dependencies
+
+### board/
+```
+  board_types.gd       ← (none — leaf)
+  board_config.gd      ← (none — leaf)
+  board_logic.gd       ← board_types, board_config
+  match_detector.gd    ← board_types, board_logic
+  cascade_resolver.gd  ← board_types, board_logic, match_detector
+  gem_modifier.gd      ← board_types
+  board_events.gd      ← (none — constants)
+```
+
+### combat/
+```
+  combat_types.gd      ← (none — leaf)
+  element_chart.gd     ← combat_types
+  combo_calculator.gd  ← (none — pure math)
+  combat_resolver.gd   ← combat_types, element_chart, combo_calculator
+```
+
+### skill_pipeline/
+```
+  skill_types.gd       ← (none — leaf)
+  skill_condition.gd   ← skill_types
+  skill_outcome.gd     ← skill_types
+  effect_registry.gd   ← skill_types
+  skill_cooldown.gd    ← (none — pure formula)
+  skill_pipeline.gd    ← skill_types, skill_condition, skill_outcome, effect_registry, skill_cooldown
+```
+
+**Pattern:** Every module folder has a `*_types` file that is always a leaf with no dependencies. The main orchestrator file imports other files in the same folder. Cross-module dependencies exist ONLY at the orchestrator level (DungeonRunner calls BoardLogic, CombatResolver, etc.).
+
+## Cross-Module Dependency Rules
+
+- DungeonRunner calls BoardLogic, CombatResolver, SkillPipeline, EnemyAI
+- SkillPipeline calls CombatResolver (register hooks) and BoardLogic (gem conversion)
+- TeamBuilder calls MonsterManager (stat queries)
+- No other cross-module dependencies exist
+- Modules receive data through method parameters, never by reaching into another module's internals
+
 ## File Convention: `*_types` Pattern
 
 Every module follows the same internal structure:

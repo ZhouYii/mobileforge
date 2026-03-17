@@ -100,6 +100,43 @@ func from_element_array(elements: Array[int]) -> void:
 			_grid[i] = gem
 
 
+## Place hazard gems at random positions (used by enemy attacks).
+## Returns positions where hazards were placed.
+func place_hazard_gems(element: int, count: int) -> Array[int]:
+	var candidates: Array[int] = []
+	for i in range(config.total_cells()):
+		var gem = _grid[i]
+		if gem != null and MFBoardTypes.is_standard_element(gem.element):
+			candidates.append(i)
+
+	if candidates.is_empty():
+		return []
+
+	# Shuffle and pick
+	var placed: Array[int] = []
+	for i in range(candidates.size() - 1, 0, -1):
+		var j := _rng.randi() % (i + 1)
+		var tmp := candidates[i]
+		candidates[i] = candidates[j]
+		candidates[j] = tmp
+
+	for i in range(mini(count, candidates.size())):
+		var pos: int = candidates[i]
+		var gem = MFBoardTypes.GemState.new(element, pos)
+		_grid[pos] = gem
+		placed.append(pos)
+
+	return placed
+
+
+## Apply a status to gems at specified positions.
+func apply_status_at(positions: Array[int], status_type: int, turns: int = -1) -> void:
+	for pos in positions:
+		var gem = get_gem(pos)
+		if gem != null:
+			MFGemModifier.apply_status(gem, status_type, turns)
+
+
 ## Private: spawn a gem that won't create an immediate match.
 func _spawn_gem_no_match(pos: int) -> RefCounted:
 	var available := config.elements.duplicate()

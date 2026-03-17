@@ -105,23 +105,17 @@ Then reference it in JSON:
 For conditions that need custom logic beyond parameter comparison:
 
 ```gdscript
-# In register_all.gd, add the class:
-class BoardHasElementCondition extends MFSkillCondition:
-    func is_valid(ctx: RefCounted) -> bool:
-        var elem := int(get_param("element", 0))
-        var min_count := int(get_param("min_count", 3))
-        if ctx.board == null:
-            return false
-        var count := 0
-        for pos in range(ctx.board.config.total_cells()):
-            var gem = ctx.board.get_gem(pos)
-            if gem != null and gem.element == elem:
-                count += 1
-        return count >= min_count
+# In skill_defs/conditions/my_condition.gd
+class_name MyCondition extends MFSkillCondition
 
-# Register it:
-pipeline.condition_registry.register("board_has_element", func(params):
-    return BoardHasElementCondition.new(params))
+func is_valid(ctx: RefCounted) -> bool:
+    return some_check(ctx)
+```
+
+Register it in `register_all.gd`:
+```gdscript
+pipeline.condition_registry.register("my_condition", func(params):
+    return MyCondition.new(params))
 ```
 
 ### Step 4: Register a Complex Outcome (MFSkillOutcome subclass)
@@ -130,20 +124,13 @@ For outcomes that persist across turns or register combat hooks, create a subcla
 
 ```gdscript
 class_name TosShieldOutcome extends MFSkillOutcome
-    var _reduction: float
-    var _hook_ref: Callable
 
-    func activate(context: RefCounted, result: RefCounted) -> void:
-        _reduction = float(get_param("damage_reduction", 0.5))
-        turns_left = int(get_param("duration_turns", 2))
-        _hook_ref = func(ctx): ctx.damage *= (1.0 - _reduction)
-        context.combat.register_hook(
-            MFCombatTypes.DamageHook.POST_DEFENSE, _hook_ref, 50, "shield")
-        result.buffs_applied.append({"type": "shield", "turns": turns_left})
+func activate(context: RefCounted, result: RefCounted) -> void:
+    turns_left = int(get_param("duration_turns", 2))
+    result.buffs_applied.append({"type": "shield", "turns": turns_left})
 
-    func deactivate(context: RefCounted) -> void:
-        context.combat.unregister_hook(
-            MFCombatTypes.DamageHook.POST_DEFENSE, _hook_ref)
+func deactivate(context: RefCounted) -> void:
+    pass  # cleanup
 ```
 
 Register via the outcome registry:
@@ -166,7 +153,7 @@ Add the entry to `shared/data/skills.json`:
     "max_level": 10,
     "rules": [
         {
-            "conditions": [{"type": "board_has_element", "params": {"element": 1, "min_count": 5}}],
+            "conditions": [{"type": "always_true", "params": {}}],
             "outcomes": [{"type": "defense_buff", "params": {"damage_reduction": 0.5, "duration_turns": 3}}]
         }
     ]
@@ -177,19 +164,21 @@ Add the entry to `shared/data/skills.json`:
 
 Set the monster's `active_skill_id` in `monsters.json` to the new skill's `id`.
 
-## Complete List of Registered Conditions
+## Complete List of Registered Conditions (7 total)
 
 | Type Key | Parameters | Description |
 |---|---|---|
 | `always_true` | (none) | Always passes. Used for unconditional skills. |
 | `combo_above` | `threshold: int` | Passes when `combo_count >= threshold`. |
+| `combo_gte` | `min_combo: int` | Passes when `combo_count >= min_combo`. Alias for combo_above with different param name. |
+| `combo_lt` | `max_combo: int` | Passes when `combo_count < max_combo`. |
 | `hp_below` | `percent: float` | Passes when team HP is at or below the given percentage (0.0-1.0). |
 | `elements_matched` | `element: int, min_count: int` | Passes when at least `min_count` gems of the given element were matched this turn. |
 | `team_has_element` | `element: int` | Passes when at least one team monster has the specified element. |
 
-## Complete List of Registered Effects/Outcomes
+## Complete List of Registered Effects/Outcomes (15 total)
 
-### Simple Effects (EffectRegistry)
+### Simple Effects (EffectRegistry) — 10
 
 | Type Key | Parameters | Description |
 |---|---|---|
@@ -198,42 +187,45 @@ Set the monster's `active_skill_id` in `monsters.json` to the new skill's `id`.
 | `heal_percent` | `percent: float` | Heal the team for a percentage of max HP. |
 | `change_gem_element` | `from: int, to: int` | Convert all gems of element `from` to element `to` on the board. |
 | `delay_enemies` | `turns: int` | Increase the countdown of all living enemies by `turns`. |
+| `single_target_damage` | `multiplier: float, target: string` | Deal `ATK * multiplier` to one enemy (e.g., `"highest_hp"`). |
+| `gem_conversion` | `from_element: int, to_element: int` | Alias for `change_gem_element` using `from_element`/`to_element` param names. |
+| `self_damage` | `hp_percent: float` | Reduce own HP by a percentage. HP floor is 1 (can't self-kill). |
+| `element_change` | `to_element: int, duration_turns: int` | Change a monster's element temporarily. Tracked via `buffs_applied`. |
+| `rec_buff` | `multiplier: float, duration_turns: int` | Multiply team REC for healing calculations. Tracked via `buffs_applied`. |
+| `lifesteal` | `percent_of_damage: float` | Heal for a percentage of damage dealt by previous outcomes in this activation. |
 
-### Outcome Types Used in JSON (Awaiting Full Implementation)
+### Persistent Outcomes (OutcomeRegistry, SkillOutcomeBase subclasses) — 4
 
-These types appear in the skill JSON data and are planned for registration as either simple effects or complex outcome subclasses:
+| Type Key | Class | Parameters | Description |
+|---|---|---|---|
+| `heal_over_time` | `TosHealOverTimeOutcome` | `recovery_multiplier: float, duration_turns: int` | Heals each turn based on `team_REC * multiplier`. |
+| `atk_buff` | `TosAtkBuffOutcome` | `element: int, multiplier: float, duration_turns: int` | Registers a MAIN hook that multiplies damage. Element 0 = all. |
+| `defense_buff` | `TosDefenseBuffOutcome` | `damage_reduction: float, duration_turns: int` | Registers a POST_DEFENSE hook that reduces incoming damage. |
+| `combo_scaling_atk` | `TosComboScalingAtkOutcome` | `bonus_per_combo: float, duration_turns: int` | Registers a MAIN hook: `damage *= (1 + (combos - 1) * bonus)`. |
+
+### Team Skill Effects (EffectRegistry) — 3
 
 | Type Key | Parameters | Description |
 |---|---|---|
-| `single_target_damage` | `element: int, multiplier: float, target: string` | Deal damage to a single enemy (e.g., highest HP). |
-| `gem_conversion` | `from_element: int, to_element: int` | Convert gems from one element to another. |
-| `heal_over_time` | `recovery_multiplier: float, duration_turns: int` | Heal each turn based on team REC. |
-| `atk_buff` | `element: int, multiplier: float, duration_turns: int` | Multiply ATK for the given element. |
-| `self_damage` | `hp_percent: float` | Reduce own HP by a percentage. |
-| `defense_buff` | `damage_reduction: float, duration_turns: int` | Reduce incoming damage for N turns. |
-| `combo_scaling_atk` | `bonus_per_combo: float, duration_turns: int` | ATK bonus that scales with combo count. |
-| `element_change` | `target: string, to_element: int, duration_turns: int` | Change a monster's element temporarily. |
-| `rec_buff` | `multiplier: float, duration_turns: int` | Multiply team REC for N turns. |
-| `lifesteal` | `percent_of_damage: float` | Heal for a percentage of damage dealt by the previous outcome. |
-| `element_atk_mult` | `element: int, multiplier: float` | Leader skill: multiply ATK for an element (passive). |
-| `element_hp_mult` | `element: int, multiplier: float` | Leader skill: multiply HP for an element (passive). |
-| `element_rec_mult` | `element: int, multiplier: float` | Leader skill: multiply REC for an element (passive). |
+| `element_atk_mult` | `element: int, multiplier: float` | Passive: multiply ATK for an element. |
+| `element_hp_mult` | `element: int, multiplier: float` | Passive: multiply HP for an element. |
+| `element_rec_mult` | `element: int, multiplier: float` | Passive: multiply REC for an element. |
 
 ## Architecture: From 12K LoC to Composition
 
 ```
 BEFORE (original ToS):                    AFTER (MobileForge):
 
-ActiveSkillExecution.cs (12K+ LoC)        skills.json (~150 lines)
-  switch(skillId)                            + 5 condition classes (~80 lines)
-    case 1001: ... break;                    + 5 effect functions (~60 lines)
-    case 1002: ... break;                    = ~290 lines total
-    ...400+ cases...
-                                           Adding a new skill:
-Adding a new skill:                          1. Add JSON entry (3-10 lines)
-  1. Add case to switch (~50 lines)          2. Maybe register 1 new type (~20 lines)
-  2. Copy-paste from similar skill
-  3. Adjust hardcoded values
+ActiveSkillExecution.cs (12K+ LoC)        skills.json (~165 lines)
+  switch(skillId)                            + 7 condition classes (~100 lines)
+    case 1001: ... break;                    + 10 simple effects (~200 lines)
+    case 1002: ... break;                    + 4 persistent outcomes (~180 lines)
+    ...400+ cases...                         + 3 team skill effects (~30 lines)
+                                           = ~675 lines total
+Adding a new skill:
+  1. Add case to switch (~50 lines)        Adding a new skill:
+  2. Copy-paste from similar skill           1. Add JSON entry (3-10 lines)
+  3. Adjust hardcoded values                 2. Maybe register 1 new type (~20 lines)
 ```
 
 The data-driven approach means game designers can create new skills by editing JSON, without touching GDScript. Only genuinely novel mechanics require new code.

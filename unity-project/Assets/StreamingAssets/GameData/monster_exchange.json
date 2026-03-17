@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Water Dragon Exchange",
+        "target_monster_id": 1,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 2,
+        "name": "Fire Phoenix Exchange",
+        "target_monster_id": 2,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 3,
+        "name": "Earth Golem Exchange",
+        "target_monster_id": 3,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 4,
+        "name": "Light Angel Exchange",
+        "target_monster_id": 4,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 5,
+        "name": "Dark Reaper Exchange",
+        "target_monster_id": 5,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    }
+]

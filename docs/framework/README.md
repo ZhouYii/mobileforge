@@ -46,24 +46,32 @@ MobileForge is a reusable, cross-engine framework for building mobile games. You
 
 ### Domain Layer
 
-| Module              | Purpose                                   |
-|---------------------|-------------------------------------------|
-| CurrencyService     | Earn, spend, check-afford logic           |
-| InventoryService    | Add, remove, stack, capacity checks       |
-| GachaService        | Banner definitions, pull logic, pity       |
-| ProgressionService  | XP, level-up, stat scaling                |
-| QuestService        | Objective tracking, completion, rewards   |
-| Effect system       | Callable registry + abstract base class   |
+| Module          | Purpose                                            |
+|-----------------|----------------------------------------------------|
+| Board           | Gem grid logic, swap, cascade resolution           |
+| Combat          | Damage calculation, element modifiers, hook chain  |
+| SkillPipeline   | Condition-outcome skill composition and execution  |
+| Enemy           | Enemy AI, countdown timers, action decisions       |
+| Dungeon         | Dungeon run orchestrator (turns, waves, rewards)   |
+| Monster         | Monster instances, leveling, fusion, evolution     |
+| Team            | Team slots, validation, stat aggregation           |
+| Economy         | Earn, spend, check-afford, stamina                 |
+| Gacha           | Banner definitions, weighted pull logic, pity      |
+| Loot            | Loot table rolling, drop generation                |
 
 ### Presentation Layer
 
-| Module           | Purpose                                    |
-|------------------|--------------------------------------------|
-| UIManager        | Screen stack, transitions, popups          |
-| HUDController    | Top bar, currency display, notifications   |
-| InventoryUI      | Grid/list views, item detail panels        |
-| GachaUI          | Banner display, pull animations, results   |
-| DialogueUI       | Text boxes, choices, portraits             |
+| Module                    | Purpose                                         |
+|---------------------------|-------------------------------------------------|
+| UIRouter                  | Screen navigation, push/pop, transitions        |
+| ScreenRegistry/BaseScreen | Screen registration and base class for screens  |
+| PopupStack/BasePopup      | Popup queue with priority, base class for popups|
+| ToastLayer                | Transient toast notifications                   |
+| OverlayManager            | Persistent overlay panels (e.g., debug, chat)   |
+| VirtualList               | Recycling vertical scroll list                  |
+| GridView                  | Recycling grid layout                           |
+| CurrencyBar               | Top bar currency display with live updates       |
+| CardView                  | Monster card rendering (instance or definition) |
 
 ## Cross-Engine Parity
 
@@ -125,6 +133,115 @@ Infrastructure modules initialize in this fixed order:
 ```
 
 Domain services initialize after all infrastructure is ready. They subscribe to events in their own `initialize()` method.
+
+## 3-Layer Dependency Graph
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         PRESENTATION LAYER                              │
+│                                                                         │
+│  ┌──────────┐  ┌───────────┐  ┌───────────┐  ┌───────────────────┐    │
+│  │ UIRouter  │  │PopupStack │  │ToastLayer │  │OverlayManager    │    │
+│  │ uses:     │  │ uses:     │  │ uses:     │  │ uses:             │    │
+│  │  EventBus │  │  EventBus │  │  EventBus │  │  EventBus         │    │
+│  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘  └────────┬──────────┘    │
+│        │              │              │                   │              │
+│  ┌─────┴──────┐  ┌────┴──────┐  ┌───┴───────┐  ┌──────┴──────────┐   │
+│  │VirtualList │  │ GridView  │  │CurrencyBar│  │    CardView     │   │
+│  │ uses:      │  │ uses:     │  │ uses:     │  │ uses:           │   │
+│  │  (none)    │  │  (none)   │  │  EventBus │  │  GameData       │   │
+│  │            │  │           │  │  PlayerSt │  │                 │   │
+│  └────────────┘  └───────────┘  └───────────┘  └─────────────────┘   │
+│                                                                         │
+│  ┌──────────────────┐  ┌──────────────────┐                            │
+│  │   BaseScreen     │  │   BasePopup      │                            │
+│  │ uses: UIRouter   │  │ uses: PopupStack │                            │
+│  └──────────────────┘  └──────────────────┘                            │
+└─────────────────────────────────┬───────────────────────────────────────┘
+                              │ subscribes to EventBus
+                              ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           DOMAIN LAYER                                  │
+│                                                                         │
+│  ┌───────────────────────────────────────────────────────────────┐      │
+│  │                    DungeonRunner (ORCHESTRATOR)                │      │
+│  │  calls → BoardLogic, CombatResolver, SkillPipeline,          │      │
+│  │          EnemyAI, Economy, LootTable                          │      │
+│  └──────────────────────────┬────────────────────────────────────┘      │
+│     ┌───────────┬───────────┼───────┬──────────┬────────────┐          │
+│     ▼           ▼           ▼       ▼          ▼            ▼          │
+│  BoardLogic  CombatRes.  SkillPipe EnemyAI  Economy    LootTable      │
+│  MonsterManager          TeamBuilder          GachaRoller              │
+└─────────────────────────────┬───────────────────────────────────────────┘
+                              ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        INFRASTRUCTURE LAYER                             │
+│  EventBus   GameData   PlayerState   SaveManager   NetworkClient       │
+│  AudioManager                                                           │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+## End-to-End Data Flow Example
+
+**"User drags gem" flow:**
+
+1. User drags gem -- Presentation (BoardView) translates touch to grid index
+2. BoardView calls Domain (BoardLogic.swap_gems, BoardLogic.resolve_cascade)
+3. Domain returns Array[CascadeStep] -- pure data, no waiting
+4. BoardView animates the CascadeSteps sequentially
+5. BattleScreen calls DungeonRunner.execute_player_turn(cascade_steps)
+6. DungeonRunner calls CombatResolver, SkillPipeline, EnemyAI internally
+7. DungeonRunner emits EventBus signals (damage_dealt, enemy_killed, etc.)
+8. Presentation subscribes and animates damage numbers, HP bars, etc.
+
+## Module Interface Contracts
+
+### Infrastructure
+
+| Module | Public Methods | Inputs | Outputs | Side Effects |
+|---|---|---|---|---|
+| EventBus | subscribe, unsubscribe, emit, clear_all | StringName + Callable + Dictionary | void | Stores callback references |
+| GameData | load_definitions, get_definition, get_all_definitions, has_definition | StringName + int | Dictionary/Array | Loads JSON once, read-only after |
+| PlayerState | set_value, get_value, get_section, to_save_dict, from_save_dict | StringName + Variant | Variant/Dictionary | Mutates state, emits events |
+| SaveManager | save, load, has_save, register_migrator, register_saveable | int + Callable | Error | Disk I/O |
+| NetworkClient | request, set_base_url, set_auth_token | String + Dictionary | async Response | HTTP I/O |
+| AudioManager | play_sfx, play_bgm, stop_bgm, preload_audio | StringName + float | void | Audio playback |
+
+### Domain
+
+| Module | Public Methods | Inputs | Outputs | Side Effects |
+|---|---|---|---|---|
+| BoardLogic | init_board, swap_gems, move_gem_path, resolve_cascade, detect_matches, change_gem_element | BoardConfig, positions | CascadeStep[], MatchResult[] | Mutates internal grid |
+| CombatResolver | resolve_player_attack, resolve_enemy_attack, register_hook, unregister_hook | DamageContext, DamageHook | DamageResult | Hook registration |
+| SkillPipeline | register_condition_type, register_outcome_type, activate_skill, process_turn_end | SkillDef, SkillContext | SkillResult | Registers hooks |
+| EnemyAI | tick_countdowns, decide_actions | Array[EnemyState] | Array[EnemyAction] | None (pure) |
+| DungeonRunner | start, execute_player_turn, execute_enemy_turn, activate_skill | DungeonDef, CascadeStep[] | TurnResult | Mutates state, emits events |
+| GachaRoller | roll, roll_multi, get_displayed_rates | GachaPool, pity, rng | GachaResult | None (pure) |
+| MonsterManager | create_instance, level_up, fuse, evolve, get_stats | MonsterDef/Instance | MonsterInstance | Mutates instance |
+| TeamBuilder | set_slot, validate, get_team_stats | int, MonsterInstance | bool, TeamStats | Mutates team |
+| Economy | can_afford, spend, earn, check_stamina | StringName, int | bool | Mutates PlayerState |
+| LootTable | roll_drops | LootTableDef, rng | Array[LootDrop] | None (pure) |
+
+### Presentation
+
+| Module | Public Methods | Inputs | Outputs | Side Effects |
+|---|---|---|---|---|
+| UIRouter | register, navigate, push, pop, replace | StringName, Callable, Dictionary | void | Creates/destroys screens |
+| PopupStack | show, dismiss, dismiss_all | StringName, Callable, priority | BasePopup | Creates popups |
+| ToastLayer | show | text, icon, duration, type | void | Creates toast nodes |
+| OverlayManager | show, hide, hide_all | StringName, Callable | void | Creates/destroys overlays |
+| VirtualList | set_data | Array, Callable, float | void | Recycles children |
+| GridView | set_data | Array, Callable, int | void | Recycles children |
+| CurrencyBar | bind | StringName | void | Subscribes to EventBus |
+| CardView | bind, bind_def | MonsterInstance/MonsterDef | void | Updates visuals |
+
+## Intra-Module Dependency Pattern
+
+Every module folder contains a `*_types.gd` file that serves as the leaf node with zero dependencies. This types file defines the data structures (classes, enums, constants) used throughout the module.
+
+Logic files within a module import only their own `_types` file. For example, `board_logic.gd` imports `board_types.gd`, and `combat_resolver.gd` imports `combat_types.gd`. This keeps each module self-contained.
+
+Cross-module dependencies exist only at the **orchestrator level**. `DungeonRunner` is the primary orchestrator -- it imports `BoardLogic`, `CombatResolver`, `SkillPipeline`, `EnemyAI`, `Economy`, and `LootTable` to coordinate a dungeon run. `SkillPipeline` is a secondary orchestrator that may reference `CombatResolver` (for hook registration) and `BoardLogic` (for board mutations). No other domain module imports from another domain module.
 
 ## Further Reading
 

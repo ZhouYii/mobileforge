@@ -142,6 +142,63 @@ Pool with `pity_threshold = 50`:
 - Pull 50 (counter = 49): if still no top-rarity, this pull is guaranteed top-rarity.
 - After getting top-rarity (at any point): counter resets to 0.
 
+## Gacha Pull Flow
+
+### 6-Step Pull Sequence
+
+```
+1. Player taps "Pull" or "Pull x10"
+   │
+2. Economy check: can_afford(pool.cost_currency, pool.cost_amount * count)?
+   │── NO → PopupStack.show("insufficient_currency") → STOP
+   │── YES → continue
+   │
+3. Determine rarity per pull:
+   │── Check pity: pity_count >= pity_threshold - 1?
+   │     YES → Force top rarity (restrict pool to max-rarity entries)
+   │     NO  → Normal weighted random from all entries
+   │
+4. Weighted random select within rarity tier:
+   │── Sum all eligible entry weights → total_weight
+   │── Generate random in [0, total_weight)
+   │── Walk entries, accumulate weight, select first exceeding roll
+   │── Return GachaResult { monster_id, rarity, is_pity, is_featured }
+   │
+5. Create monster instances:
+   │── For each GachaResult:
+   │     MonsterManager.create_instance(result.monster_id)
+   │     PlayerState.add_to_collection(instance)
+   │     EventBus.emit("monster_added", { instance })
+   │
+6. Deduct currency and update pity:
+   │── Economy.spend(pool.cost_currency, total_cost)
+   │── EventBus emits "currency_changed" → CurrencyBar animates
+   │── Update PityTracker: reset if top-rarity, increment otherwise
+   │── SaveManager.mark_dirty() → auto-save queued
+```
+
+### Pity Counter Mechanics
+
+| Pull # | Pity Counter | Result | Counter After |
+|--------|-------------|--------|---------------|
+| 1      | 0           | 3-star | 1             |
+| 2      | 1           | 3-star | 2             |
+| ...    | ...         | ...    | ...           |
+| 25     | 24          | 5-star!| 0 (reset)     |
+| 26     | 0           | 4-star | 1             |
+| ...    | ...         | ...    | ...           |
+| 49     | 48          | 3-star | 49            |
+| 50     | 49          | 5-star!| 0 (forced)    |
+
+### Rate Display Calculation
+
+Displayed rates group entries by rarity and compute percentages:
+
+```
+total_weight = sum(entry.weight for all entries)
+rate_per_rarity[r] = sum(entry.weight for entries where rarity == r) / total_weight * 100
+```
+
 ## Code Examples
 
 ### Single Pull with Economy Check

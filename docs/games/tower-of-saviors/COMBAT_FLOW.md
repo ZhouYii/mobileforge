@@ -233,15 +233,27 @@ If `team_hp` drops to 0 or below, the battle is lost. `dungeon_runner.state.is_a
 
 ## Enemy AI
 
-The current AI implementation is simple: all enemies attack when their countdown reaches zero. The `MFEnemyAI` module provides static functions that can be extended for more complex patterns:
+The `MFEnemyAI` module provides static functions for enemy behavior. Each enemy has a `behavior` field (default: `"normal"`) that determines its action pattern in `decide_action()`.
 
 | Function | Description |
 |---|---|
 | `tick_countdowns(enemies)` | Decrements all living enemies' countdowns. Returns ready enemies. |
-| `decide_action(enemy)` | Returns an `EnemyAction`. Default: always "attack". |
+| `decide_action(enemy)` | Returns an `EnemyAction` based on `enemy.behavior`. |
+| `apply_buff_allies(enemies, buffer)` | Boosts other enemies' ATK by 1.5x when `buff_allies` triggers. |
 | `reset_countdown(enemy)` | Resets countdown to `max_countdown` after attack. |
 | `can_attack(enemy)` | Check if countdown <= 0 and enemy is alive. |
 | `tick_enemy_statuses(enemies)` | Tick and expire status effects on all enemies. |
+
+### Behavior Types
+
+| Behavior | Trigger | Action |
+|---|---|---|
+| `normal` | Always | Basic attack with base ATK. |
+| `heavy_attack` | Every 3rd attack | 2x damage on the 3rd attack, normal damage otherwise. Tracked via `attack_count`. |
+| `heal_self` | HP < 30% | Heals 20% of max HP instead of attacking. Otherwise attacks normally. |
+| `buff_allies` | First action only | Boosts all other enemies' ATK by 1.5x (one-time). Then attacks normally. Tracked via `has_used_buff`. |
+
+Behaviors are assigned per-enemy in `stages.json` via the `"behavior"` field. Enemies without a behavior field default to `"normal"`.
 
 ### Enemy State
 
@@ -257,6 +269,9 @@ Each enemy is represented by `MFEnemyTypes.EnemyState`:
 | `defense` | `float` | Defense (subtracted from incoming damage) |
 | `countdown` | `int` | Turns until next attack |
 | `max_countdown` | `int` | Countdown reset value |
+| `behavior` | `String` | AI behavior: `"normal"`, `"heavy_attack"`, `"heal_self"`, `"buff_allies"` |
+| `has_used_buff` | `bool` | Tracks one-time `buff_allies` usage |
+| `attack_count` | `int` | Tracks attacks for `heavy_attack` modulo timing |
 | `status_effects` | `Array[Dictionary]` | Active status effects |
 | `is_alive` | `bool` | Computed: `hp > 0` |
 

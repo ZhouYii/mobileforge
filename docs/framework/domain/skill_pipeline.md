@@ -70,6 +70,96 @@ ToS ships roughly 119 distinct condition types and 192 distinct outcome types sc
                                            --->  EnemyState debuffs applied
 ```
 
+## Skill Activation Flow
+
+### 6-Step Activation Sequence
+
+```
+1. Player taps skill portrait
+   │
+2. Check cooldown: current_cooldown > 0? → Show "not ready" toast, STOP
+   │
+3. Build SkillContext: snapshot board, team, enemies, combos, HP, turn_number
+   │
+4. Evaluate conditions (per SkillRule):
+   │   For each rule in skill_def.rules:
+   │     For each condition in rule.conditions:
+   │       condition.is_valid(context)?
+   │     ALL must pass → execute this rule's outcomes
+   │     ANY fails → skip this rule
+   │
+5. Execute outcomes:
+   │   For each outcome in matched_rule.outcomes:
+   │     Is it a registered simple effect (Tier 1)?
+   │       → EffectRegistry.execute(type, params, context, result)
+   │     Is it a registered condition type (Tier 2)?
+   │       → SkillConditionBase.evaluate(params, context)
+   │     Is it a registered outcome type (Tier 3)?
+   │       → SkillOutcomeBase.apply(params, context, result)
+   │       → If outcome.turns_left > 0: add to persistent_outcomes
+   │       → Register hooks on CombatResolver if needed
+   │
+6. Return SkillResult with accumulated effects
+```
+
+### Tier Decision Flowchart
+
+```
+Does the effect need to persist across turns?
+  │
+  ├─ NO: Can it be expressed as (params, context) → mutation?
+  │   │
+  │   ├─ YES → Tier 1: EffectRegistry (simple callable)
+  │   │         Examples: heal_flat, area_damage, change_gem_element
+  │   │
+  │   └─ NO  → Tier 2: SkillConditionBase (stateful evaluator)
+  │             Examples: combo_above, hp_threshold, elements_matched
+  │
+  └─ YES → Tier 3: SkillOutcomeBase (persistent outcome)
+            Examples: atk_buff (3 turns), damage_over_time, combo_scaling_buff
+            │
+            Lifecycle:
+            activate() → on_turn_start() → on_turn_end() → turns_left-- → deactivate()
+```
+
+### Persistent Outcome Lifecycle (expanded)
+
+```
+Turn N: Skill activated
+  │── outcome.apply(params, context, result)
+  │── outcome.turns_left = params.turns
+  │── outcome registers hooks on CombatResolver
+  │── outcome added to SkillPipeline._active_outcomes
+  │
+Turn N (end):
+  │── SkillPipeline.process_turn_end(context)
+  │── outcome.process_turn_end(context)  ← per-turn logic
+  │── outcome.turns_left -= 1
+  │
+Turn N+1 (end):
+  │── Same tick logic, turns_left decrements
+  │
+Turn N+k (end): turns_left reaches 0
+  │── outcome.on_expire(context)
+  │── CombatResolver.unregister_hook(outcome._hook_name)
+  │── outcome removed from _active_outcomes
+```
+
+### Hook Lifecycle
+
+```
+Hook Registration (during outcome.apply):
+  CombatResolver.register_hook(HookType.MAIN, callback, priority, name)
+
+Hook Execution (during resolve_player_attack):
+  PRE_ELEMENT → POST_ELEMENT → MAIN → POST_DEFENSE → CAN_ZERO
+  Each hook receives mutable DamageContext, can modify damage
+
+Hook Cleanup (during outcome.on_expire):
+  CombatResolver.unregister_hook(name)
+  Hook no longer fires on subsequent damage calculations
+```
+
 ## The Hybrid Extension Model
 
 Skills range from trivial (heal 1000 HP) to complex (scaling buff that persists 3 turns and stacks with combos). MobileForge supports both with a three-tier extension model:

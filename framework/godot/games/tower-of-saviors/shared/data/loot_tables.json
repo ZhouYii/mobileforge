@@ -1,0 +1,54 @@
+[
+    {
+        "id": 1,
+        "stage_id": 1,
+        "entries": [
+            {"type": "currency", "item_id": 0, "currency": "coins", "count_min": 500, "count_max": 1500, "weight": 100, "guaranteed": true},
+            {"type": "monster", "item_id": 16, "count_min": 1, "count_max": 1, "weight": 50, "guaranteed": false},
+            {"type": "monster", "item_id": 101, "count_min": 1, "count_max": 1, "weight": 30, "guaranteed": false},
+            {"type": "monster", "item_id": 102, "count_min": 1, "count_max": 1, "weight": 15, "guaranteed": false}
+        ]
+    },
+    {
+        "id": 2,
+        "stage_id": 2,
+        "entries": [
+            {"type": "currency", "item_id": 0, "currency": "coins", "count_min": 600, "count_max": 1600, "weight": 100, "guaranteed": true},
+            {"type": "monster", "item_id": 17, "count_min": 1, "count_max": 1, "weight": 50, "guaranteed": false},
+            {"type": "monster", "item_id": 101, "count_min": 1, "count_max": 1, "weight": 30, "guaranteed": false},
+            {"type": "monster", "item_id": 103, "count_min": 1, "count_max": 1, "weight": 15, "guaranteed": false}
+        ]
+    },
+    {
+        "id": 3,
+        "stage_id": 3,
+        "entries": [
+            {"type": "currency", "item_id": 0, "currency": "coins", "count_min": 700, "count_max": 1800, "weight": 100, "guaranteed": true},
+            {"type": "monster", "item_id": 18, "count_min": 1, "count_max": 1, "weight": 50, "guaranteed": false},
+            {"type": "monster", "item_id": 102, "count_min": 1, "count_max": 1, "weight": 25, "guaranteed": false},
+            {"type": "monster", "item_id": 103, "count_min": 1, "count_max": 1, "weight": 20, "guaranteed": false}
+        ]
+    },
+    {
+        "id": 4,
+        "stage_id": 4,
+        "entries": [
+            {"type": "currency", "item_id": 0, "currency": "coins", "count_min": 800, "count_max": 2000, "weight": 100, "guaranteed": true},
+            {"type": "monster", "item_id": 19, "count_min": 1, "count_max": 1, "weight": 45, "guaranteed": false},
+            {"type": "monster", "item_id": 101, "count_min": 1, "count_max": 1, "weight": 25, "guaranteed": false},
+            {"type": "monster", "item_id": 102, "count_min": 1, "count_max": 1, "weight": 20, "guaranteed": false},
+            {"type": "currency", "item_id": 0, "currency": "gems", "count_min": 1, "count_max": 1, "weight": 5, "guaranteed": false}
+        ]
+    },
+    {
+        "id": 5,
+        "stage_id": 5,
+        "entries": [
+            {"type": "currency", "item_id": 0, "currency": "coins", "count_min": 1000, "count_max": 2500, "weight": 100, "guaranteed": true},
+            {"type": "monster", "item_id": 20, "count_min": 1, "count_max": 1, "weight": 45, "guaranteed": false},
+            {"type": "monster", "item_id": 101, "count_min": 1, "count_max": 1, "weight": 25, "guaranteed": false},
+            {"type": "monster", "item_id": 103, "count_min": 1, "count_max": 1, "weight": 20, "guaranteed": false},
+            {"type": "currency", "item_id": 0, "currency": "gems", "count_min": 1, "count_max": 2, "weight": 8, "guaranteed": false}
+        ]
+    }
+]

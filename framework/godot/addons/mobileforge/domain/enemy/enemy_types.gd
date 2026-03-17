@@ -13,6 +13,9 @@ class EnemyState extends RefCounted:
 	var defense: float
 	var countdown: int  # turns until next attack
 	var max_countdown: int
+	var behavior: String  # AI behavior: "normal", "heavy_attack", "heal_self", "buff_allies"
+	var has_used_buff: bool  # tracks one-time buff_allies usage
+	var attack_count: int  # tracks number of attacks for heavy_attack timing
 	var status_effects: Array[Dictionary]  # {type: String, turns: int, data: Variant}
 	var is_alive: bool:
 		get:
@@ -28,6 +31,9 @@ class EnemyState extends RefCounted:
 		defense = float(data.get("defense", 0.0))
 		countdown = int(data.get("countdown", 1))
 		max_countdown = countdown
+		behavior = data.get("behavior", "normal")
+		has_used_buff = false
+		attack_count = 0
 		status_effects = []
 
 	func take_damage(amount: int) -> int:

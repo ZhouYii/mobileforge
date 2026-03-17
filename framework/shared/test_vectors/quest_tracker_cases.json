@@ -1,0 +1,176 @@
+[
+  {
+    "name": "single_objective_quest_completes",
+    "quest_def": {
+      "id": "q_kill_3",
+      "name": "Defeat 3 Enemies",
+      "category": "daily",
+      "objectives": [
+        { "event_name": "enemy_killed", "target_count": 3, "filter": {} }
+      ],
+      "rewards": [{ "type": "currency", "currency": "gold", "count": 100 }],
+      "prerequisites": [],
+      "repeatable": false
+    },
+    "events": [
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} }
+    ],
+    "expected": {
+      "completed_after_events": [2],
+      "is_claimable": true,
+      "rewards_on_claim": [{ "type": "currency", "currency": "gold", "count": 100 }]
+    }
+  },
+  {
+    "name": "filtered_objective_only_counts_matching_events",
+    "quest_def": {
+      "id": "q_fire_kills",
+      "name": "Defeat 2 Fire Enemies",
+      "category": "daily",
+      "objectives": [
+        { "event_name": "enemy_killed", "target_count": 2, "filter": { "element": "fire" } }
+      ],
+      "rewards": [{ "type": "currency", "currency": "gems", "count": 10 }],
+      "prerequisites": [],
+      "repeatable": false
+    },
+    "events": [
+      { "event_name": "enemy_killed", "payload": { "element": "water" } },
+      { "event_name": "enemy_killed", "payload": { "element": "fire" } },
+      { "event_name": "enemy_killed", "payload": { "element": "fire" } }
+    ],
+    "expected": {
+      "completed_after_events": [2],
+      "progress_after_event_0": [0],
+      "progress_after_event_1": [1],
+      "is_claimable": true
+    }
+  },
+  {
+    "name": "multi_objective_quest",
+    "quest_def": {
+      "id": "q_multi",
+      "name": "Battle Master",
+      "category": "achievement",
+      "objectives": [
+        { "event_name": "enemy_killed", "target_count": 5, "filter": {} },
+        { "event_name": "combo_hit", "target_count": 3, "filter": {} }
+      ],
+      "rewards": [{ "type": "currency", "currency": "gold", "count": 500 }],
+      "prerequisites": [],
+      "repeatable": false
+    },
+    "events": [
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "combo_hit", "payload": {} },
+      { "event_name": "combo_hit", "payload": {} },
+      { "event_name": "combo_hit", "payload": {} }
+    ],
+    "expected": {
+      "completed_after_events": [7],
+      "is_claimable": true
+    }
+  },
+  {
+    "name": "prerequisite_blocks_activation",
+    "quest_def": {
+      "id": "q_chain_2",
+      "name": "Chain Quest Part 2",
+      "category": "story",
+      "objectives": [
+        { "event_name": "wave_cleared", "target_count": 1, "filter": {} }
+      ],
+      "rewards": [],
+      "prerequisites": ["q_chain_1"],
+      "repeatable": false
+    },
+    "precondition": {
+      "claimed_quests": []
+    },
+    "expected": {
+      "activation_succeeds": false
+    }
+  },
+  {
+    "name": "prerequisite_allows_activation_when_met",
+    "quest_def": {
+      "id": "q_chain_2",
+      "name": "Chain Quest Part 2",
+      "category": "story",
+      "objectives": [
+        { "event_name": "wave_cleared", "target_count": 1, "filter": {} }
+      ],
+      "rewards": [],
+      "prerequisites": ["q_chain_1"],
+      "repeatable": false
+    },
+    "precondition": {
+      "claimed_quests": ["q_chain_1"]
+    },
+    "expected": {
+      "activation_succeeds": true
+    }
+  },
+  {
+    "name": "non_repeatable_cannot_reactivate",
+    "quest_def": {
+      "id": "q_once",
+      "name": "One Time Only",
+      "category": "achievement",
+      "objectives": [
+        { "event_name": "enemy_killed", "target_count": 1, "filter": {} }
+      ],
+      "rewards": [{ "type": "currency", "currency": "gold", "count": 50 }],
+      "prerequisites": [],
+      "repeatable": false
+    },
+    "expected": {
+      "reactivation_after_claim": false
+    }
+  },
+  {
+    "name": "repeatable_can_reactivate",
+    "quest_def": {
+      "id": "q_repeat",
+      "name": "Daily Grind",
+      "category": "daily",
+      "objectives": [
+        { "event_name": "enemy_killed", "target_count": 1, "filter": {} }
+      ],
+      "rewards": [{ "type": "currency", "currency": "gold", "count": 20 }],
+      "prerequisites": [],
+      "repeatable": true
+    },
+    "expected": {
+      "reactivation_after_claim": true
+    }
+  },
+  {
+    "name": "save_and_restore_preserves_progress",
+    "quest_def": {
+      "id": "q_save",
+      "name": "Save Test",
+      "category": "daily",
+      "objectives": [
+        { "event_name": "enemy_killed", "target_count": 3, "filter": {} }
+      ],
+      "rewards": [],
+      "prerequisites": [],
+      "repeatable": false
+    },
+    "events_before_save": [
+      { "event_name": "enemy_killed", "payload": {} },
+      { "event_name": "enemy_killed", "payload": {} }
+    ],
+    "expected": {
+      "progress_after_restore": [2],
+      "status_after_restore": "active"
+    }
+  }
+]

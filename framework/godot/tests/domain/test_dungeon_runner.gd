@@ -75,23 +75,23 @@ func before_each() -> void:
 # ---------------------------------------------------------------------------
 
 func test_start_initializes_state() -> void:
-	_runner.start(_dungeon_def, 5000)  # team_hp = 5000
-	var state = _runner.get_state()
+	_runner.start_dungeon(_dungeon_def, 5000)  # team_hp = 5000
+	var state = _runner.get_dungeon_state()
 	assert_true(state.is_active, "state should be active after start")
 	assert_eq(state.current_wave_index, 0, "should start at wave 0")
 	assert_eq(state.team_hp, 5000, "team_hp should match")
 
 
 func test_start_loads_enemies() -> void:
-	_runner.start(_dungeon_def, 5000)
-	var state = _runner.get_state()
+	_runner.start_dungeon(_dungeon_def, 5000)
+	var state = _runner.get_dungeon_state()
 	assert_eq(state.enemies.size(), 2, "wave 0 should have 2 enemies")
 	assert_eq(state.enemies[0].name, "Slime A", "first enemy name should match")
 	assert_eq(state.enemies[1].name, "Slime B", "second enemy name should match")
 
 
 func test_execute_player_turn_deals_damage() -> void:
-	_runner.start(_dungeon_def, 5000)
+	_runner.start_dungeon(_dungeon_def, 5000)
 	# Provide cascade_steps that simulate matched gems
 	var cascade_steps = [
 		{"matches": [
@@ -107,7 +107,7 @@ func test_execute_player_turn_deals_damage() -> void:
 
 
 func test_execute_player_turn_kills_enemy() -> void:
-	_runner.start(_dungeon_def, 5000)
+	_runner.start_dungeon(_dungeon_def, 5000)
 	# Massive cascade to guarantee kill
 	var cascade_steps = [
 		{"matches": [
@@ -121,16 +121,16 @@ func test_execute_player_turn_kills_enemy() -> void:
 		]},
 	]
 	# Force enemies to low HP so they die
-	var state = _runner.get_state()
+	var state = _runner.get_dungeon_state()
 	state.enemies[0].hp = 1
 	var result = _runner.execute_player_turn(cascade_steps, 3, 1)
 	assert_gt(result.enemies_killed.size(), 0, "at least one enemy should be killed")
 
 
 func test_execute_player_turn_wave_clear() -> void:
-	_runner.start(_dungeon_def, 5000)
+	_runner.start_dungeon(_dungeon_def, 5000)
 	# Kill all enemies in wave 0
-	var state = _runner.get_state()
+	var state = _runner.get_dungeon_state()
 	for enemy in state.enemies:
 		enemy.hp = 1
 
@@ -147,8 +147,8 @@ func test_execute_player_turn_wave_clear() -> void:
 
 
 func test_execute_enemy_turn_deals_damage() -> void:
-	_runner.start(_dungeon_def, 5000)
-	var state = _runner.get_state()
+	_runner.start_dungeon(_dungeon_def, 5000)
+	var state = _runner.get_dungeon_state()
 	var initial_hp := state.team_hp
 
 	# Set an enemy countdown to 0 so it attacks
@@ -159,8 +159,8 @@ func test_execute_enemy_turn_deals_damage() -> void:
 
 
 func test_battle_won_after_all_waves() -> void:
-	_runner.start(_dungeon_def, 5000)
-	var state = _runner.get_state()
+	_runner.start_dungeon(_dungeon_def, 5000)
+	var state = _runner.get_dungeon_state()
 
 	# Clear wave 0: kill all enemies
 	for enemy in state.enemies:
@@ -168,25 +168,25 @@ func test_battle_won_after_all_waves() -> void:
 	_runner.advance_wave()
 
 	# Now on wave 1: kill boss
-	state = _runner.get_state()
+	state = _runner.get_dungeon_state()
 	for enemy in state.enemies:
 		enemy.hp = 0
 	_runner.advance_wave()
 
-	state = _runner.get_state()
+	state = _runner.get_dungeon_state()
 	assert_true(state.battle_won if "battle_won" in state else not state.is_active,
 		"after clearing all waves, battle should be won")
 
 
 func test_battle_lost_on_zero_hp() -> void:
-	_runner.start(_dungeon_def, 100)
-	var state = _runner.get_state()
+	_runner.start_dungeon(_dungeon_def, 100)
+	var state = _runner.get_dungeon_state()
 
 	# Set enemy countdown to 0, give it massive ATK
 	state.enemies[0].countdown = 0
 	state.enemies[0].atk = 99999.0
 	_runner.execute_enemy_turn()
 
-	state = _runner.get_state()
+	state = _runner.get_dungeon_state()
 	assert_eq(state.team_hp, 0, "team_hp should be 0 after massive damage")
 	assert_false(state.is_active, "battle should be over when team_hp reaches 0")

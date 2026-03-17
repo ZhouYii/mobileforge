@@ -49,6 +49,52 @@ static func roll_multi(pool: RefCounted, count: int, pity_count: int, rng: Rando
 	return results
 
 
+## Roll a step-up step. Handles guaranteed rarity for the step.
+## Returns Array[GachaResult].
+static func roll_step(pool: RefCounted, step_def: Dictionary, pity_count: int, rng: RandomNumberGenerator) -> Array:
+	var count := int(step_def.get("pull_count", 10))
+	var guaranteed_rarity := int(step_def.get("guaranteed_rarity", 0))
+
+	var results := roll_multi(pool, count, pity_count, rng)
+
+	# If this step has a guaranteed rarity, ensure at least one pull meets it
+	if guaranteed_rarity > 0:
+		var has_guaranteed := false
+		for r in results:
+			if r.rarity >= guaranteed_rarity:
+				has_guaranteed = true
+				break
+		if not has_guaranteed and not results.is_empty():
+			# Replace the last result with a guaranteed-rarity pull
+			var guaranteed := _roll_min_rarity(pool, guaranteed_rarity, rng)
+			results[-1] = guaranteed
+
+	return results
+
+
+## Roll from entries that meet a minimum rarity threshold.
+static func _roll_min_rarity(pool: RefCounted, min_rarity: int, rng: RandomNumberGenerator) -> RefCounted:
+	var valid_entries: Array = []
+	var total_weight := 0
+	for entry in pool.entries:
+		if entry.rarity >= min_rarity:
+			valid_entries.append(entry)
+			total_weight += entry.weight
+
+	if valid_entries.is_empty():
+		return _roll_top_rarity(pool, rng, false)
+
+	var roll_value := rng.randi() % total_weight
+	var cumulative := 0
+	for entry in valid_entries:
+		cumulative += entry.weight
+		if roll_value < cumulative:
+			return MFGachaTypes.GachaResult.new(entry.monster_id, entry.rarity, false, entry.is_featured)
+
+	var last = valid_entries[-1]
+	return MFGachaTypes.GachaResult.new(last.monster_id, last.rarity, false, last.is_featured)
+
+
 ## Get displayed rates for a pool (for UI)
 static func get_displayed_rates(pool: RefCounted) -> Dictionary:
 	var total_weight := 0

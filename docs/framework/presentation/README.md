@@ -71,6 +71,61 @@ All presentation elements are organized into four z-order layers, from back to f
 - **Popups** are modal dialogs. They show a dimmed background and block input to lower layers. Managed by `PopupStack` with priority ordering.
 - **Toasts** are non-blocking notifications at the very top. They auto-dismiss after a timeout. Managed by `ToastLayer`.
 
+## Event Subscription Flow
+
+Presentation modules follow a consistent pattern for reacting to domain state changes:
+
+1. **Subscribe** in on_enter() / _ready() / Start():
+   EventBus.subscribe("event_name", callback)
+
+2. **React** in the callback:
+   Update visual state from the event payload dictionary
+
+3. **Unsubscribe** in on_exit() / _exit_tree() / OnDestroy():
+   EventBus.unsubscribe("event_name", callback)
+
+Common event subscriptions by module:
+| Presentation Module | Events Subscribed | Purpose |
+|---|---|---|
+| CurrencyBar | currency_changed | Animate count up/down |
+| BattleScreen | damage_dealt, enemy_killed, wave_cleared, battle_won, battle_lost | Update battle UI |
+| GachaScreen | monster_added | Show pull result |
+| MonsterBoxScreen | monster_added, monster_removed | Refresh grid |
+| ToastLayer | toast_requested | Show notification |
+
+## Screen Lifecycle State Machine
+
+```
+                    navigate(id)
+                        │
+                        ▼
+              ┌──────────────────┐
+              │    on_enter()    │ ← First shown, initialize UI
+              │  Subscribe to    │
+              │  EventBus events │
+              └────────┬─────────┘
+                       │
+              ┌────────▼─────────┐  push(other_id)  ┌──────────────┐
+              │     ACTIVE       │ ────────────────> │  on_pause()  │
+              │  Accepts input,  │                   │  Disable     │
+              │  animations run  │                   │  input       │
+              └────────▲─────────┘                   └──────┬───────┘
+                       │                                    │
+              ┌────────┴─────────┐                   ┌──────▼───────┐
+              │   on_resume()   │ <──────────────── │   PAUSED     │
+              │   Re-enable     │      pop()        │  Hidden by   │
+              │   input         │                   │  screen above│
+              └─────────────────┘                   └──────────────┘
+                       │
+                  pop() / replace()
+                       │
+              ┌────────▼─────────┐
+              │    on_exit()     │ ← Cleanup, unsubscribe
+              │  Remove from     │
+              │  scene tree      │
+              └──────────────────┘
+```
+
 ## Event-Driven Updates
 
 All presentation modules subscribe to `EventBus` for domain state changes. They never poll or directly query domain services.

@@ -265,6 +265,81 @@ If any step fails:
   - Original save file remains untouched
 ```
 
+## Save/Load Control Flow
+
+### Save Flow
+
+TRIGGER: Game event (level complete, purchase, settings change) or auto-save timer
+
+```
+1. SaveManager.save(path)
+   │
+2. Collect data from registered ISaveables:
+   │── For each registered (key, saveable) pair:
+   │     data[key] = saveable.save_to_dict()
+   │── PlayerState.to_save_dict() → main player data
+   │
+3. Create envelope:
+   │── version = CURRENT_VERSION
+   │── timestamp = current Unix time
+   │── data = collected data dictionary
+   │── checksum = SHA-256(canonical_json(data))
+   │── envelope = { version, timestamp, checksum, data }
+   │
+4. Atomic write:
+   │── Write envelope JSON to: path + ".tmp"
+   │── Flush and close temp file
+   │── Rename: path + ".tmp" → path  (atomic on most filesystems)
+   │
+5. Emit EventBus: "save_completed" { success: true, path }
+   │
+On failure at any step:
+   │── Delete temp file if exists
+   │── Emit "save_completed" { success: false, path }
+   │── Original save file remains untouched
+```
+
+### Load Flow
+
+TRIGGER: Game startup
+
+```
+1. SaveManager.load_save(path)
+   │
+2. Read file:
+   │── Read path → JSON string → parse to Dictionary
+   │── If file missing or corrupt → return fresh state, emit "save_loaded" { success: false }
+   │
+3. Validate checksum:
+   │── Recompute SHA-256(canonical_json(envelope.data))
+   │── Compare with envelope.checksum
+   │── Mismatch → reject save, return fresh state
+   │
+4. Check version and migrate:
+   │── If envelope.version < CURRENT_VERSION:
+   │     Run migration chain: v_old → v_old+1 → ... → CURRENT_VERSION
+   │     Each step: data = migrator_N(data)
+   │     Emit "save_migrated" { from_version, to_version }
+   │
+5. Distribute to ISaveables:
+   │── PlayerState.from_save_dict(envelope.data)
+   │── For each registered (key, saveable) pair:
+   │     saveable.load_from_dict(envelope.data[key])
+   │
+6. Emit EventBus: "save_loaded" { success: true, version, path }
+   │── All UI modules refresh from PlayerState
+```
+
+### Migration Chain Diagram
+
+```
+v1 save file → Migrator(1→2) → Migrator(2→3) → ... → Migrator(N-1→N) → current format
+     │              │                │                       │
+  Original      Rename fields    Add new fields         Restructure
+  format        (coins→gold)     (gems default 0)       (nest under
+                                                          currencies{})
+```
+
 ## Events Emitted
 
 | Event | Payload | When |

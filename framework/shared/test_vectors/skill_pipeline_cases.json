@@ -1,0 +1,108 @@
+{
+    "description": "Test vectors for skill pipeline: condition evaluation, outcome execution, persistent outcomes",
+    "cases": [
+        {
+            "name": "always_true_condition_passes",
+            "skill_def": {
+                "id": "test_heal",
+                "rules": [{"conditions": [{"type": "always_true", "params": {}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 1000}}]}]
+            },
+            "context": {"team_hp": 5000, "max_hp": 10000, "combo_count": 3, "elements_matched": {}},
+            "expected": {"success": true, "healing": 1000}
+        },
+        {
+            "name": "combo_above_condition_fails",
+            "skill_def": {
+                "id": "test_combo",
+                "rules": [{"conditions": [{"type": "combo_above", "params": {"threshold": 5}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 500}}]}]
+            },
+            "context": {"team_hp": 5000, "max_hp": 10000, "combo_count": 3, "elements_matched": {}},
+            "expected": {"success": false, "healing": 0}
+        },
+        {
+            "name": "combo_above_condition_passes",
+            "skill_def": {
+                "id": "test_combo_pass",
+                "rules": [{"conditions": [{"type": "combo_above", "params": {"threshold": 3}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 500}}]}]
+            },
+            "context": {"team_hp": 5000, "max_hp": 10000, "combo_count": 5, "elements_matched": {}},
+            "expected": {"success": true, "healing": 500}
+        },
+        {
+            "name": "hp_below_condition_passes",
+            "skill_def": {
+                "id": "test_hp",
+                "rules": [{"conditions": [{"type": "hp_below", "params": {"percent": 0.5}}], "outcomes": [{"type": "heal_percent", "params": {"percent": 0.3}}]}]
+            },
+            "context": {"team_hp": 3000, "max_hp": 10000, "combo_count": 1, "elements_matched": {}},
+            "expected": {"success": true, "healing": 3000}
+        },
+        {
+            "name": "hp_below_condition_fails_above_threshold",
+            "skill_def": {
+                "id": "test_hp_fail",
+                "rules": [{"conditions": [{"type": "hp_below", "params": {"percent": 0.3}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 999}}]}]
+            },
+            "context": {"team_hp": 8000, "max_hp": 10000, "combo_count": 1, "elements_matched": {}},
+            "expected": {"success": false, "healing": 0}
+        },
+        {
+            "name": "elements_matched_condition",
+            "skill_def": {
+                "id": "test_elem_match",
+                "rules": [{"conditions": [{"type": "elements_matched", "params": {"element": 1, "min_count": 3}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 2000}}]}]
+            },
+            "context": {"team_hp": 5000, "max_hp": 10000, "combo_count": 5, "elements_matched": {"1": 4, "2": 1}},
+            "expected": {"success": true, "healing": 2000}
+        },
+        {
+            "name": "multiple_conditions_all_must_pass",
+            "skill_def": {
+                "id": "test_multi_cond",
+                "rules": [{"conditions": [{"type": "combo_above", "params": {"threshold": 3}}, {"type": "hp_below", "params": {"percent": 0.8}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 5000}}]}]
+            },
+            "context": {"team_hp": 6000, "max_hp": 10000, "combo_count": 5, "elements_matched": {}},
+            "expected": {"success": true, "healing": 5000}
+        },
+        {
+            "name": "multiple_outcomes_accumulate",
+            "skill_def": {
+                "id": "test_multi_outcome",
+                "rules": [{"conditions": [{"type": "always_true", "params": {}}], "outcomes": [{"type": "heal_flat", "params": {"amount": 1000}}, {"type": "heal_flat", "params": {"amount": 500}}]}]
+            },
+            "context": {"team_hp": 5000, "max_hp": 10000, "combo_count": 1, "elements_matched": {}},
+            "expected": {"success": true, "healing": 1500}
+        },
+        {
+            "name": "area_damage_outcome",
+            "skill_def": {
+                "id": "test_area_dmg",
+                "rules": [{"conditions": [{"type": "always_true", "params": {}}], "outcomes": [{"type": "area_damage", "params": {"multiplier": 10.0}}]}]
+            },
+            "context": {
+                "team_hp": 10000,
+                "max_hp": 10000,
+                "combo_count": 1,
+                "elements_matched": {},
+                "team_stats": [{"atk": 1500}],
+                "enemies": [{"is_alive": true}, {"is_alive": true}, {"is_alive": false}]
+            },
+            "expected": {"success": true, "damage_dealt": {"0": 15000, "1": 15000}}
+        },
+        {
+            "name": "delay_enemies_outcome",
+            "skill_def": {
+                "id": "test_delay",
+                "rules": [{"conditions": [{"type": "always_true", "params": {}}], "outcomes": [{"type": "delay_enemies", "params": {"turns": 2}}]}]
+            },
+            "context": {
+                "team_hp": 10000,
+                "max_hp": 10000,
+                "combo_count": 1,
+                "elements_matched": {},
+                "enemies": [{"is_alive": true, "countdown": 3}, {"is_alive": true, "countdown": 1}]
+            },
+            "expected": {"success": true, "enemy_countdowns_after": [5, 3]}
+        }
+    ]
+}

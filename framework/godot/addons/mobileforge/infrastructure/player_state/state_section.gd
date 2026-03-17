@@ -5,6 +5,7 @@ class_name MFStateSection extends RefCounted
 
 var _name: StringName
 var _data: Dictionary
+var _watchers: Dictionary = {}  # key -> Array[Callable(old_value, new_value)]
 
 
 func _init(section_name: StringName, initial_data: Dictionary = {}) -> void:
@@ -23,6 +24,7 @@ func get_value(key: StringName, default: Variant = null) -> Variant:
 func set_value(key: StringName, value: Variant) -> Variant:
 	var old = _data.get(key, null)
 	_data[key] = value
+	_notify_watchers(key, old, value)
 	return old
 
 
@@ -48,3 +50,30 @@ func from_dict(data: Dictionary) -> void:
 
 func clear() -> void:
 	_data.clear()
+
+
+## Watch a specific key for changes. Callback receives (old_value, new_value).
+func watch(key: StringName, callback: Callable) -> void:
+	if not _watchers.has(key):
+		_watchers[key] = []
+	_watchers[key].append(callback)
+
+
+## Remove a watcher for a specific key.
+func unwatch(key: StringName, callback: Callable) -> void:
+	if not _watchers.has(key):
+		return
+	var arr: Array = _watchers[key]
+	var idx := arr.find(callback)
+	if idx >= 0:
+		arr.remove_at(idx)
+	if arr.is_empty():
+		_watchers.erase(key)
+
+
+func _notify_watchers(key: StringName, old_value: Variant, new_value: Variant) -> void:
+	if not _watchers.has(key):
+		return
+	for callback in _watchers[key]:
+		if callback.is_valid():
+			callback.call(old_value, new_value)
