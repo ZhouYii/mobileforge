@@ -31,10 +31,35 @@ namespace MobileForge.Domain
             }
 
             Rewards = new Dictionary<string, object>();
-            if (data.TryGetValue("rewards", out var rewardsObj) && rewardsObj is Dictionary<string, object> rewardsDict)
+            if (data.TryGetValue("rewards", out var rewardsObj))
             {
-                foreach (var kv in rewardsDict)
-                    Rewards[kv.Key] = kv.Value;
+                if (rewardsObj is Dictionary<string, object> rewardsDict)
+                {
+                    foreach (var kv in rewardsDict)
+                        Rewards[kv.Key] = kv.Value;
+                }
+                else if (rewardsObj is List<object> rewardsList)
+                {
+                    // JSON has rewards as a list of {type, currency, count} objects
+                    // Convert to aggregated dict for backward compat + store raw list
+                    Rewards["_raw_list"] = rewardsList;
+                    foreach (var item in rewardsList)
+                    {
+                        if (item is Dictionary<string, object> rd)
+                        {
+                            string rType = rd.TryGetValue("type", out var rt) ? Convert.ToString(rt) : "";
+                            if (rType == "currency" && rd.TryGetValue("currency", out var rc))
+                            {
+                                string currency = Convert.ToString(rc);
+                                int count = rd.TryGetValue("count", out var cnt) ? Convert.ToInt32(cnt) : 0;
+                                if (Rewards.ContainsKey(currency))
+                                    Rewards[currency] = Convert.ToInt32(Rewards[currency]) + count;
+                                else
+                                    Rewards[currency] = count;
+                            }
+                        }
+                    }
+                }
             }
         }
 

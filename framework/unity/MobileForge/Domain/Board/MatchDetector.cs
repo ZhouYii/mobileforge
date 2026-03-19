@@ -35,7 +35,7 @@ namespace MobileForge.Domain
                 {
                     int pos = config.RcToPos(row, col);
                     var gem = board.GetGem(pos);
-                    if (gem == null || gem.ElementId == (int)Element.None || gem.HasStatus(GemStatus.Locked))
+                    if (gem == null || gem.ElementId == (int)Element.None || !GemModifier.CanMatch(gem))
                     {
                         FlushRun(runPositions, runElement, config.MinMatch, matches);
                         runPositions = new List<int>();
@@ -72,7 +72,7 @@ namespace MobileForge.Domain
                 {
                     int pos = config.RcToPos(row, col);
                     var gem = board.GetGem(pos);
-                    if (gem == null || gem.ElementId == (int)Element.None || gem.HasStatus(GemStatus.Locked))
+                    if (gem == null || gem.ElementId == (int)Element.None || !GemModifier.CanMatch(gem))
                     {
                         FlushRun(runPositions, runElement, config.MinMatch, matches);
                         runPositions = new List<int>();

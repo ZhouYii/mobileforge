@@ -72,6 +72,7 @@ MobileForge is a reusable, cross-engine framework for building mobile games. You
 | GridView                  | Recycling grid layout                           |
 | CurrencyBar               | Top bar currency display with live updates       |
 | CardView                  | Monster card rendering (instance or definition) |
+| UIComponents (ext.)       | PageBase, UIComponentRouter, Primitives — prefab-based UI layer (see [ui-components-architecture.md](../ui-components-architecture.md)) |
 
 ## Cross-Engine Parity
 
@@ -250,3 +251,4 @@ Cross-module dependencies exist only at the **orchestrator level**. `DungeonRunn
 - [infrastructure/README.md](infrastructure/README.md) — Infrastructure layer deep dive
 - [domain/README.md](domain/README.md) — Domain layer deep dive
 - [presentation/README.md](presentation/README.md) — Presentation layer deep dive
+- [UI Components Architecture](../ui-components-architecture.md) — Prefab-based UI component system

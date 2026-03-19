@@ -56,6 +56,40 @@ namespace MobileForge.Infrastructure
         public const string ItemEquipped = "item_equipped";
         public const string ItemUnequipped = "item_unequipped";
 
+        // Domain - Buff
+        public const string BuffRemoved = "buff_removed";
+        public const string BuffStacked = "buff_stacked";
+        public const string BuffCleansed = "buff_cleansed";
+
+        // Domain - Equipment
+        public const string EquipmentEnhanced = "equipment_enhanced";
+        public const string EquipmentEquipped = "equipment_equipped";
+        public const string SetBonusActivated = "set_bonus_activated";
+
+        // Domain - GameEvent
+        public const string EventStarted = "event_started";
+        public const string EventEnded = "event_ended";
+        public const string EventPointsEarned = "event_points_earned";
+        public const string EventMilestoneClaimed = "event_milestone_claimed";
+
+        // Domain - PlayerLevel
+        public const string PlayerLevelUp = "player_level_up";
+
+        // Domain - Social
+        public const string FriendAdded = "friend_added";
+        public const string FriendRemoved = "friend_removed";
+        public const string SupportUsed = "support_used";
+
+        // Domain - Arena
+        public const string ArenaWin = "arena_win";
+        public const string ArenaLoss = "arena_loss";
+        public const string ArenaTierChanged = "arena_tier_changed";
+
+        // Domain - Mail
+        public const string MailReceived = "mail_received";
+        public const string MailRead = "mail_read";
+        public const string MailClaimed = "mail_claimed";
+
         // Infrastructure - Badge
         public const string BadgeChanged = "badge_changed";
 

@@ -55,6 +55,19 @@ namespace TowerOfSaviors
                 { "rank", 1 },
                 { "exp", 0 }
             });
+            _playerState.RegisterSection("gacha", new Dictionary<string, object>());
+            _playerState.RegisterSection("social", new Dictionary<string, object>
+            {
+                { "unread_mail", 3 },
+                { "friend_requests", 2 }
+            });
+            _playerState.RegisterSection("settings", new Dictionary<string, object>
+            {
+                { "sound_enabled", true },
+                { "bgm_enabled", true },
+                { "notifications", true },
+                { "screen_shake", true }
+            });
 
             // Create domain modules
             _monsterManager = new MonsterManager(defId => GetMonsterDefData(defId));
@@ -97,7 +110,37 @@ namespace TowerOfSaviors
         /// </summary>
         public void Start()
         {
+            // Give player starting monsters on first launch
+            EnsureStartingMonsters();
             _uiRouter.Navigate("title");
+        }
+
+        private void EnsureStartingMonsters()
+        {
+            // Check if player already has monsters
+            var existingMonsters = _playerState.GetValue("progress", "has_starter_monsters", false);
+            if (existingMonsters is true || (existingMonsters is bool b && b))
+                return;
+
+            // Grant starter team: one monster of each main element (IDs 1-5)
+            // These should match the first 5 monsters in monsters.json
+            var allDefs = _gameData.GetAllDefinitions("monsters");
+            int granted = 0;
+            for (int defId = 1; defId <= 5 && granted < 5; defId++)
+            {
+                var def = _gameData.GetDefinition("monsters", defId);
+                if (def != null)
+                {
+                    var instance = _monsterManager.CreateInstance(defId, 10); // Start at level 10
+                    _playerState.SetValue("monsters", $"inst_{instance.InstanceId}",
+                        instance.ToDict());
+                    granted++;
+                }
+            }
+
+            // Mark as initialized so we don't re-grant on next launch
+            if (granted > 0)
+                _playerState.SetValue("progress", "has_starter_monsters", true);
         }
 
         /// <summary>
@@ -176,14 +219,14 @@ namespace TowerOfSaviors
             _uiRouter.Register("result", parameters =>
             {
                 var screen = new ResultScreen();
-                screen.Setup(parameters);
+                screen.Setup(_uiRouter, parameters, _economy);
                 return screen;
             });
 
             _uiRouter.Register("gacha", parameters =>
             {
                 var screen = new GachaScreen();
-                screen.Setup(_gameData, _economy, _monsterManager, _uiRouter);
+                screen.Setup(_gameData, _economy, _monsterManager, _uiRouter, _playerState);
                 return screen;
             });
 
@@ -197,7 +240,51 @@ namespace TowerOfSaviors
             _uiRouter.Register("shop", parameters =>
             {
                 var screen = new ShopScreen();
-                screen.Setup(_economy, _uiRouter);
+                screen.Setup(_economy, _uiRouter, _gameData, _playerState);
+                return screen;
+            });
+
+            // ── New screens matching original TOS ──
+
+            _uiRouter.Register("world_map", parameters =>
+            {
+                var screen = new WorldMapScreen();
+                screen.Setup(_gameData, _uiRouter);
+                return screen;
+            });
+
+            _uiRouter.Register("social", parameters =>
+            {
+                var screen = new SocialScreen();
+                screen.Setup(_uiRouter, _playerState);
+                return screen;
+            });
+
+            _uiRouter.Register("settings", parameters =>
+            {
+                var screen = new SettingsScreen();
+                screen.Setup(_uiRouter, _playerState);
+                return screen;
+            });
+
+            _uiRouter.Register("daily_checkin", parameters =>
+            {
+                var screen = new DailyCheckInScreen();
+                screen.Setup(_uiRouter, _playerState);
+                return screen;
+            });
+
+            _uiRouter.Register("mail", parameters =>
+            {
+                var screen = new MailScreen();
+                screen.Setup(_uiRouter, _playerState);
+                return screen;
+            });
+
+            _uiRouter.Register("team_manage", parameters =>
+            {
+                var screen = new TeamManageScreen();
+                screen.Setup(_monsterManager, _playerState, _uiRouter);
                 return screen;
             });
         }

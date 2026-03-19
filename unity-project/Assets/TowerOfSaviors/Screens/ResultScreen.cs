@@ -1,30 +1,24 @@
 using System;
 using System.Collections.Generic;
+using MobileForge.Domain;
+using MobileForge.Infrastructure;
 using MobileForge.Presentation;
 
 namespace TowerOfSaviors
 {
     /// <summary>
     /// Battle result screen. Shows victory/defeat status and rewards.
-    /// Mirrors result_screen.gd.
+    /// On victory, distributes rewards (coins, exp, gems) to PlayerState when continuing.
     /// </summary>
     public class ResultScreen : IScreen
     {
+        private UIRouter _router;
+        private Economy _economy;
         private Dictionary<string, object> _params;
+        private bool _rewardsCollected;
 
-        /// <summary>
-        /// Whether the player won the battle.
-        /// </summary>
         public bool Won { get; private set; }
-
-        /// <summary>
-        /// Result display text ("VICTORY!" or "DEFEATED...").
-        /// </summary>
         public string ResultText => Won ? "VICTORY!" : "DEFEATED...";
-
-        /// <summary>
-        /// Reward entries parsed from parameters (only populated on victory).
-        /// </summary>
         public List<RewardEntry> Rewards { get; private set; } = new List<RewardEntry>();
 
         public class RewardEntry
@@ -33,13 +27,16 @@ namespace TowerOfSaviors
             public int Count { get; set; }
         }
 
-        public void Setup(Dictionary<string, object> parameters)
+        public void Setup(UIRouter router, Dictionary<string, object> parameters, Economy economy = null)
         {
+            _router = router;
             _params = parameters ?? new Dictionary<string, object>();
+            _economy = economy;
         }
 
         public void OnEnter(Dictionary<string, object> parameters)
         {
+            _rewardsCollected = false;
             Won = false;
             if (_params.TryGetValue("won", out var wonObj))
             {
@@ -68,7 +65,6 @@ namespace TowerOfSaviors
                 }
                 else if (rewardsObj is Dictionary<string, object> rewardsDict)
                 {
-                    // Rewards as key-value pairs (e.g., {"coins": 500, "exp": 100})
                     foreach (var kv in rewardsDict)
                     {
                         Rewards.Add(new RewardEntry
@@ -79,6 +75,14 @@ namespace TowerOfSaviors
                     }
                 }
             }
+
+            // If no explicit rewards but won, add default rewards
+            if (Won && Rewards.Count == 0)
+            {
+                int staminaCost = _params.TryGetValue("stamina_cost", out var sc) ? Convert.ToInt32(sc) : 10;
+                Rewards.Add(new RewardEntry { Type = "coins", Count = staminaCost * 100 });
+                Rewards.Add(new RewardEntry { Type = "player_exp", Count = staminaCost * 50 });
+            }
         }
 
         public void OnPause() { }
@@ -87,12 +91,23 @@ namespace TowerOfSaviors
 
         /// <summary>
         /// Called when the player presses "Continue".
-        /// Navigate back to the title screen.
-        /// Requires a UIRouter reference — caller should invoke via TosGame.Router.
+        /// Distributes rewards to economy and navigates to title.
         /// </summary>
-        public void OnContinue(UIRouter router)
+        public void OnContinue(UIRouter router = null)
         {
-            router.Navigate("title");
+            // Apply rewards to player state
+            if (Won && !_rewardsCollected && _economy != null)
+            {
+                foreach (var reward in Rewards)
+                {
+                    if (!string.IsNullOrEmpty(reward.Type) && reward.Count > 0)
+                        _economy.Earn(reward.Type, reward.Count);
+                }
+                _rewardsCollected = true;
+            }
+
+            var r = router ?? _router;
+            r?.Navigate("title");
         }
     }
 }

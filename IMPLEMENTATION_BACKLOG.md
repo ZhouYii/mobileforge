@@ -36,6 +36,15 @@
 - [x] **3.4** Presentation layer animation helpers (tweens)
 - [x] **3.5** Card view element icons/colors and rarity styling
 
+## TIER 5: UI Components Architecture (Sprint 5) — COMPLETED
+
+- [x] **5.1** Two-tier UI system (Primitives + Pages) replacing monolithic GameRenderer
+- [x] **5.2** 8 Primitive components (MFButton, MFOverlay, MFProgressBar, MFScrollList, MFScrollGrid, MFGemBoard, MFMonsterCard, MFCurrencyDisplay)
+- [x] **5.3** 9 Page implementations (TitlePage, LevelSelectPage, TeamSelectPage, BattlePage, ResultPage, GachaPage, InventoryPage, ShopPage, PlaceholderPage)
+- [x] **5.4** UIComponentRouter + UIComponentRegistry replacing GameRenderer routing
+- [x] **5.5** TosUISetup game-specific page registration
+- [x] **5.6** SceneSetup.cs updated — UISystem GameObject replaces GameRenderer on Canvas
+
 ## TIER 4: Missing ToS Features (Future)
 
 ### Game Mechanics
@@ -108,3 +117,12 @@
 - `games/tower-of-saviors/godot/game/skill_defs/outcomes/poison_dot.gd` — **new**
 - `games/tower-of-saviors/godot/game/skill_defs/outcomes/gravity_damage.gd` — **new**
 - `games/tower-of-saviors/shared/data/skills.json` — added skills 11-14
+
+### Unity (UI Components)
+- `unity-project/Assets/MobileForge.UIComponents/PageBase.cs` — base class for all pages
+- `unity-project/Assets/MobileForge.UIComponents/UIComponentRouter.cs` — replaces GameRenderer routing
+- `unity-project/Assets/MobileForge.UIComponents/MFPrimitiveLibrary.cs` — type → prefab map
+- `unity-project/Assets/MobileForge.UIComponents/Primitives/` — 8 primitive components
+- `unity-project/Assets/MobileForge.UIComponents/Pages/` — 9 page implementations
+- `unity-project/Assets/TosUISetup.cs` — game-specific page registration
+- `unity-project/Assets/Editor/SceneSetup.cs` — UISystem GameObject setup

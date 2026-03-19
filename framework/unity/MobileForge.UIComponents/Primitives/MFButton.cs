@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MobileForge.UIComponents.Primitives
@@ -43,10 +45,10 @@ namespace MobileForge.UIComponents.Primitives
                 _background.color = new Color(0.25f, 0.25f, 0.35f, 1f);
                 _button = gameObject.AddComponent<Button>();
 
-                // Default size
+                // Default size — matches TosTheme.BtnMedium
                 var rect = GetComponent<RectTransform>();
                 var layout = gameObject.AddComponent<LayoutElement>();
-                layout.preferredHeight = 60;
+                layout.preferredHeight = 48;
                 layout.flexibleWidth = 1;
 
                 // Label child
@@ -55,16 +57,41 @@ namespace MobileForge.UIComponents.Primitives
                 var labelRect = labelGO.AddComponent<RectTransform>();
                 labelRect.anchorMin = Vector2.zero;
                 labelRect.anchorMax = Vector2.one;
-                labelRect.offsetMin = Vector2.zero;
-                labelRect.offsetMax = Vector2.zero;
+                labelRect.offsetMin = new Vector2(6, 0);
+                labelRect.offsetMax = new Vector2(-6, 0);
                 _label = labelGO.AddComponent<Text>();
-                _label.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-                _label.fontSize = 24;
+                _label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _label.fontSize = 16;
                 _label.color = Color.white;
                 _label.alignment = TextAnchor.MiddleCenter;
             }
 
             _button.onClick.AddListener(() => OnClick?.Invoke());
+
+            // Press feedback (scale 0.92x on press, bounce back on release)
+            var trigger = gameObject.GetComponent<EventTrigger>();
+            if (trigger == null) trigger = gameObject.AddComponent<EventTrigger>();
+            var downEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+            downEntry.callback.AddListener(_ => StartCoroutine(ScaleTo(0.92f, 0.06f)));
+            trigger.triggers.Add(downEntry);
+            var upEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
+            upEntry.callback.AddListener(_ => StartCoroutine(ScaleTo(1f, 0.1f)));
+            trigger.triggers.Add(upEntry);
+        }
+
+        private IEnumerator ScaleTo(float target, float duration)
+        {
+            float start = transform.localScale.x;
+            float t = 0;
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                float p = Mathf.Clamp01(t / duration);
+                float s = Mathf.Lerp(start, target, p);
+                transform.localScale = new Vector3(s, s, 1);
+                yield return null;
+            }
+            transform.localScale = new Vector3(target, target, 1);
         }
 
         public void SetLabel(string text)
@@ -100,6 +127,28 @@ namespace MobileForge.UIComponents.Primitives
             EnsureInitialized();
             if (_background != null) _background.color = bgColor;
             if (_label != null) _label.color = textColor;
+        }
+
+        /// <summary>
+        /// Set button size via LayoutElement. Pass -1 for flexible width.
+        /// </summary>
+        public void SetSize(float width, float height)
+        {
+            EnsureInitialized();
+            var le = GetComponent<LayoutElement>();
+            if (le == null) le = gameObject.AddComponent<LayoutElement>();
+            if (width > 0) { le.preferredWidth = width; le.flexibleWidth = 0; }
+            else le.flexibleWidth = 1;
+            if (height > 0) le.preferredHeight = height;
+        }
+
+        /// <summary>
+        /// Set the label font size.
+        /// </summary>
+        public void SetFontSize(int size)
+        {
+            EnsureInitialized();
+            if (_label != null) _label.fontSize = size;
         }
 
         /// <summary>

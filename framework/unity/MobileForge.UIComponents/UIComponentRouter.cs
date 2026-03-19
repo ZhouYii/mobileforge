@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,24 +15,26 @@ namespace MobileForge.UIComponents
         private UIRouter _uiRouter;
         private IUIComponent _currentComponent;
         private Transform _screenRoot;
+        private MFScreenTransition _transition;
 
         public IUIComponent CurrentComponent => _currentComponent;
 
         /// <summary>
-        /// Optional callback fired after a page is rendered. Used by the game layer
-        /// to notify external systems (e.g., AutomationBridge for WebGL).
-        /// </summary>
-        public Action<string> OnScreenRendered;
-
-        /// <summary>
         /// Initialize the router. Call once during bootstrap.
         /// </summary>
-        public void Setup(UIRouter uiRouter, UIComponentRegistry registry, Transform root)
+        public void Setup(UIRouter uiRouter, UIComponentRegistry registry, Transform root,
+            float transitionDuration = 0.25f)
         {
             _uiRouter = uiRouter;
             _registry = registry;
             _screenRoot = root;
             _uiRouter.OnNavigated += OnScreenChanged;
+
+            // Create transition overlay (sits above pages in the same root's parent)
+            var transGo = new GameObject("ScreenTransition");
+            transGo.transform.SetParent(root.parent, false);
+            _transition = transGo.AddComponent<MFScreenTransition>();
+            _transition.FadeDuration = transitionDuration;
         }
 
         void OnDestroy()
@@ -46,6 +47,23 @@ namespace MobileForge.UIComponents
         {
             Debug.Log($"[UIComponentRouter] Navigated to: {screenId}");
 
+            // Use transition if we have an existing page, otherwise swap immediately
+            if (_currentComponent != null && _transition != null)
+            {
+                _transition.DoTransition(() => SwapPage(screenId));
+            }
+            else
+            {
+                SwapPage(screenId);
+                // Fade out from black on first page load
+                _transition?.FadeOut();
+            }
+
+            NotifyBridge(screenId);
+        }
+
+        private void SwapPage(string screenId)
+        {
             // Unmount current page
             _currentComponent?.Unmount();
             _currentComponent = null;
@@ -65,8 +83,13 @@ namespace MobileForge.UIComponents
 
             component.Mount(_screenRoot);
             _currentComponent = component;
+        }
 
-            OnScreenRendered?.Invoke(screenId);
+        private void NotifyBridge(string screenId)
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            AutomationBridge.NotifyScreenChanged(screenId);
+#endif
         }
     }
 }

@@ -112,10 +112,10 @@ public class GameRenderer : MonoBehaviour
 
         // Navigation buttons
         float startY = 0.6f;
-        foreach (var entry in screen.NavEntries)
+        foreach (var feature in screen.Features)
         {
-            string sid = entry.ScreenId;
-            CreateButton(root.transform, $"btn_{sid}", entry.Label,
+            string sid = feature.ScreenId;
+            CreateButton(root.transform, $"btn_{sid}", feature.Label,
                 new Vector2(0.5f, startY), () => screen.OnNavSelected(sid));
             startY -= 0.12f;
         }

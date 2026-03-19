@@ -8,25 +8,78 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Water Slime", "element": 1, "hp": 5000, "atk": 300, "defense": 50, "countdown": 3, "max_countdown": 3},
-                    {"name": "Water Slime", "element": 1, "hp": 5000, "atk": 300, "defense": 50, "countdown": 2, "max_countdown": 3}
+                    {
+                        "name": "Water Slime",
+                        "element": 1,
+                        "hp": 5000,
+                        "atk": 300,
+                        "defense": 50,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Water Slime",
+                        "element": 1,
+                        "hp": 5000,
+                        "atk": 300,
+                        "defense": 50,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Water Elemental", "element": 1, "hp": 12000, "atk": 600, "defense": 100, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"},
-                    {"name": "Water Sprite", "element": 1, "hp": 4000, "atk": 200, "defense": 30, "countdown": 1, "max_countdown": 2}
+                    {
+                        "name": "Water Elemental",
+                        "element": 1,
+                        "hp": 12000,
+                        "atk": 600,
+                        "defense": 100,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Water Sprite",
+                        "element": 1,
+                        "hp": 4000,
+                        "atk": 200,
+                        "defense": 30,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Water Dragon Boss", "element": 1, "hp": 50000, "atk": 1500, "defense": 200, "countdown": 1, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Water Dragon Boss",
+                        "element": 1,
+                        "hp": 50000,
+                        "atk": 1500,
+                        "defense": 200,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1000},
-            {"type": "monster", "id": 16, "item_id": 16, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 1000
+            },
+            {
+                "type": "monster",
+                "id": 16,
+                "item_id": 16,
+                "count": 1
+            }
         ]
     },
     {
@@ -38,25 +91,78 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Fire Lizard", "element": 2, "hp": 5500, "atk": 350, "defense": 40, "countdown": 2, "max_countdown": 2},
-                    {"name": "Fire Lizard", "element": 2, "hp": 5500, "atk": 350, "defense": 40, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Fire Lizard",
+                        "element": 2,
+                        "hp": 5500,
+                        "atk": 350,
+                        "defense": 40,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Fire Lizard",
+                        "element": 2,
+                        "hp": 5500,
+                        "atk": 350,
+                        "defense": 40,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Lava Golem", "element": 2, "hp": 14000, "atk": 700, "defense": 120, "countdown": 2, "max_countdown": 3, "behavior": "heal_self"},
-                    {"name": "Fire Imp", "element": 2, "hp": 3500, "atk": 250, "defense": 20, "countdown": 1, "max_countdown": 1}
+                    {
+                        "name": "Lava Golem",
+                        "element": 2,
+                        "hp": 14000,
+                        "atk": 700,
+                        "defense": 120,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "heal_self"
+                    },
+                    {
+                        "name": "Fire Imp",
+                        "element": 2,
+                        "hp": 3500,
+                        "atk": 250,
+                        "defense": 20,
+                        "countdown": 1,
+                        "max_countdown": 1
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Inferno Phoenix Boss", "element": 2, "hp": 55000, "atk": 1800, "defense": 180, "countdown": 1, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Inferno Phoenix Boss",
+                        "element": 2,
+                        "hp": 55000,
+                        "atk": 1800,
+                        "defense": 180,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1100},
-            {"type": "monster", "id": 17, "item_id": 17, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 1100
+            },
+            {
+                "type": "monster",
+                "id": 17,
+                "item_id": 17,
+                "count": 1
+            }
         ]
     },
     {
@@ -68,25 +174,78 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Treant Sapling", "element": 3, "hp": 6000, "atk": 280, "defense": 70, "countdown": 3, "max_countdown": 3},
-                    {"name": "Treant Sapling", "element": 3, "hp": 6000, "atk": 280, "defense": 70, "countdown": 2, "max_countdown": 3},
-                    {"name": "Moss Beetle", "element": 3, "hp": 3000, "atk": 200, "defense": 30, "countdown": 1, "max_countdown": 2}
+                    {
+                        "name": "Treant Sapling",
+                        "element": 3,
+                        "hp": 6000,
+                        "atk": 280,
+                        "defense": 70,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Treant Sapling",
+                        "element": 3,
+                        "hp": 6000,
+                        "atk": 280,
+                        "defense": 70,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Moss Beetle",
+                        "element": 3,
+                        "hp": 3000,
+                        "atk": 200,
+                        "defense": 30,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Ancient Treant", "element": 3, "hp": 18000, "atk": 550, "defense": 150, "countdown": 3, "max_countdown": 3, "behavior": "buff_allies"}
+                    {
+                        "name": "Ancient Treant",
+                        "element": 3,
+                        "hp": 18000,
+                        "atk": 550,
+                        "defense": 150,
+                        "countdown": 3,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Earth Titan Boss", "element": 3, "hp": 60000, "atk": 1200, "defense": 300, "countdown": 2, "max_countdown": 2, "behavior": "heal_self"}
+                    {
+                        "name": "Earth Titan Boss",
+                        "element": 3,
+                        "hp": 60000,
+                        "atk": 1200,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heal_self"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1200},
-            {"type": "monster", "id": 18, "item_id": 18, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 1200
+            },
+            {
+                "type": "monster",
+                "id": 18,
+                "item_id": 18,
+                "count": 1
+            }
         ]
     },
     {
@@ -98,25 +257,78 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Light Wisp", "element": 4, "hp": 4500, "atk": 320, "defense": 45, "countdown": 2, "max_countdown": 2},
-                    {"name": "Light Wisp", "element": 4, "hp": 4500, "atk": 320, "defense": 45, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Light Wisp",
+                        "element": 4,
+                        "hp": 4500,
+                        "atk": 320,
+                        "defense": 45,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Light Wisp",
+                        "element": 4,
+                        "hp": 4500,
+                        "atk": 320,
+                        "defense": 45,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Guardian Statue", "element": 4, "hp": 15000, "atk": 500, "defense": 200, "countdown": 3, "max_countdown": 3, "behavior": "buff_allies"},
-                    {"name": "Holy Sprite", "element": 4, "hp": 5000, "atk": 400, "defense": 60, "countdown": 1, "max_countdown": 2}
+                    {
+                        "name": "Guardian Statue",
+                        "element": 4,
+                        "hp": 15000,
+                        "atk": 500,
+                        "defense": 200,
+                        "countdown": 3,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    },
+                    {
+                        "name": "Holy Sprite",
+                        "element": 4,
+                        "hp": 5000,
+                        "atk": 400,
+                        "defense": 60,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Archangel Boss", "element": 4, "hp": 65000, "atk": 1600, "defense": 250, "countdown": 1, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Archangel Boss",
+                        "element": 4,
+                        "hp": 65000,
+                        "atk": 1600,
+                        "defense": 250,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1300},
-            {"type": "monster", "id": 19, "item_id": 19, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 1300
+            },
+            {
+                "type": "monster",
+                "id": 19,
+                "item_id": 19,
+                "count": 1
+            }
         ]
     },
     {
@@ -128,25 +340,79 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Shadow Wraith", "element": 5, "hp": 5500, "atk": 400, "defense": 35, "countdown": 2, "max_countdown": 2},
-                    {"name": "Shadow Wraith", "element": 5, "hp": 5500, "atk": 400, "defense": 35, "countdown": 1, "max_countdown": 2}
+                    {
+                        "name": "Shadow Wraith",
+                        "element": 5,
+                        "hp": 5500,
+                        "atk": 400,
+                        "defense": 35,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Shadow Wraith",
+                        "element": 5,
+                        "hp": 5500,
+                        "atk": 400,
+                        "defense": 35,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Dark Knight", "element": 5, "hp": 16000, "atk": 800, "defense": 130, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"},
-                    {"name": "Dark Bat", "element": 5, "hp": 4000, "atk": 350, "defense": 25, "countdown": 1, "max_countdown": 1, "behavior": "heal_self"}
+                    {
+                        "name": "Dark Knight",
+                        "element": 5,
+                        "hp": 16000,
+                        "atk": 800,
+                        "defense": 130,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Dark Bat",
+                        "element": 5,
+                        "hp": 4000,
+                        "atk": 350,
+                        "defense": 25,
+                        "countdown": 1,
+                        "max_countdown": 1,
+                        "behavior": "heal_self"
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Abyssal Demon Boss", "element": 5, "hp": 75000, "atk": 2000, "defense": 220, "countdown": 1, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Abyssal Demon Boss",
+                        "element": 5,
+                        "hp": 75000,
+                        "atk": 2000,
+                        "defense": 220,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 1500},
-            {"type": "monster", "id": 20, "item_id": 20, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 1500
+            },
+            {
+                "type": "monster",
+                "id": 20,
+                "item_id": 20,
+                "count": 1
+            }
         ]
     },
     {
@@ -159,20 +425,799 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Trial Guardian", "element": 4, "hp": 20000, "atk": 600, "defense": 150, "countdown": 2, "max_countdown": 2},
-                    {"name": "Trial Guardian", "element": 5, "hp": 20000, "atk": 600, "defense": 150, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Trial Guardian",
+                        "element": 4,
+                        "hp": 20000,
+                        "atk": 600,
+                        "defense": 150,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Trial Guardian",
+                        "element": 5,
+                        "hp": 20000,
+                        "atk": 600,
+                        "defense": 150,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Grand Arbiter", "element": 4, "hp": 100000, "atk": 2500, "defense": 400, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack",
-                     "characteristics": {"damage_cap": 50000}}
+                    {
+                        "name": "Grand Arbiter",
+                        "element": 4,
+                        "hp": 100000,
+                        "atk": 2500,
+                        "defense": 400,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "damage_cap": 50000
+                        }
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 3000},
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "gems", "count": 5}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 5
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Olympus Gate",
+        "zone": "Olympus",
+        "difficulty": "normal",
+        "stamina_cost": 12,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Olympian Guard",
+                        "element": 1,
+                        "hp": 8000,
+                        "atk": 450,
+                        "defense": 80,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Olympian Guard",
+                        "element": 1,
+                        "hp": 8000,
+                        "atk": 450,
+                        "defense": 80,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Sea Nymph",
+                        "element": 1,
+                        "hp": 4500,
+                        "atk": 300,
+                        "defense": 40,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Poseidon's Herald",
+                        "element": 1,
+                        "hp": 70000,
+                        "atk": 1800,
+                        "defense": 250,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2200
+            },
+            {
+                "type": "monster",
+                "id": 201,
+                "item_id": 201,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Olympus Forge",
+        "zone": "Olympus",
+        "difficulty": "normal",
+        "stamina_cost": 12,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Fire Automaton",
+                        "element": 2,
+                        "hp": 8500,
+                        "atk": 500,
+                        "defense": 70,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Fire Automaton",
+                        "element": 2,
+                        "hp": 8500,
+                        "atk": 500,
+                        "defense": 70,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Forge Golem",
+                        "element": 2,
+                        "hp": 5000,
+                        "atk": 350,
+                        "defense": 50,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Hephaestus's Construct",
+                        "element": 2,
+                        "hp": 72000,
+                        "atk": 1900,
+                        "defense": 230,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2300
+            },
+            {
+                "type": "monster",
+                "id": 202,
+                "item_id": 202,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Athena's Garden",
+        "zone": "Olympus",
+        "difficulty": "normal",
+        "stamina_cost": 14,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Olive Dryad",
+                        "element": 3,
+                        "hp": 7500,
+                        "atk": 380,
+                        "defense": 90,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Olive Dryad",
+                        "element": 3,
+                        "hp": 7500,
+                        "atk": 380,
+                        "defense": 90,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Wisdom Owl",
+                        "element": 3,
+                        "hp": 5500,
+                        "atk": 320,
+                        "defense": 60,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Gorgon Guardian",
+                        "element": 3,
+                        "hp": 68000,
+                        "atk": 1700,
+                        "defense": 280,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2400
+            },
+            {
+                "type": "monster",
+                "id": 203,
+                "item_id": 203,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Apollo's Arena",
+        "zone": "Olympus",
+        "difficulty": "normal",
+        "stamina_cost": 14,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Sun Sprite",
+                        "element": 4,
+                        "hp": 7000,
+                        "atk": 420,
+                        "defense": 55,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Sun Sprite",
+                        "element": 4,
+                        "hp": 7000,
+                        "atk": 420,
+                        "defense": 55,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Golden Chariot",
+                        "element": 4,
+                        "hp": 6000,
+                        "atk": 400,
+                        "defense": 45,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Sun Colossus",
+                        "element": 4,
+                        "hp": 75000,
+                        "atk": 2000,
+                        "defense": 200,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2500
+            },
+            {
+                "type": "monster",
+                "id": 204,
+                "item_id": 204,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Artemis's Hunt",
+        "zone": "Olympus",
+        "difficulty": "normal",
+        "stamina_cost": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Moon Wolf",
+                        "element": 5,
+                        "hp": 8000,
+                        "atk": 480,
+                        "defense": 50,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Moon Wolf",
+                        "element": 5,
+                        "hp": 8000,
+                        "atk": 480,
+                        "defense": 50,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Shadow Stag",
+                        "element": 5,
+                        "hp": 5500,
+                        "atk": 420,
+                        "defense": 35,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Lunar Hydra",
+                        "element": 5,
+                        "hp": 80000,
+                        "atk": 2200,
+                        "defense": 180,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2600
+            },
+            {
+                "type": "monster",
+                "id": 205,
+                "item_id": 205,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Asgard Bridge",
+        "zone": "Asgard",
+        "difficulty": "normal",
+        "stamina_cost": 14,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Frost Giant",
+                        "element": 1,
+                        "hp": 9000,
+                        "atk": 500,
+                        "defense": 100,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Frost Giant",
+                        "element": 1,
+                        "hp": 9000,
+                        "atk": 500,
+                        "defense": 100,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Ice Valkyrie",
+                        "element": 1,
+                        "hp": 6000,
+                        "atk": 380,
+                        "defense": 70,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Bifrost Guardian",
+                        "element": 1,
+                        "hp": 85000,
+                        "atk": 2100,
+                        "defense": 260,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2700
+            },
+            {
+                "type": "monster",
+                "id": 201,
+                "item_id": 201,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Valhalla Gate",
+        "zone": "Asgard",
+        "difficulty": "normal",
+        "stamina_cost": 14,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Fire Jotunn",
+                        "element": 2,
+                        "hp": 9500,
+                        "atk": 550,
+                        "defense": 80,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Fire Jotunn",
+                        "element": 2,
+                        "hp": 9500,
+                        "atk": 550,
+                        "defense": 80,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Berserker",
+                        "element": 2,
+                        "hp": 6500,
+                        "atk": 450,
+                        "defense": 40,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Einherjar Champion",
+                        "element": 2,
+                        "hp": 88000,
+                        "atk": 2300,
+                        "defense": 220,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2800
+            },
+            {
+                "type": "monster",
+                "id": 202,
+                "item_id": 202,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "World Tree Root",
+        "zone": "Asgard",
+        "difficulty": "normal",
+        "stamina_cost": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Root Serpent",
+                        "element": 3,
+                        "hp": 10000,
+                        "atk": 480,
+                        "defense": 110,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Root Serpent",
+                        "element": 3,
+                        "hp": 10000,
+                        "atk": 480,
+                        "defense": 110,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Bark Guardian",
+                        "element": 3,
+                        "hp": 7000,
+                        "atk": 350,
+                        "defense": 90,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Nidhogg Spawn",
+                        "element": 3,
+                        "hp": 90000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 2900
+            },
+            {
+                "type": "monster",
+                "id": 203,
+                "item_id": 203,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Thunder Hall",
+        "zone": "Asgard",
+        "difficulty": "normal",
+        "stamina_cost": 16,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Storm Eagle",
+                        "element": 4,
+                        "hp": 8500,
+                        "atk": 520,
+                        "defense": 60,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Storm Eagle",
+                        "element": 4,
+                        "hp": 8500,
+                        "atk": 520,
+                        "defense": 60,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Lightning Elemental",
+                        "element": 4,
+                        "hp": 6000,
+                        "atk": 460,
+                        "defense": 50,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Thunder Golem",
+                        "element": 4,
+                        "hp": 82000,
+                        "atk": 2400,
+                        "defense": 190,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "monster",
+                "id": 204,
+                "item_id": 204,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Twilight Realm",
+        "zone": "Asgard",
+        "difficulty": "normal",
+        "stamina_cost": 18,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Shadow Jotunn",
+                        "element": 5,
+                        "hp": 9000,
+                        "atk": 580,
+                        "defense": 45,
+                        "countdown": 2,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Shadow Jotunn",
+                        "element": 5,
+                        "hp": 9000,
+                        "atk": 580,
+                        "defense": 45,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Chaos Sprite",
+                        "element": 5,
+                        "hp": 5500,
+                        "atk": 500,
+                        "defense": 30,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Fenrir Pup",
+                        "element": 5,
+                        "hp": 95000,
+                        "atk": 2500,
+                        "defense": 170,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3100
+            },
+            {
+                "type": "monster",
+                "id": 205,
+                "item_id": 205,
+                "count": 1
+            }
         ]
     },
     {
@@ -184,28 +1229,98 @@
         "waves": [
             {
                 "enemies": [
-                    {"name": "Water Elemental", "element": 1, "hp": 25000, "atk": 800, "defense": 150, "countdown": 2, "max_countdown": 2},
-                    {"name": "Water Elemental", "element": 1, "hp": 25000, "atk": 800, "defense": 150, "countdown": 3, "max_countdown": 3},
-                    {"name": "Water Sprite", "element": 1, "hp": 12000, "atk": 500, "defense": 80, "countdown": 1, "max_countdown": 2}
+                    {
+                        "name": "Water Elemental",
+                        "element": 1,
+                        "hp": 25000,
+                        "atk": 800,
+                        "defense": 150,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Water Elemental",
+                        "element": 1,
+                        "hp": 25000,
+                        "atk": 800,
+                        "defense": 150,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    },
+                    {
+                        "name": "Water Sprite",
+                        "element": 1,
+                        "hp": 12000,
+                        "atk": 500,
+                        "defense": 80,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Abyssal Serpent", "element": 1, "hp": 80000, "atk": 1500, "defense": 250, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"},
-                    {"name": "Water Enchantress", "element": 1, "hp": 30000, "atk": 600, "defense": 100, "countdown": 2, "max_countdown": 3, "behavior": "jammer_spawn"}
+                    {
+                        "name": "Abyssal Serpent",
+                        "element": 1,
+                        "hp": 80000,
+                        "atk": 1500,
+                        "defense": 250,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Water Enchantress",
+                        "element": 1,
+                        "hp": 30000,
+                        "atk": 600,
+                        "defense": 100,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "jammer_spawn"
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Leviathan", "element": 1, "hp": 200000, "atk": 4000, "defense": 500, "countdown": 1, "max_countdown": 2, "behavior": "heavy_attack",
-                     "characteristics": {"combo_shield": 3}}
+                    {
+                        "name": "Leviathan",
+                        "element": 1,
+                        "hp": 200000,
+                        "atk": 4000,
+                        "defense": 500,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 5000},
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "gems", "count": 1},
-            {"type": "monster", "id": 1, "item_id": 1, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 1,
+                "item_id": 1,
+                "count": 1
+            }
         ]
     },
     {
@@ -214,31 +1329,936 @@
         "zone": "Fire Cavern",
         "difficulty": "expert",
         "stamina_cost": 25,
-        "floor_effects": ["no_heart_heal"],
+        "floor_effects": [
+            "no_heart_heal"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Magma Golem", "element": 2, "hp": 30000, "atk": 900, "defense": 180, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"},
-                    {"name": "Flame Dancer", "element": 2, "hp": 18000, "atk": 700, "defense": 60, "countdown": 1, "max_countdown": 2}
+                    {
+                        "name": "Magma Golem",
+                        "element": 2,
+                        "hp": 30000,
+                        "atk": 900,
+                        "defense": 180,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Flame Dancer",
+                        "element": 2,
+                        "hp": 18000,
+                        "atk": 700,
+                        "defense": 60,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Volcanic Dragon", "element": 2, "hp": 90000, "atk": 2000, "defense": 300, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"},
-                    {"name": "Fire Shaman", "element": 2, "hp": 25000, "atk": 500, "defense": 120, "countdown": 3, "max_countdown": 3, "behavior": "poison_spawn"}
+                    {
+                        "name": "Volcanic Dragon",
+                        "element": 2,
+                        "hp": 90000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Fire Shaman",
+                        "element": 2,
+                        "hp": 25000,
+                        "atk": 500,
+                        "defense": 120,
+                        "countdown": 3,
+                        "max_countdown": 3,
+                        "behavior": "poison_spawn"
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Ifrit", "element": 2, "hp": 250000, "atk": 5000, "defense": 450, "countdown": 1, "max_countdown": 2, "behavior": "heavy_attack",
-                     "characteristics": {"damage_reduction": 0.3}}
+                    {
+                        "name": "Ifrit",
+                        "element": 2,
+                        "hp": 250000,
+                        "atk": 5000,
+                        "defense": 450,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "damage_reduction": 0.3
+                        }
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 5500},
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "gems", "count": 1},
-            {"type": "monster", "id": 2, "item_id": 2, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5500
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 2,
+                "item_id": 2,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "name": "Earth Forest",
+        "zone": "Earth Forest",
+        "difficulty": "expert",
+        "stamina_cost": 25,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Earth Forest Guard",
+                        "element": 3,
+                        "hp": 28000,
+                        "atk": 900,
+                        "defense": 160,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Earth Forest Sentinel",
+                        "element": 3,
+                        "hp": 20000,
+                        "atk": 700,
+                        "defense": 100,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Earth Forest Champion",
+                        "element": 3,
+                        "hp": 80000,
+                        "atk": 2000,
+                        "defense": 280,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Earth Forest Lord",
+                        "element": 3,
+                        "hp": 180000,
+                        "atk": 3500,
+                        "defense": 400,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 21,
+                "item_id": 21,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 104,
+        "name": "Light Shrine",
+        "zone": "Light Shrine",
+        "difficulty": "expert",
+        "stamina_cost": 26,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Light Shrine Guard",
+                        "element": 4,
+                        "hp": 30000,
+                        "atk": 950,
+                        "defense": 170,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Light Shrine Sentinel",
+                        "element": 4,
+                        "hp": 21500,
+                        "atk": 740,
+                        "defense": 108,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Light Shrine Champion",
+                        "element": 4,
+                        "hp": 85000,
+                        "atk": 2100,
+                        "defense": 295,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Light Shrine Lord",
+                        "element": 4,
+                        "hp": 188000,
+                        "atk": 3650,
+                        "defense": 420,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5200
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 22,
+                "item_id": 22,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "name": "Dark Abyss",
+        "zone": "Dark Abyss",
+        "difficulty": "expert",
+        "stamina_cost": 27,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Dark Abyss Guard",
+                        "element": 5,
+                        "hp": 32000,
+                        "atk": 1000,
+                        "defense": 180,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Dark Abyss Sentinel",
+                        "element": 5,
+                        "hp": 23000,
+                        "atk": 780,
+                        "defense": 116,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Dark Abyss Champion",
+                        "element": 5,
+                        "hp": 90000,
+                        "atk": 2200,
+                        "defense": 310,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Dark Abyss Lord",
+                        "element": 5,
+                        "hp": 196000,
+                        "atk": 3800,
+                        "defense": 440,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5400
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 23,
+                "item_id": 23,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "name": "Olympus Gate",
+        "zone": "Olympus",
+        "difficulty": "expert",
+        "stamina_cost": 28,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Olympus Gate Guard",
+                        "element": 1,
+                        "hp": 34000,
+                        "atk": 1050,
+                        "defense": 190,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Olympus Gate Sentinel",
+                        "element": 1,
+                        "hp": 24500,
+                        "atk": 820,
+                        "defense": 124,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Olympus Gate Champion",
+                        "element": 1,
+                        "hp": 95000,
+                        "atk": 2300,
+                        "defense": 325,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Olympus Gate Lord",
+                        "element": 1,
+                        "hp": 204000,
+                        "atk": 3950,
+                        "defense": 460,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5600
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 24,
+                "item_id": 24,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "name": "Olympus Forge",
+        "zone": "Olympus",
+        "difficulty": "expert",
+        "stamina_cost": 29,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Olympus Forge Guard",
+                        "element": 2,
+                        "hp": 36000,
+                        "atk": 1100,
+                        "defense": 200,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Olympus Forge Sentinel",
+                        "element": 2,
+                        "hp": 26000,
+                        "atk": 860,
+                        "defense": 132,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Olympus Forge Champion",
+                        "element": 2,
+                        "hp": 100000,
+                        "atk": 2400,
+                        "defense": 340,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Olympus Forge Lord",
+                        "element": 2,
+                        "hp": 212000,
+                        "atk": 4100,
+                        "defense": 480,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 5800
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 25,
+                "item_id": 25,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 108,
+        "name": "Athena's Garden",
+        "zone": "Olympus",
+        "difficulty": "expert",
+        "stamina_cost": 30,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Athena's Garden Guard",
+                        "element": 3,
+                        "hp": 38000,
+                        "atk": 1150,
+                        "defense": 210,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Athena's Garden Sentinel",
+                        "element": 3,
+                        "hp": 27500,
+                        "atk": 900,
+                        "defense": 140,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Athena's Garden Champion",
+                        "element": 3,
+                        "hp": 105000,
+                        "atk": 2500,
+                        "defense": 355,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Athena's Garden Lord",
+                        "element": 3,
+                        "hp": 220000,
+                        "atk": 4250,
+                        "defense": 500,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 6000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 21,
+                "item_id": 21,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 109,
+        "name": "Asgard Bridge",
+        "zone": "Asgard",
+        "difficulty": "expert",
+        "stamina_cost": 31,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Asgard Bridge Guard",
+                        "element": 1,
+                        "hp": 40000,
+                        "atk": 1200,
+                        "defense": 220,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Asgard Bridge Sentinel",
+                        "element": 1,
+                        "hp": 29000,
+                        "atk": 940,
+                        "defense": 148,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Asgard Bridge Champion",
+                        "element": 1,
+                        "hp": 110000,
+                        "atk": 2600,
+                        "defense": 370,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Asgard Bridge Lord",
+                        "element": 1,
+                        "hp": 228000,
+                        "atk": 4400,
+                        "defense": 520,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 6200
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 22,
+                "item_id": 22,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 110,
+        "name": "Valhalla Gate",
+        "zone": "Asgard",
+        "difficulty": "expert",
+        "stamina_cost": 32,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Valhalla Gate Guard",
+                        "element": 2,
+                        "hp": 42000,
+                        "atk": 1250,
+                        "defense": 230,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Valhalla Gate Sentinel",
+                        "element": 2,
+                        "hp": 30500,
+                        "atk": 980,
+                        "defense": 156,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Valhalla Gate Champion",
+                        "element": 2,
+                        "hp": 115000,
+                        "atk": 2700,
+                        "defense": 385,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Valhalla Gate Lord",
+                        "element": 2,
+                        "hp": 236000,
+                        "atk": 4550,
+                        "defense": 540,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 6400
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 23,
+                "item_id": 23,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 111,
+        "name": "World Tree Root",
+        "zone": "Asgard",
+        "difficulty": "expert",
+        "stamina_cost": 33,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite World Tree Root Guard",
+                        "element": 3,
+                        "hp": 44000,
+                        "atk": 1300,
+                        "defense": 240,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "World Tree Root Sentinel",
+                        "element": 3,
+                        "hp": 32000,
+                        "atk": 1020,
+                        "defense": 164,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "World Tree Root Champion",
+                        "element": 3,
+                        "hp": 120000,
+                        "atk": 2800,
+                        "defense": 400,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "World Tree Root Lord",
+                        "element": 3,
+                        "hp": 244000,
+                        "atk": 4700,
+                        "defense": 560,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 6600
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 24,
+                "item_id": 24,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 112,
+        "name": "Thunder Hall",
+        "zone": "Asgard",
+        "difficulty": "expert",
+        "stamina_cost": 34,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Elite Thunder Hall Guard",
+                        "element": 4,
+                        "hp": 46000,
+                        "atk": 1350,
+                        "defense": 250,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Thunder Hall Sentinel",
+                        "element": 4,
+                        "hp": 33500,
+                        "atk": 1060,
+                        "defense": 172,
+                        "countdown": 1,
+                        "max_countdown": 2
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Thunder Hall Champion",
+                        "element": 4,
+                        "hp": 125000,
+                        "atk": 2900,
+                        "defense": 415,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Thunder Hall Lord",
+                        "element": 4,
+                        "hp": 252000,
+                        "atk": 4850,
+                        "defense": 580,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 6800
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 1
+            },
+            {
+                "type": "monster",
+                "id": 25,
+                "item_id": 25,
+                "count": 1
+            }
         ]
     },
     {
@@ -250,25 +2270,445 @@
         "turn_limit": 20,
         "board_rows": 7,
         "board_cols": 6,
-        "floor_effects": ["no_active_skills", "enemy_hp_regen"],
+        "floor_effects": [
+            "no_active_skills",
+            "enemy_hp_regen"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Deep Sea Guardian", "element": 1, "hp": 80000, "atk": 2000, "defense": 400, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"},
-                    {"name": "Tidal Enchantress", "element": 1, "hp": 50000, "atk": 1200, "defense": 200, "countdown": 2, "max_countdown": 3, "behavior": "buff_allies"}
+                    {
+                        "name": "Deep Sea Guardian",
+                        "element": 1,
+                        "hp": 80000,
+                        "atk": 2000,
+                        "defense": 400,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Tidal Enchantress",
+                        "element": 1,
+                        "hp": 50000,
+                        "atk": 1200,
+                        "defense": 200,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Abyssal Kraken", "element": 1, "hp": 500000, "atk": 8000, "defense": 800, "countdown": 1, "max_countdown": 2, "behavior": "lock_gems",
-                     "characteristics": {"combo_shield": 4, "damage_cap": 100000}}
+                    {
+                        "name": "Abyssal Kraken",
+                        "element": 1,
+                        "hp": 500000,
+                        "atk": 8000,
+                        "defense": 800,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "lock_gems",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 100000
+                        }
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 15000},
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "gems", "count": 3},
-            {"type": "monster", "id": 11, "item_id": 11, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 15000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 3
+            },
+            {
+                "type": "monster",
+                "id": 11,
+                "item_id": 11,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 202,
+        "name": "Fire Cavern",
+        "zone": "Fire Cavern",
+        "difficulty": "mythical",
+        "stamina_cost": 50,
+        "turn_limit": 25,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Volcanic Titan",
+                        "element": 2,
+                        "hp": 90000,
+                        "atk": 2500,
+                        "defense": 500,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Fire Cavern Sentinel",
+                        "element": 2,
+                        "hp": 60000,
+                        "atk": 1800,
+                        "defense": 350,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Ifrit Overlord",
+                        "element": 2,
+                        "hp": 550000,
+                        "atk": 9000,
+                        "defense": 900,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 120000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 17000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 3
+            },
+            {
+                "type": "monster",
+                "id": 52,
+                "item_id": 52,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 203,
+        "name": "Earth Forest",
+        "zone": "Earth Forest",
+        "difficulty": "mythical",
+        "stamina_cost": 50,
+        "turn_limit": 25,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Ancient Root Dragon",
+                        "element": 3,
+                        "hp": 100000,
+                        "atk": 2200,
+                        "defense": 600,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Earth Forest Sentinel",
+                        "element": 3,
+                        "hp": 60000,
+                        "atk": 1800,
+                        "defense": 350,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "World Treant",
+                        "element": 3,
+                        "hp": 600000,
+                        "atk": 7000,
+                        "defense": 1200,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 120000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 19000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 3
+            },
+            {
+                "type": "monster",
+                "id": 53,
+                "item_id": 53,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 204,
+        "name": "Olympus Sanctum",
+        "zone": "Olympus",
+        "difficulty": "mythical",
+        "stamina_cost": 50,
+        "turn_limit": 25,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Sun Champion",
+                        "element": 4,
+                        "hp": 85000,
+                        "atk": 2800,
+                        "defense": 400,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Olympus Sentinel",
+                        "element": 4,
+                        "hp": 60000,
+                        "atk": 1800,
+                        "defense": 350,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Apollo Supreme",
+                        "element": 4,
+                        "hp": 480000,
+                        "atk": 8500,
+                        "defense": 700,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 120000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 21000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 3
+            },
+            {
+                "type": "monster",
+                "id": 54,
+                "item_id": 54,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 205,
+        "name": "Asgard Throne",
+        "zone": "Asgard",
+        "difficulty": "mythical",
+        "stamina_cost": 50,
+        "turn_limit": 25,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Ragnarok Herald",
+                        "element": 5,
+                        "hp": 95000,
+                        "atk": 3000,
+                        "defense": 500,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Asgard Sentinel",
+                        "element": 5,
+                        "hp": 60000,
+                        "atk": 1800,
+                        "defense": 350,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Odin's Shadow",
+                        "element": 5,
+                        "hp": 520000,
+                        "atk": 9500,
+                        "defense": 850,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 120000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 23000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 3
+            },
+            {
+                "type": "monster",
+                "id": 55,
+                "item_id": 55,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 206,
+        "name": "Pyramid of Ra",
+        "zone": "Egypt",
+        "difficulty": "mythical",
+        "stamina_cost": 50,
+        "turn_limit": 25,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Anubis Guardian",
+                        "element": 4,
+                        "hp": 90000,
+                        "atk": 2600,
+                        "defense": 550,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Egypt Sentinel",
+                        "element": 4,
+                        "hp": 60000,
+                        "atk": 1800,
+                        "defense": 350,
+                        "countdown": 2,
+                        "max_countdown": 3,
+                        "behavior": "buff_allies"
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Ra Incarnate",
+                        "element": 4,
+                        "hp": 500000,
+                        "atk": 10000,
+                        "defense": 750,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 120000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 25000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 3
+            },
+            {
+                "type": "monster",
+                "id": 51,
+                "item_id": 51,
+                "count": 1
+            }
         ]
     },
     {
@@ -277,24 +2717,66 @@
         "zone": "Daily Dungeons",
         "difficulty": "normal",
         "stamina_cost": 15,
-        "available_days": [1, 0, 6],
-        "floor_effects": ["element_restrict_1"],
+        "available_days": [
+            1,
+            0,
+            6
+        ],
+        "floor_effects": [
+            "element_restrict_1"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Water Golem", "element": 1, "hp": 15000, "atk": 500, "defense": 100, "countdown": 2, "max_countdown": 2},
-                    {"name": "Water Golem", "element": 1, "hp": 15000, "atk": 500, "defense": 100, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Water Golem",
+                        "element": 1,
+                        "hp": 15000,
+                        "atk": 500,
+                        "defense": 100,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Water Golem",
+                        "element": 1,
+                        "hp": 15000,
+                        "atk": 500,
+                        "defense": 100,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Water Guardian", "element": 1, "hp": 40000, "atk": 1000, "defense": 200, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Water Guardian",
+                        "element": 1,
+                        "hp": 40000,
+                        "atk": 1000,
+                        "defense": 200,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 3000},
-            {"type": "monster", "id": 101, "item_id": 101, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "monster",
+                "id": 104,
+                "item_id": 104,
+                "count": 1
+            }
         ]
     },
     {
@@ -303,24 +2785,66 @@
         "zone": "Daily Dungeons",
         "difficulty": "normal",
         "stamina_cost": 15,
-        "available_days": [2, 0, 6],
-        "floor_effects": ["element_restrict_2"],
+        "available_days": [
+            2,
+            0,
+            6
+        ],
+        "floor_effects": [
+            "element_restrict_2"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Fire Golem", "element": 2, "hp": 15000, "atk": 550, "defense": 80, "countdown": 2, "max_countdown": 2},
-                    {"name": "Fire Golem", "element": 2, "hp": 15000, "atk": 550, "defense": 80, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Fire Golem",
+                        "element": 2,
+                        "hp": 15000,
+                        "atk": 550,
+                        "defense": 80,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Fire Golem",
+                        "element": 2,
+                        "hp": 15000,
+                        "atk": 550,
+                        "defense": 80,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Fire Guardian", "element": 2, "hp": 42000, "atk": 1100, "defense": 180, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Fire Guardian",
+                        "element": 2,
+                        "hp": 42000,
+                        "atk": 1100,
+                        "defense": 180,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 3000},
-            {"type": "monster", "id": 103, "item_id": 103, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "monster",
+                "id": 105,
+                "item_id": 105,
+                "count": 1
+            }
         ]
     },
     {
@@ -329,24 +2853,66 @@
         "zone": "Daily Dungeons",
         "difficulty": "normal",
         "stamina_cost": 15,
-        "available_days": [3, 0, 6],
-        "floor_effects": ["element_restrict_3"],
+        "available_days": [
+            3,
+            0,
+            6
+        ],
+        "floor_effects": [
+            "element_restrict_3"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Earth Golem", "element": 3, "hp": 16000, "atk": 480, "defense": 130, "countdown": 2, "max_countdown": 2},
-                    {"name": "Earth Golem", "element": 3, "hp": 16000, "atk": 480, "defense": 130, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Earth Golem",
+                        "element": 3,
+                        "hp": 16000,
+                        "atk": 480,
+                        "defense": 130,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Earth Golem",
+                        "element": 3,
+                        "hp": 16000,
+                        "atk": 480,
+                        "defense": 130,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Earth Guardian", "element": 3, "hp": 45000, "atk": 900, "defense": 250, "countdown": 2, "max_countdown": 2, "behavior": "heal_self"}
+                    {
+                        "name": "Earth Guardian",
+                        "element": 3,
+                        "hp": 45000,
+                        "atk": 900,
+                        "defense": 250,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heal_self"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 3000},
-            {"type": "monster", "id": 102, "item_id": 102, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "monster",
+                "id": 106,
+                "item_id": 106,
+                "count": 1
+            }
         ]
     },
     {
@@ -355,24 +2921,66 @@
         "zone": "Daily Dungeons",
         "difficulty": "normal",
         "stamina_cost": 15,
-        "available_days": [4, 0, 6],
-        "floor_effects": ["element_restrict_4"],
+        "available_days": [
+            4,
+            0,
+            6
+        ],
+        "floor_effects": [
+            "element_restrict_4"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Light Golem", "element": 4, "hp": 14000, "atk": 520, "defense": 90, "countdown": 2, "max_countdown": 2},
-                    {"name": "Light Golem", "element": 4, "hp": 14000, "atk": 520, "defense": 90, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Light Golem",
+                        "element": 4,
+                        "hp": 14000,
+                        "atk": 520,
+                        "defense": 90,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Light Golem",
+                        "element": 4,
+                        "hp": 14000,
+                        "atk": 520,
+                        "defense": 90,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Light Guardian", "element": 4, "hp": 38000, "atk": 1050, "defense": 200, "countdown": 2, "max_countdown": 2, "behavior": "buff_allies"}
+                    {
+                        "name": "Light Guardian",
+                        "element": 4,
+                        "hp": 38000,
+                        "atk": 1050,
+                        "defense": 200,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "buff_allies"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 3000},
-            {"type": "monster", "id": 101, "item_id": 101, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "monster",
+                "id": 107,
+                "item_id": 107,
+                "count": 1
+            }
         ]
     },
     {
@@ -381,24 +2989,443 @@
         "zone": "Daily Dungeons",
         "difficulty": "normal",
         "stamina_cost": 15,
-        "available_days": [5, 0, 6],
-        "floor_effects": ["element_restrict_5"],
+        "available_days": [
+            5,
+            0,
+            6
+        ],
+        "floor_effects": [
+            "element_restrict_5"
+        ],
         "waves": [
             {
                 "enemies": [
-                    {"name": "Dark Golem", "element": 5, "hp": 14500, "atk": 580, "defense": 70, "countdown": 2, "max_countdown": 2},
-                    {"name": "Dark Golem", "element": 5, "hp": 14500, "atk": 580, "defense": 70, "countdown": 3, "max_countdown": 3}
+                    {
+                        "name": "Dark Golem",
+                        "element": 5,
+                        "hp": 14500,
+                        "atk": 580,
+                        "defense": 70,
+                        "countdown": 2,
+                        "max_countdown": 2
+                    },
+                    {
+                        "name": "Dark Golem",
+                        "element": 5,
+                        "hp": 14500,
+                        "atk": 580,
+                        "defense": 70,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
                 ]
             },
             {
                 "enemies": [
-                    {"name": "Dark Guardian", "element": 5, "hp": 40000, "atk": 1200, "defense": 170, "countdown": 2, "max_countdown": 2, "behavior": "heavy_attack"}
+                    {
+                        "name": "Dark Guardian",
+                        "element": 5,
+                        "hp": 40000,
+                        "atk": 1200,
+                        "defense": 170,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    }
                 ]
             }
         ],
         "rewards": [
-            {"type": "currency", "id": 0, "item_id": 0, "currency": "coins", "count": 3000},
-            {"type": "monster", "id": 103, "item_id": 103, "count": 1}
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 3000
+            },
+            {
+                "type": "monster",
+                "id": 108,
+                "item_id": 108,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 401,
+        "name": "Egyptian Trial",
+        "zone": "Egypt",
+        "difficulty": "technical",
+        "stamina_cost": 40,
+        "turn_limit": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Egyptian Trial Guard A",
+                        "element": 1,
+                        "hp": 50000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Egyptian Trial Guard B",
+                        "element": 2,
+                        "hp": 45000,
+                        "atk": 1800,
+                        "defense": 250,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Sphinx",
+                        "element": 1,
+                        "hp": 150000,
+                        "atk": 4000,
+                        "defense": 500,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 80000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 10000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 5
+            },
+            {
+                "type": "monster",
+                "id": 109,
+                "item_id": 109,
+                "count": 1
+            }
+        ],
+        "floor_effects": [
+            "element_restrict_1"
+        ]
+    },
+    {
+        "id": 402,
+        "name": "Norse Gauntlet",
+        "zone": "Asgard",
+        "difficulty": "technical",
+        "stamina_cost": 40,
+        "turn_limit": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Norse Gauntlet Guard A",
+                        "element": 2,
+                        "hp": 50000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Norse Gauntlet Guard B",
+                        "element": 3,
+                        "hp": 45000,
+                        "atk": 1800,
+                        "defense": 250,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Surtr",
+                        "element": 2,
+                        "hp": 180000,
+                        "atk": 5000,
+                        "defense": 400,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 80000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 10000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 5
+            },
+            {
+                "type": "monster",
+                "id": 109,
+                "item_id": 109,
+                "count": 1
+            }
+        ],
+        "floor_effects": [
+            "no_heart_heal"
+        ]
+    },
+    {
+        "id": 403,
+        "name": "Olympian Challenge",
+        "zone": "Olympus",
+        "difficulty": "technical",
+        "stamina_cost": 40,
+        "turn_limit": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Olympian Challenge Guard A",
+                        "element": 3,
+                        "hp": 50000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Olympian Challenge Guard B",
+                        "element": 4,
+                        "hp": 45000,
+                        "atk": 1800,
+                        "defense": 250,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Cerberus",
+                        "element": 3,
+                        "hp": 200000,
+                        "atk": 4500,
+                        "defense": 600,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 80000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 10000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 5
+            },
+            {
+                "type": "monster",
+                "id": 109,
+                "item_id": 109,
+                "count": 1
+            }
+        ],
+        "floor_effects": [
+            "no_active_skills"
+        ]
+    },
+    {
+        "id": 404,
+        "name": "Celestial Duel",
+        "zone": "Tower of Trials",
+        "difficulty": "technical",
+        "stamina_cost": 40,
+        "turn_limit": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Celestial Duel Guard A",
+                        "element": 4,
+                        "hp": 50000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Celestial Duel Guard B",
+                        "element": 5,
+                        "hp": 45000,
+                        "atk": 1800,
+                        "defense": 250,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Seraphim",
+                        "element": 4,
+                        "hp": 220000,
+                        "atk": 5500,
+                        "defense": 350,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 80000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 10000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 5
+            },
+            {
+                "type": "monster",
+                "id": 109,
+                "item_id": 109,
+                "count": 1
+            }
+        ]
+    },
+    {
+        "id": 405,
+        "name": "Abyss Descent",
+        "zone": "Dark Abyss",
+        "difficulty": "technical",
+        "stamina_cost": 40,
+        "turn_limit": 15,
+        "waves": [
+            {
+                "enemies": [
+                    {
+                        "name": "Abyss Descent Guard A",
+                        "element": 5,
+                        "hp": 50000,
+                        "atk": 2000,
+                        "defense": 300,
+                        "countdown": 2,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack"
+                    },
+                    {
+                        "name": "Abyss Descent Guard B",
+                        "element": 1,
+                        "hp": 45000,
+                        "atk": 1800,
+                        "defense": 250,
+                        "countdown": 3,
+                        "max_countdown": 3
+                    }
+                ]
+            },
+            {
+                "enemies": [
+                    {
+                        "name": "Abyssal Emperor",
+                        "element": 5,
+                        "hp": 250000,
+                        "atk": 6000,
+                        "defense": 450,
+                        "countdown": 1,
+                        "max_countdown": 2,
+                        "behavior": "heavy_attack",
+                        "characteristics": {
+                            "combo_shield": 4,
+                            "damage_cap": 80000
+                        }
+                    }
+                ]
+            }
+        ],
+        "rewards": [
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "coins",
+                "count": 10000
+            },
+            {
+                "type": "currency",
+                "id": 0,
+                "item_id": 0,
+                "currency": "gems",
+                "count": 5
+            },
+            {
+                "type": "monster",
+                "id": 109,
+                "item_id": 109,
+                "count": 1
+            }
+        ],
+        "floor_effects": [
+            "enemy_hp_regen"
         ]
     }
 ]

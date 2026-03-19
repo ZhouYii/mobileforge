@@ -6,8 +6,8 @@ namespace TowerOfSaviors
 {
     /// <summary>
     /// Registers all ToS-specific skill conditions and effects with the framework.
-    /// Mirrors register_all.gd — 7 conditions + 10 simple effects + 4 persistent outcomes
-    /// + 3 team skill effects.
+    /// 11 conditions + 16 simple effects + 10 persistent outcomes
+    /// + 3 team skill effects. Formulas referenced from decompiled ToS source.
     /// </summary>
     public static class TosSkillRegistration
     {
@@ -30,11 +30,20 @@ namespace TowerOfSaviors
                 parameters => new ElementsMatchedCondition(parameters));
             pipeline.ConditionRegistry.Register("team_has_element",
                 parameters => new TeamHasElementCondition(parameters));
-            // New conditions
             pipeline.ConditionRegistry.Register("combo_gte",
                 parameters => new ComboGteCondition(parameters));
             pipeline.ConditionRegistry.Register("combo_lt",
                 parameters => new ComboLtCondition(parameters));
+
+            // New conditions from ToS decompiled source
+            pipeline.ConditionRegistry.Register("hp_above",
+                parameters => new HpAboveCondition(parameters));
+            pipeline.ConditionRegistry.Register("turn_number",
+                parameters => new TurnNumberCondition(parameters));
+            pipeline.ConditionRegistry.Register("enemies_alive",
+                parameters => new EnemiesAliveCondition(parameters));
+            pipeline.ConditionRegistry.Register("all_elements_matched",
+                parameters => new AllElementsMatchedCondition(parameters));
         }
 
         private static void RegisterSimpleEffects(SkillPipeline pipeline)
@@ -58,6 +67,13 @@ namespace TowerOfSaviors
             pipeline.EffectRegistry.Register("element_atk_mult", ElementAtkMult);
             pipeline.EffectRegistry.Register("element_hp_mult", ElementHpMult);
             pipeline.EffectRegistry.Register("element_rec_mult", ElementRecMult);
+
+            // New effects from ToS decompiled source
+            pipeline.EffectRegistry.Register("absolute_damage", AbsoluteDamage);
+            pipeline.EffectRegistry.Register("charge_skills", ChargeSkills);
+            pipeline.EffectRegistry.Register("random_gem_change", RandomGemChange);
+            pipeline.EffectRegistry.Register("shield", Shield);
+            pipeline.EffectRegistry.Register("time_bomb", TimeBomb);
         }
 
         private static void RegisterPersistentOutcomes(SkillPipeline pipeline)
@@ -70,6 +86,20 @@ namespace TowerOfSaviors
                 parameters => new DefenseBuffOutcome(parameters));
             pipeline.OutcomeRegistry.Register("combo_scaling_atk",
                 parameters => new ComboScalingAtkOutcome(parameters));
+
+            // New persistent outcomes from ToS decompiled source
+            pipeline.OutcomeRegistry.Register("reduce_enemy_defense",
+                parameters => new ReduceEnemyDefenseOutcome(parameters));
+            pipeline.OutcomeRegistry.Register("counter_attack",
+                parameters => new CounterAttackOutcome(parameters));
+            pipeline.OutcomeRegistry.Register("reduce_cooldown",
+                parameters => new ReduceCooldownOutcome(parameters));
+            pipeline.OutcomeRegistry.Register("element_shift",
+                parameters => new ElementShiftOutcome(parameters));
+            pipeline.OutcomeRegistry.Register("poison",
+                parameters => new PoisonOutcome(parameters));
+            pipeline.OutcomeRegistry.Register("force_drop_gem",
+                parameters => new ForceDropGemOutcome(parameters));
         }
 
         // ---- Existing Effect Implementations ----
@@ -254,6 +284,139 @@ namespace TowerOfSaviors
                 { "type", "element_rec_mult" },
                 { "element", GetInt(parameters, "element", 0) },
                 { "multiplier", GetFloat(parameters, "multiplier", 1.0f) },
+            });
+        }
+
+        // ---- New Effect Implementations (from ToS decompiled source) ----
+
+        /// <summary>
+        /// Fixed damage ignoring defense. Matches ToS AllEnemyAbsoluteDamageSkill.
+        /// Params: "damage" (int), "target" (string: "all"|"single", default "all")
+        /// </summary>
+        private static void AbsoluteDamage(Dictionary<string, object> parameters, SkillContext ctx, SkillResult result)
+        {
+            int damage = GetInt(parameters, "damage", 0);
+            string target = GetString(parameters, "target", "all");
+
+            if (target == "all")
+            {
+                for (int i = 0; i < ctx.Enemies.Count; i++)
+                {
+                    if (ctx.Enemies[i] is EnemyState enemy && enemy.IsAlive)
+                        result.DamageDealt[i] = damage;
+                }
+            }
+            else
+            {
+                // Single target — pick first alive enemy
+                for (int i = 0; i < ctx.Enemies.Count; i++)
+                {
+                    if (ctx.Enemies[i] is EnemyState enemy && enemy.IsAlive)
+                    {
+                        result.DamageDealt[i] = damage;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reset/reduce all team skill cooldowns. Matches ToS ChargePlayerSkill.
+        /// Params: "amount" (int, default 99 = full reset)
+        /// </summary>
+        private static void ChargeSkills(Dictionary<string, object> parameters, SkillContext ctx, SkillResult result)
+        {
+            int amount = GetInt(parameters, "amount", 99);
+            ctx.Extra["cd_reduction_pending"] = amount;
+            result.BuffsApplied.Add(new Dictionary<string, object>
+            {
+                { "type", "charge_skills" }, { "amount", amount }
+            });
+        }
+
+        /// <summary>
+        /// Change N random gems to a specific element. Matches ToS ChangePuzzleElementActiveSkill.
+        /// Params: "element" (int), "count" (int, default 5)
+        /// </summary>
+        private static void RandomGemChange(Dictionary<string, object> parameters, SkillContext ctx, SkillResult result)
+        {
+            int toElement = GetInt(parameters, "element", 1);
+            int count = GetInt(parameters, "count", 5);
+
+            if (ctx.Board is BoardLogic board)
+            {
+                var candidates = new List<int>();
+                for (int pos = 0; pos < board.Config.TotalCells; pos++)
+                {
+                    var gem = board.GetGem(pos);
+                    if (gem != null && gem.ElementId != toElement)
+                        candidates.Add(pos);
+                }
+
+                // Shuffle and take first N
+                var rng = new Random();
+                for (int i = candidates.Count - 1; i > 0; i--)
+                {
+                    int j = rng.Next(i + 1);
+                    (candidates[i], candidates[j]) = (candidates[j], candidates[i]);
+                }
+
+                int changed = 0;
+                foreach (int pos in candidates)
+                {
+                    if (changed >= count) break;
+                    var gem = board.GetGem(pos);
+                    if (gem != null)
+                    {
+                        int oldElem = gem.ElementId;
+                        board.ChangeGemElement(pos, toElement);
+                        result.BoardChanges.Add(new Dictionary<string, object>
+                        {
+                            { "pos", pos }, { "old_element", oldElem }, { "new_element", toElement }
+                        });
+                        changed++;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Create a damage shield that absorbs N damage before breaking.
+        /// Matches ToS SO_BossShield concept applied to player.
+        /// Params: "absorb_amount" (int)
+        /// </summary>
+        private static void Shield(Dictionary<string, object> parameters, SkillContext ctx, SkillResult result)
+        {
+            int amount = GetInt(parameters, "absorb_amount", 0);
+            ctx.Extra["shield_remaining"] = amount;
+            result.BuffsApplied.Add(new Dictionary<string, object>
+            {
+                { "type", "shield" }, { "absorb_amount", amount }
+            });
+        }
+
+        /// <summary>
+        /// Place a time bomb on all alive enemies that detonates after N turns.
+        /// Params: "damage" (int), "delay_turns" (int, default 3)
+        /// </summary>
+        private static void TimeBomb(Dictionary<string, object> parameters, SkillContext ctx, SkillResult result)
+        {
+            int damage = GetInt(parameters, "damage", 0);
+            int delay = GetInt(parameters, "delay_turns", 3);
+
+            for (int i = 0; i < ctx.Enemies.Count; i++)
+            {
+                if (ctx.Enemies[i] is EnemyState enemy && enemy.IsAlive)
+                {
+                    enemy.AddStatus("time_bomb", delay, new Dictionary<string, object>
+                    {
+                        { "damage", damage }
+                    });
+                }
+            }
+            result.BuffsApplied.Add(new Dictionary<string, object>
+            {
+                { "type", "time_bomb" }, { "damage", damage }, { "delay_turns", delay }
             });
         }
 

@@ -27,6 +27,16 @@ namespace MobileForge.Domain
         public int[] EvolveMaterials { get; }
         public string ExpCurve { get; }
 
+        // ── Fusion / Merge (from ToS Card.mergeExp) ──
+        public int BaseMergeExp { get; }
+        public int IncMergeExp { get; }
+        public int Group { get; }  // Series/group for same-group fusion bonus
+
+        // ── Progression caps ──
+        public int MaxSkillLevel { get; }
+        public int MaxLimitBreak { get; }
+        public float AwakenBonus { get; }  // Stat multiplier when fully awakened (e.g. 1.1 = +10%)
+
         public MonsterDef(Dictionary<string, object> data)
         {
             Id = GetInt(data, "id", 0);
@@ -47,6 +57,12 @@ namespace MobileForge.Domain
             EvolveTo = GetInt(data, "evolve_to", -1);
             EvolveMaterials = GetIntArray(data, "evolve_materials");
             ExpCurve = GetString(data, "exp_curve", "standard");
+            BaseMergeExp = GetInt(data, "base_merge_exp", -1);
+            IncMergeExp = GetInt(data, "inc_merge_exp", 0);
+            Group = GetInt(data, "group", 0);
+            MaxSkillLevel = GetInt(data, "max_skill_level", 1);
+            MaxLimitBreak = GetInt(data, "max_limit_break", 5);
+            AwakenBonus = GetFloat(data, "awaken_bonus", 1.1f);
         }
 
         private static int GetInt(Dictionary<string, object> data, string key, int defaultValue)
@@ -98,6 +114,9 @@ namespace MobileForge.Domain
         public int PlusAtk { get; set; }
         public int PlusRec { get; set; }
         public bool IsFavorite { get; set; }
+        public int InheritedSkillId { get; set; }
+        public List<bool> Awakenings { get; set; }
+        public int LimitBreakLevel { get; set; }
 
         public MonsterInstance(int instanceId, int defId)
         {
@@ -110,6 +129,9 @@ namespace MobileForge.Domain
             PlusAtk = 0;
             PlusRec = 0;
             IsFavorite = false;
+            InheritedSkillId = -1;
+            Awakenings = new List<bool> { false, false, false, false };
+            LimitBreakLevel = 0;
         }
 
         public Dictionary<string, object> ToDict()
@@ -125,6 +147,8 @@ namespace MobileForge.Domain
                 ["plus_atk"] = PlusAtk,
                 ["plus_rec"] = PlusRec,
                 ["is_favorite"] = IsFavorite,
+                ["inherited_skill_id"] = InheritedSkillId,
+                ["limit_break_level"] = LimitBreakLevel,
             };
         }
 
@@ -141,6 +165,8 @@ namespace MobileForge.Domain
             inst.PlusAtk = Convert.ToInt32(data.GetValueOrDefault("plus_atk", 0));
             inst.PlusRec = Convert.ToInt32(data.GetValueOrDefault("plus_rec", 0));
             inst.IsFavorite = Convert.ToBoolean(data.GetValueOrDefault("is_favorite", false));
+            inst.InheritedSkillId = Convert.ToInt32(data.GetValueOrDefault("inherited_skill_id", -1));
+            inst.LimitBreakLevel = Convert.ToInt32(data.GetValueOrDefault("limit_break_level", 0));
             return inst;
         }
     }

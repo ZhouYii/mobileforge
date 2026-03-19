@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MobileForge.Infrastructure
@@ -57,15 +58,40 @@ namespace MobileForge.Infrastructure
 
         public List<object> GetArray(string key, List<object> defaultValue = null)
         {
-            if (_data.TryGetValue(key, out var value) && value is List<object> list)
+            if (!_data.TryGetValue(key, out var value))
+                return defaultValue ?? new List<object>();
+
+            if (value is List<object> list)
                 return list;
+
+            // Handle Newtonsoft JArray (common when deserializing nested JSON)
+            if (value is Newtonsoft.Json.Linq.JArray jArr)
+                return jArr.ToObject<List<object>>();
+
+            // Handle any IEnumerable
+            if (value is System.Collections.IEnumerable enumerable)
+            {
+                var result = new List<object>();
+                foreach (var item in enumerable)
+                    result.Add(item);
+                return result;
+            }
+
             return defaultValue ?? new List<object>();
         }
 
         public Dictionary<string, object> GetDict(string key)
         {
-            if (_data.TryGetValue(key, out var value) && value is Dictionary<string, object> dict)
+            if (!_data.TryGetValue(key, out var value))
+                return new Dictionary<string, object>();
+
+            if (value is Dictionary<string, object> dict)
                 return dict;
+
+            // Handle Newtonsoft JObject
+            if (value is Newtonsoft.Json.Linq.JObject jObj)
+                return jObj.ToObject<Dictionary<string, object>>();
+
             return new Dictionary<string, object>();
         }
 

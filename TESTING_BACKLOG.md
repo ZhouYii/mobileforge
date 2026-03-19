@@ -142,6 +142,56 @@ Every missing test, organized by module. Godot has full coverage (21 test files)
 
 ---
 
+## Unity Framework — UI Component Tests (4 missing)
+
+### UIComponentRouterTests.cs
+**Path:** `unity-project/Assets/MobileForge.UIComponents/Tests/UIComponentRouterTests.cs`
+**Priority:** High
+
+| Test | What It Verifies |
+|---|---|
+| `Navigate_MountsRegisteredPage` | Navigating to a screenId mounts the registered page |
+| `Navigate_UnmountsPreviousPage` | Navigating away unmounts and cleans up the previous page |
+| `Navigate_UnknownScreenId_NoException` | Navigating to an unregistered screenId does not throw |
+| `Navigate_CallsBindWithScreen` | Mounted page receives the correct IScreen via Bind() |
+| `Navigate_CallsRefreshOnRemount` | Re-navigating to the same screen calls Refresh() |
+
+### PageBaseTests.cs
+**Path:** `unity-project/Assets/MobileForge.UIComponents/Tests/PageBaseTests.cs`
+**Priority:** Medium
+
+| Test | What It Verifies |
+|---|---|
+| `SpawnPrimitive_CreatesCorrectType` | SpawnPrimitive<MFButton> creates an MFButton instance |
+| `CreateRegion_AnchorsCorrectly` | CreateRegion with Top anchor sets RectTransform anchors to top |
+| `Bind_SetsScreenProperty` | Calling Bind(screen) sets the Screen property |
+| `OnRefresh_CalledOnRefresh` | Calling Refresh() invokes the OnRefresh() override |
+| `Mount_AddsToParent` | Mount(parent) parents the page GameObject under parent |
+| `Unmount_DestroysGameObject` | Unmount() destroys the page's GameObject |
+
+### TosUISetupTests.cs
+**Path:** `unity-project/Assets/MobileForge.UIComponents/Tests/TosUISetupTests.cs`
+**Priority:** Medium
+
+| Test | What It Verifies |
+|---|---|
+| `AllNinePages_Registered` | After setup, registry has entries for all 9 screen IDs |
+| `Registry_ReturnsCorrectPageType` | Each screenId maps to the expected Page subclass |
+| `Registry_TitleScreen_ReturnsTitlePage` | "title" screenId creates a TitlePage |
+
+### PrimitiveTests.cs
+**Path:** `unity-project/Assets/MobileForge.UIComponents/Tests/PrimitiveTests.cs`
+**Priority:** Low
+
+| Test | What It Verifies |
+|---|---|
+| `MFButton_ClickFiresEvent` | Clicking MFButton invokes OnClick |
+| `MFButton_SetLabel_UpdatesText` | SetLabel changes the button text |
+| `MFProgressBar_SetProgress_Clamps01` | SetProgress clamps values to 0-1 range |
+| `MFGemBoard_SetElements_PopulatesGrid` | SetElements creates the correct number of gem cells |
+
+---
+
 ## Unity Game Tests — Tower of Saviors (5 missing)
 
 ### TosIntegrationTests.cs
@@ -367,13 +417,14 @@ Every missing test, organized by module. Godot has full coverage (21 test files)
 |---|---|---|
 | Unity Domain | 3 files, ~17 tests | 1 High, 2 Medium |
 | Unity Presentation | 7 files, ~33 tests | 2 High, 3 Medium, 2 Low |
+| Unity UI Components | 4 files, ~19 tests | 1 High, 2 Medium, 1 Low |
 | Unity Game (ToS) | 2 files, ~20 tests | 1 High, 1 Medium |
 | Godot Game (ToS) | 7 files + 4 additions, ~45 tests | 0 High, 5 Medium, 2 Low |
 | Test Vector Harnesses | 2 harnesses per engine (4 total) | 2 Medium |
-| **Total** | **~23 files, ~123 tests** | **4 High, 14 Medium, 5 Low** |
+| **Total** | **~27 files, ~142 tests** | **5 High, 16 Medium, 6 Low** |
 
 ### Recommended Implementation Order
 
-1. **High priority first:** CascadeResolverTests.cs, ScreenRegistryTests.cs, VirtualListTests.cs, TosIntegrationTests.cs
+1. **High priority first:** CascadeResolverTests.cs, ScreenRegistryTests.cs, VirtualListTests.cs, UIComponentRouterTests.cs, TosIntegrationTests.cs
 2. **Medium priority:** ComboCalculatorTests.cs, StaminaTimerTests.cs, GridViewTests.cs, CurrencyBarTests.cs, OverlayManagerTests.cs, test_tos_conditions.gd, test_tos_outcomes.gd, test_tos_new_conditions.gd, test_tos_new_outcomes.gd, test_tos_enemy_ai_behaviors.gd, test_tos_save_load.gd, TosNewSkillTests.cs, test vector harnesses
 3. **Low priority:** CardViewTests.cs, ToastLayerTests.cs, test_tos_team_skills.gd, test_tos_team_select.gd

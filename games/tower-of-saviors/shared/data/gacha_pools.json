@@ -8,21 +8,246 @@
         "daily_free": true,
         "multi_pull_discount": 1,
         "entries": [
-            {"monster_id": 1, "rarity": 5, "weight": 5, "is_featured": true},
-            {"monster_id": 2, "rarity": 5, "weight": 5, "is_featured": true},
-            {"monster_id": 3, "rarity": 5, "weight": 5, "is_featured": true},
-            {"monster_id": 4, "rarity": 5, "weight": 5, "is_featured": true},
-            {"monster_id": 5, "rarity": 5, "weight": 5, "is_featured": true},
-            {"monster_id": 6, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 7, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 8, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 9, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 10, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 16, "rarity": 3, "weight": 40, "is_featured": false},
-            {"monster_id": 17, "rarity": 3, "weight": 40, "is_featured": false},
-            {"monster_id": 18, "rarity": 3, "weight": 40, "is_featured": false},
-            {"monster_id": 19, "rarity": 3, "weight": 40, "is_featured": false},
-            {"monster_id": 20, "rarity": 3, "weight": 40, "is_featured": false}
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": true
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": true
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": true
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": true
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": true
+            },
+            {
+                "monster_id": 21,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 22,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 23,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 24,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 25,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 26,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 27,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 28,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 29,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 30,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 31,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 32,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 33,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 34,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 35,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 36,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 37,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 38,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 39,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 40,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 41,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 42,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 43,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 44,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 45,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            }
         ]
     },
     {
@@ -31,23 +256,138 @@
         "cost_currency": "gems",
         "cost_amount": 5,
         "pity_threshold": 30,
-        "featured_ids": [2],
+        "featured_ids": [
+            2,
+            22,
+            27
+        ],
         "entries": [
-            {"monster_id": 2, "rarity": 5, "weight": 20, "is_featured": true},
-            {"monster_id": 1, "rarity": 5, "weight": 3, "is_featured": false},
-            {"monster_id": 3, "rarity": 5, "weight": 3, "is_featured": false},
-            {"monster_id": 4, "rarity": 5, "weight": 3, "is_featured": false},
-            {"monster_id": 5, "rarity": 5, "weight": 3, "is_featured": false},
-            {"monster_id": 7, "rarity": 4, "weight": 25, "is_featured": true},
-            {"monster_id": 6, "rarity": 4, "weight": 10, "is_featured": false},
-            {"monster_id": 8, "rarity": 4, "weight": 10, "is_featured": false},
-            {"monster_id": 9, "rarity": 4, "weight": 10, "is_featured": false},
-            {"monster_id": 10, "rarity": 4, "weight": 10, "is_featured": false},
-            {"monster_id": 17, "rarity": 3, "weight": 50, "is_featured": true},
-            {"monster_id": 16, "rarity": 3, "weight": 30, "is_featured": false},
-            {"monster_id": 18, "rarity": 3, "weight": 30, "is_featured": false},
-            {"monster_id": 19, "rarity": 3, "weight": 30, "is_featured": false},
-            {"monster_id": 20, "rarity": 3, "weight": 30, "is_featured": false}
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 15,
+                "is_featured": true
+            },
+            {
+                "monster_id": 22,
+                "rarity": 5,
+                "weight": 10,
+                "is_featured": true
+            },
+            {
+                "monster_id": 27,
+                "rarity": 5,
+                "weight": 10,
+                "is_featured": true
+            },
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 21,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 23,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 24,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 25,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            }
         ]
     },
     {
@@ -57,27 +397,118 @@
         "cost_amount": 5,
         "pity_threshold": 30,
         "step_up": [
-            {"cost_mult": 0.0, "pull_count": 5, "guaranteed_rarity": 0},
-            {"cost_mult": 0.5, "pull_count": 10, "guaranteed_rarity": 4},
-            {"cost_mult": 1.0, "pull_count": 10, "guaranteed_rarity": 4},
-            {"cost_mult": 1.0, "pull_count": 10, "guaranteed_rarity": 5}
+            {
+                "cost_mult": 0.0,
+                "pull_count": 5,
+                "guaranteed_rarity": 0
+            },
+            {
+                "cost_mult": 0.5,
+                "pull_count": 10,
+                "guaranteed_rarity": 4
+            },
+            {
+                "cost_mult": 1.0,
+                "pull_count": 10,
+                "guaranteed_rarity": 4
+            },
+            {
+                "cost_mult": 1.0,
+                "pull_count": 10,
+                "guaranteed_rarity": 5
+            }
         ],
         "entries": [
-            {"monster_id": 1, "rarity": 5, "weight": 8, "is_featured": true},
-            {"monster_id": 3, "rarity": 5, "weight": 8, "is_featured": true},
-            {"monster_id": 2, "rarity": 5, "weight": 4, "is_featured": false},
-            {"monster_id": 4, "rarity": 5, "weight": 4, "is_featured": false},
-            {"monster_id": 5, "rarity": 5, "weight": 4, "is_featured": false},
-            {"monster_id": 6, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 7, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 8, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 9, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 10, "rarity": 4, "weight": 15, "is_featured": false},
-            {"monster_id": 16, "rarity": 3, "weight": 35, "is_featured": false},
-            {"monster_id": 17, "rarity": 3, "weight": 35, "is_featured": false},
-            {"monster_id": 18, "rarity": 3, "weight": 35, "is_featured": false},
-            {"monster_id": 19, "rarity": 3, "weight": 35, "is_featured": false},
-            {"monster_id": 20, "rarity": 3, "weight": 35, "is_featured": false}
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 6,
+                "is_featured": true
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 6,
+                "is_featured": true
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 4,
+                "is_featured": false
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 4,
+                "is_featured": false
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 4,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 12,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 30,
+                "is_featured": false
+            }
         ]
     },
     {
@@ -88,16 +519,996 @@
         "one_time": true,
         "guaranteed_top_rarity": true,
         "entries": [
-            {"monster_id": 1, "rarity": 5, "weight": 20, "is_featured": true},
-            {"monster_id": 2, "rarity": 5, "weight": 20, "is_featured": true},
-            {"monster_id": 3, "rarity": 5, "weight": 20, "is_featured": true},
-            {"monster_id": 4, "rarity": 5, "weight": 20, "is_featured": true},
-            {"monster_id": 5, "rarity": 5, "weight": 20, "is_featured": true},
-            {"monster_id": 6, "rarity": 4, "weight": 20, "is_featured": false},
-            {"monster_id": 7, "rarity": 4, "weight": 20, "is_featured": false},
-            {"monster_id": 8, "rarity": 4, "weight": 20, "is_featured": false},
-            {"monster_id": 9, "rarity": 4, "weight": 20, "is_featured": false},
-            {"monster_id": 10, "rarity": 4, "weight": 20, "is_featured": false}
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 20,
+                "is_featured": true
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 20,
+                "is_featured": true
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 20,
+                "is_featured": true
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 20,
+                "is_featured": true
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 20,
+                "is_featured": true
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 15,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 15,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 15,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 15,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 15,
+                "is_featured": false
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Greek Gods Seal",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 30,
+        "featured_ids": [
+            21,
+            22,
+            23,
+            24,
+            25
+        ],
+        "entries": [
+            {
+                "monster_id": 21,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 22,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 23,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 24,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 25,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Norse Gods Seal",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 30,
+        "featured_ids": [
+            26,
+            27,
+            28,
+            29,
+            30
+        ],
+        "entries": [
+            {
+                "monster_id": 26,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 27,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 28,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 29,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 30,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Egyptian Gods Seal",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 30,
+        "featured_ids": [
+            31,
+            32,
+            33,
+            34,
+            35
+        ],
+        "entries": [
+            {
+                "monster_id": 31,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 32,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 33,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 34,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 35,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Chinese Legends Seal",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 30,
+        "featured_ids": [
+            36,
+            37,
+            38,
+            39,
+            40
+        ],
+        "entries": [
+            {
+                "monster_id": 36,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 37,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 38,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 39,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 40,
+                "rarity": 5,
+                "weight": 12,
+                "is_featured": true
+            },
+            {
+                "monster_id": 41,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 42,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 43,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 44,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 45,
+                "rarity": 5,
+                "weight": 3,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Primal Gods Seal",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 20,
+        "featured_ids": [
+            301,
+            302,
+            303,
+            304,
+            305
+        ],
+        "entries": [
+            {
+                "monster_id": 301,
+                "rarity": 7,
+                "weight": 3,
+                "is_featured": true
+            },
+            {
+                "monster_id": 302,
+                "rarity": 7,
+                "weight": 3,
+                "is_featured": true
+            },
+            {
+                "monster_id": 303,
+                "rarity": 7,
+                "weight": 3,
+                "is_featured": true
+            },
+            {
+                "monster_id": 304,
+                "rarity": 7,
+                "weight": 3,
+                "is_featured": true
+            },
+            {
+                "monster_id": 305,
+                "rarity": 7,
+                "weight": 3,
+                "is_featured": true
+            },
+            {
+                "monster_id": 21,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 22,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 23,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 24,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 25,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 26,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 27,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 28,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 29,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 30,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 31,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 32,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 33,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 34,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 35,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 36,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 37,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 38,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 39,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 40,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 41,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 42,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 43,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 44,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 45,
+                "rarity": 5,
+                "weight": 5,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 10,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 25,
+                "is_featured": false
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Water Rate-Up",
+        "cost_currency": "gems",
+        "cost_amount": 5,
+        "pity_threshold": 30,
+        "featured_ids": [
+            1,
+            21,
+            26,
+            31,
+            36
+        ],
+        "entries": [
+            {
+                "monster_id": 1,
+                "rarity": 5,
+                "weight": 15,
+                "is_featured": true
+            },
+            {
+                "monster_id": 21,
+                "rarity": 5,
+                "weight": 15,
+                "is_featured": true
+            },
+            {
+                "monster_id": 26,
+                "rarity": 5,
+                "weight": 15,
+                "is_featured": true
+            },
+            {
+                "monster_id": 31,
+                "rarity": 5,
+                "weight": 15,
+                "is_featured": true
+            },
+            {
+                "monster_id": 36,
+                "rarity": 5,
+                "weight": 15,
+                "is_featured": true
+            },
+            {
+                "monster_id": 2,
+                "rarity": 5,
+                "weight": 2,
+                "is_featured": false
+            },
+            {
+                "monster_id": 3,
+                "rarity": 5,
+                "weight": 2,
+                "is_featured": false
+            },
+            {
+                "monster_id": 4,
+                "rarity": 5,
+                "weight": 2,
+                "is_featured": false
+            },
+            {
+                "monster_id": 5,
+                "rarity": 5,
+                "weight": 2,
+                "is_featured": false
+            },
+            {
+                "monster_id": 6,
+                "rarity": 4,
+                "weight": 20,
+                "is_featured": true
+            },
+            {
+                "monster_id": 7,
+                "rarity": 4,
+                "weight": 8,
+                "is_featured": false
+            },
+            {
+                "monster_id": 8,
+                "rarity": 4,
+                "weight": 8,
+                "is_featured": false
+            },
+            {
+                "monster_id": 9,
+                "rarity": 4,
+                "weight": 8,
+                "is_featured": false
+            },
+            {
+                "monster_id": 10,
+                "rarity": 4,
+                "weight": 8,
+                "is_featured": false
+            },
+            {
+                "monster_id": 16,
+                "rarity": 3,
+                "weight": 40,
+                "is_featured": true
+            },
+            {
+                "monster_id": 17,
+                "rarity": 3,
+                "weight": 20,
+                "is_featured": false
+            },
+            {
+                "monster_id": 18,
+                "rarity": 3,
+                "weight": 20,
+                "is_featured": false
+            },
+            {
+                "monster_id": 19,
+                "rarity": 3,
+                "weight": 20,
+                "is_featured": false
+            },
+            {
+                "monster_id": 20,
+                "rarity": 3,
+                "weight": 20,
+                "is_featured": false
+            }
         ]
     }
 ]

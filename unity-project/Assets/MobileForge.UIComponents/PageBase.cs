@@ -43,6 +43,13 @@ namespace MobileForge.UIComponents
         protected TScreen _screen;
         public TScreen Screen => _screen;
 
+        /// <summary>
+        /// True if this page was instantiated from a prefab (vs. built in code).
+        /// Set automatically by prefab-based factories. Subclasses can check this
+        /// to skip code-based UI construction in OnBind when a prefab layout exists.
+        /// </summary>
+        protected bool IsPrefabPage { get; set; }
+
         private RectTransform _safeArea;
 
         // ── IUIComponent implementation ──
@@ -50,6 +57,8 @@ namespace MobileForge.UIComponents
         public void Bind(TScreen screen)
         {
             _screen = screen;
+            // Auto-detect: prefabs have children, code-built GameObjects start empty
+            IsPrefabPage = transform.childCount > 0;
             OnBind(screen);
         }
 

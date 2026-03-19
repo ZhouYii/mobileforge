@@ -65,7 +65,7 @@ namespace MobileForge.UIComponents.Primitives
                 labelRect.offsetMin = Vector2.zero;
                 labelRect.offsetMax = Vector2.zero;
                 _label = labelGO.AddComponent<Text>();
-                _label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _label.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
                 _label.fontSize = 16;
                 _label.color = Color.white;
                 _label.alignment = TextAnchor.MiddleCenter;

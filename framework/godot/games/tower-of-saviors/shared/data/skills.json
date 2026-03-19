@@ -9,8 +9,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "area_damage", "params": {"element": 1, "multiplier": 10.0}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 10.0
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -24,8 +37,22 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "single_target_damage", "params": {"element": 2, "multiplier": 25.0, "target": "highest_hp"}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "single_target_damage",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 25.0,
+                            "target": "highest_hp"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -39,8 +66,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "gem_conversion", "params": {"from_element": 2, "to_element": 3}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "gem_conversion",
+                        "params": {
+                            "from_element": 2,
+                            "to_element": 3
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -54,8 +94,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "heal_over_time", "params": {"recovery_multiplier": 50.0, "duration_turns": 3}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_over_time",
+                        "params": {
+                            "recovery_multiplier": 50.0,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -69,10 +122,27 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
                 "outcomes": [
-                    {"type": "atk_buff", "params": {"element": 5, "multiplier": 2.0, "duration_turns": 2}},
-                    {"type": "self_damage", "params": {"hp_percent": 0.25}}
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 5,
+                            "multiplier": 2.0,
+                            "duration_turns": 2
+                        }
+                    },
+                    {
+                        "type": "self_damage",
+                        "params": {
+                            "hp_percent": 0.25
+                        }
+                    }
                 ]
             }
         ]
@@ -87,8 +157,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "defense_buff", "params": {"damage_reduction": 0.5, "duration_turns": 2}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "defense_buff",
+                        "params": {
+                            "damage_reduction": 0.5,
+                            "duration_turns": 2
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -102,8 +185,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "delay_enemies", "params": {"turns": 2, "target": "all"}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "delay_enemies",
+                        "params": {
+                            "turns": 2,
+                            "target": "all"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -117,12 +213,43 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "combo_gte", "params": {"min_combo": 5}}],
-                "outcomes": [{"type": "combo_scaling_atk", "params": {"bonus_per_combo": 0.5, "duration_turns": 1}}]
+                "conditions": [
+                    {
+                        "type": "combo_gte",
+                        "params": {
+                            "min_combo": 5
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "combo_scaling_atk",
+                        "params": {
+                            "bonus_per_combo": 0.5,
+                            "duration_turns": 1
+                        }
+                    }
+                ]
             },
             {
-                "conditions": [{"type": "combo_lt", "params": {"max_combo": 5}}],
-                "outcomes": [{"type": "atk_buff", "params": {"element": 0, "multiplier": 1.2, "duration_turns": 1}}]
+                "conditions": [
+                    {
+                        "type": "combo_lt",
+                        "params": {
+                            "max_combo": 5
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 0,
+                            "multiplier": 1.2,
+                            "duration_turns": 1
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -136,10 +263,28 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
                 "outcomes": [
-                    {"type": "element_change", "params": {"target": "self", "to_element": 4, "duration_turns": 3}},
-                    {"type": "rec_buff", "params": {"multiplier": 2.0, "duration_turns": 3}}
+                    {
+                        "type": "element_change",
+                        "params": {
+                            "target": "self",
+                            "to_element": 4,
+                            "duration_turns": 3
+                        }
+                    },
+                    {
+                        "type": "rec_buff",
+                        "params": {
+                            "multiplier": 2.0,
+                            "duration_turns": 3
+                        }
+                    }
                 ]
             }
         ]
@@ -154,10 +299,26 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
                 "outcomes": [
-                    {"type": "area_damage", "params": {"element": 5, "multiplier": 15.0}},
-                    {"type": "lifesteal", "params": {"percent_of_damage": 0.3}}
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 5,
+                            "multiplier": 15.0
+                        }
+                    },
+                    {
+                        "type": "lifesteal",
+                        "params": {
+                            "percent_of_damage": 0.3
+                        }
+                    }
                 ]
             }
         ]
@@ -172,8 +333,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "bind", "params": {"turns": 2, "target": "all"}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "bind",
+                        "params": {
+                            "turns": 2,
+                            "target": "all"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -187,8 +361,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "poison_dot", "params": {"multiplier": 1.0, "duration_turns": 5}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "poison_dot",
+                        "params": {
+                            "multiplier": 1.0,
+                            "duration_turns": 5
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -202,8 +389,20 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "stun", "params": {"target": "all"}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "stun",
+                        "params": {
+                            "target": "all"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -217,8 +416,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "gravity_damage", "params": {"percent": 0.3, "target": "all"}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "gravity_damage",
+                        "params": {
+                            "percent": 0.3,
+                            "target": "all"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -232,8 +444,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "counter_attack", "params": {"reflect_percent": 0.5, "duration_turns": 3}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "counter_attack",
+                        "params": {
+                            "reflect_percent": 0.5,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -247,8 +472,20 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "void_damage_absorb", "params": {"duration_turns": 1}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "void_damage_absorb",
+                        "params": {
+                            "duration_turns": 1
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -262,8 +499,20 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "void_element_shield", "params": {"duration_turns": 1}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "void_element_shield",
+                        "params": {
+                            "duration_turns": 1
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -277,8 +526,21 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "orb_spawn", "params": {"element": 1, "count": 5}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 1,
+                            "count": 5
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -292,8 +554,1502 @@
         "max_level": 10,
         "rules": [
             {
-                "conditions": [{"type": "always_true", "params": {}}],
-                "outcomes": [{"type": "orb_spawn", "params": {"element": 6, "count": 4}}]
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 6,
+                            "count": 4
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Poseidon's Trident",
+        "description": "Deal 12x water damage to all enemies and reduce their defense by 30% for 2 turns",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 12.0
+                        }
+                    },
+                    {
+                        "type": "reduce_enemy_defense",
+                        "params": {
+                            "percent": 0.3,
+                            "duration_turns": 2
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Forge of Hephaestus",
+        "description": "Deal 20x fire damage to single enemy, boost ATK x1.5 for 3 turns",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 8,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "single_target_damage",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 20.0,
+                            "target": "highest_hp"
+                        }
+                    },
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 1.5,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Athena's Aegis",
+        "description": "Defense x2.0 for 3 turns, reflect 30% damage",
+        "type": "active",
+        "max_cd": 15,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "defense_buff",
+                        "params": {
+                            "damage_reduction": 0.5,
+                            "duration_turns": 3
+                        }
+                    },
+                    {
+                        "type": "counter_attack",
+                        "params": {
+                            "reflect_percent": 0.3,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "name": "Apollo's Radiance",
+        "description": "Heal 50% HP, change all dark gems to light",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_percent",
+                        "params": {
+                            "percent": 0.5
+                        }
+                    },
+                    {
+                        "type": "gem_conversion",
+                        "params": {
+                            "from_element": 5,
+                            "to_element": 4
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Artemis's Moonbow",
+        "description": "Deal 15x dark damage to all enemies, poison for 3 turns",
+        "type": "active",
+        "max_cd": 13,
+        "min_cd": 8,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 5,
+                            "multiplier": 15.0
+                        }
+                    },
+                    {
+                        "type": "poison",
+                        "params": {
+                            "multiplier": 0.5,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "name": "Freyr's Tidal Blade",
+        "description": "Convert earth gems to water, boost water ATK x1.8 for 2 turns",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "gem_conversion",
+                        "params": {
+                            "from_element": 3,
+                            "to_element": 1
+                        }
+                    },
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 1.8,
+                            "duration_turns": 2
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Tyr's War Axe",
+        "description": "Deal 30x fire damage to single target, ignore defense",
+        "type": "active",
+        "max_cd": 15,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "absolute_damage",
+                        "params": {
+                            "damage": 50000,
+                            "target": "single"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "name": "Freyja's Embrace",
+        "description": "Heal over time 80x REC for 5 turns, REC x2.0",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 8,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_over_time",
+                        "params": {
+                            "recovery_multiplier": 80.0,
+                            "duration_turns": 5
+                        }
+                    },
+                    {
+                        "type": "rec_buff",
+                        "params": {
+                            "multiplier": 2.0,
+                            "duration_turns": 5
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "name": "Mjolnir Strike",
+        "description": "Deal 50000 fixed damage to all enemies",
+        "type": "active",
+        "max_cd": 18,
+        "min_cd": 12,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "absolute_damage",
+                        "params": {
+                            "damage": 50000,
+                            "target": "all"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "name": "Loki's Mischief",
+        "description": "Change 8 random gems to dark, delay all enemies 1 turn",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "random_gem_change",
+                        "params": {
+                            "element": 5,
+                            "count": 8
+                        }
+                    },
+                    {
+                        "type": "delay_enemies",
+                        "params": {
+                            "turns": 1,
+                            "target": "all"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "name": "Tefnut's Deluge",
+        "description": "When HP above 50%: deal 10x water damage. Below 50%: heal 30% HP",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "hp_above",
+                        "params": {
+                            "threshold": 0.5
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 10.0
+                        }
+                    }
+                ]
+            },
+            {
+                "conditions": [
+                    {
+                        "type": "hp_below",
+                        "params": {
+                            "threshold": 0.5
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_percent",
+                        "params": {
+                            "percent": 0.3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "name": "Seth's Fury",
+        "description": "Sacrifice 20% HP, deal 25x fire damage to all enemies",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "self_damage",
+                        "params": {
+                            "hp_percent": 0.2
+                        }
+                    },
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 25.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "name": "Shu's Gale",
+        "description": "Spawn 6 earth orbs, reduce cooldown of all skills by 2",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 3,
+                            "count": 6
+                        }
+                    },
+                    {
+                        "type": "charge_skills",
+                        "params": {
+                            "amount": 2
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "name": "Ra's Judgment",
+        "description": "If all 5 elements matched: deal 100x light damage to all",
+        "type": "active",
+        "max_cd": 16,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "all_elements_matched",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 4,
+                            "multiplier": 100.0
+                        }
+                    }
+                ]
+            },
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 4,
+                            "multiplier": 10.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "name": "Osiris's Requiem",
+        "description": "Place time bomb on all enemies: 80000 damage after 3 turns",
+        "type": "active",
+        "max_cd": 15,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "time_bomb",
+                        "params": {
+                            "damage": 80000,
+                            "delay_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "name": "Dragon King's Torrent",
+        "description": "Convert fire gems to water, deal 8x water damage",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "gem_conversion",
+                        "params": {
+                            "from_element": 2,
+                            "to_element": 1
+                        }
+                    },
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 8.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "name": "Heavenly Fire Wheels",
+        "description": "Deal 18x fire damage to all, reduce cooldowns by 3",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 9,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 18.0
+                        }
+                    },
+                    {
+                        "type": "charge_skills",
+                        "params": {
+                            "amount": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "name": "Bull King's Charge",
+        "description": "Deal 20x earth damage to single target, stun it",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 9,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "single_target_damage",
+                        "params": {
+                            "element": 3,
+                            "multiplier": 20.0,
+                            "target": "highest_hp"
+                        }
+                    },
+                    {
+                        "type": "stun",
+                        "params": {
+                            "target": "single"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "name": "72 Transformations",
+        "description": "Change own element to enemy's weakness for 3 turns, ATK x2.0",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "element_shift",
+                        "params": {
+                            "strategy": "counter_enemy",
+                            "duration_turns": 3
+                        }
+                    },
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 0,
+                            "multiplier": 2.0,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "name": "Fox Spirit's Charm",
+        "description": "Heal 40% HP, delay all enemies 2 turns, boost REC x1.5",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 9,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_percent",
+                        "params": {
+                            "percent": 0.4
+                        }
+                    },
+                    {
+                        "type": "delay_enemies",
+                        "params": {
+                            "turns": 2,
+                            "target": "all"
+                        }
+                    },
+                    {
+                        "type": "rec_buff",
+                        "params": {
+                            "multiplier": 1.5,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "name": "Azure Dragon's Roar",
+        "description": "Spawn 5 water orbs, water ATK x1.5 for 2 turns",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 1,
+                            "count": 5
+                        }
+                    },
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 1.5,
+                            "duration_turns": 2
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "name": "Vermilion Bird's Blaze",
+        "description": "Spawn 5 fire orbs, deal 10x fire damage",
+        "type": "active",
+        "max_cd": 10,
+        "min_cd": 5,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 2,
+                            "count": 5
+                        }
+                    },
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 10.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "name": "Black Tortoise's Guard",
+        "description": "Shield absorbing 30000 damage, spawn 5 earth orbs",
+        "type": "active",
+        "max_cd": 12,
+        "min_cd": 7,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "shield",
+                        "params": {
+                            "absorb_amount": 30000
+                        }
+                    },
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 3,
+                            "count": 5
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "name": "White Tiger's Claw",
+        "description": "Deal 15x light damage to all, force drop 3 light gems",
+        "type": "active",
+        "max_cd": 11,
+        "min_cd": 6,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 4,
+                            "multiplier": 15.0
+                        }
+                    },
+                    {
+                        "type": "force_drop_gem",
+                        "params": {
+                            "element": 4,
+                            "count": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "name": "Gluttonous Devour",
+        "description": "Deal 20x dark damage, lifesteal 50%",
+        "type": "active",
+        "max_cd": 13,
+        "min_cd": 8,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 5,
+                            "multiplier": 20.0
+                        }
+                    },
+                    {
+                        "type": "lifesteal",
+                        "params": {
+                            "percent_of_damage": 0.5
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "name": "Aqua Splash",
+        "description": "Deal 5x water damage to all enemies",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 5.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "name": "Sea Song",
+        "description": "Heal 1000 HP flat",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_flat",
+                        "params": {
+                            "amount": 1000
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "name": "Ember Toss",
+        "description": "Deal 5x fire damage to all enemies",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 2,
+                            "multiplier": 5.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "name": "Flame Dance",
+        "description": "Convert 3 random gems to fire",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "random_gem_change",
+                        "params": {
+                            "element": 2,
+                            "count": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "name": "Vine Whip",
+        "description": "Deal 5x earth damage to all enemies",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 3,
+                            "multiplier": 5.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "name": "Petal Waltz",
+        "description": "Heal 800 HP flat, spawn 2 heart orbs",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_flat",
+                        "params": {
+                            "amount": 800
+                        }
+                    },
+                    {
+                        "type": "orb_spawn",
+                        "params": {
+                            "element": 6,
+                            "count": 2
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "name": "Flash Strike",
+        "description": "Deal 5x light damage to all enemies",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 4,
+                            "multiplier": 5.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "name": "Moonbeam",
+        "description": "Convert 3 random gems to light",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "random_gem_change",
+                        "params": {
+                            "element": 4,
+                            "count": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "name": "Shadow Fang",
+        "description": "Deal 5x dark damage to all enemies",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 5,
+                            "multiplier": 5.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "name": "Night Veil",
+        "description": "Reduce damage by 30% for 1 turn",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 5,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "defense_buff",
+                        "params": {
+                            "damage_reduction": 0.3,
+                            "duration_turns": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "name": "Supreme Tidal Dominion",
+        "description": "Deal 30x water damage, reduce enemy defense 50%, shield 50000",
+        "type": "active",
+        "max_cd": 16,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 1,
+                            "multiplier": 30.0
+                        }
+                    },
+                    {
+                        "type": "reduce_enemy_defense",
+                        "params": {
+                            "percent": 0.5,
+                            "duration_turns": 3
+                        }
+                    },
+                    {
+                        "type": "shield",
+                        "params": {
+                            "absorb_amount": 50000
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "name": "Incinerating Conflagration",
+        "description": "Deal 100000 absolute damage to all, ATK x3.0 for 1 turn",
+        "type": "active",
+        "max_cd": 20,
+        "min_cd": 15,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "absolute_damage",
+                        "params": {
+                            "damage": 100000,
+                            "target": "all"
+                        }
+                    },
+                    {
+                        "type": "atk_buff",
+                        "params": {
+                            "element": 0,
+                            "multiplier": 3.0,
+                            "duration_turns": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "name": "Goddess Aegis Formation",
+        "description": "Counter 80% damage for 3 turns, heal over time 100x REC",
+        "type": "active",
+        "max_cd": 18,
+        "min_cd": 12,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "counter_attack",
+                        "params": {
+                            "reflect_percent": 0.8,
+                            "duration_turns": 3
+                        }
+                    },
+                    {
+                        "type": "heal_over_time",
+                        "params": {
+                            "recovery_multiplier": 100.0,
+                            "duration_turns": 3
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "name": "Lustrous Fulmination",
+        "description": "If 7+ combo: deal 200x light damage to all. Otherwise 20x",
+        "type": "active",
+        "max_cd": 16,
+        "min_cd": 10,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "combo_above",
+                        "params": {
+                            "min_combo": 7
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 4,
+                            "multiplier": 200.0
+                        }
+                    }
+                ]
+            },
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 4,
+                            "multiplier": 20.0
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "name": "Corruption of Eternity",
+        "description": "Time bomb 150000 dmg in 2 turns, poison 2x for 5 turns",
+        "type": "active",
+        "max_cd": 18,
+        "min_cd": 12,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "time_bomb",
+                        "params": {
+                            "damage": 150000,
+                            "delay_turns": 2
+                        }
+                    },
+                    {
+                        "type": "poison",
+                        "params": {
+                            "multiplier": 2.0,
+                            "duration_turns": 5
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "name": "Turn Tide",
+        "description": "On turn 1: full skill charge. On turn 5+: deal 50x all-element damage",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "turn_number",
+                        "params": {
+                            "turn": 1
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "charge_skills",
+                        "params": {
+                            "amount": 99
+                        }
+                    }
+                ]
+            },
+            {
+                "conditions": [
+                    {
+                        "type": "turn_number",
+                        "params": {
+                            "min_turn": 5
+                        }
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "area_damage",
+                        "params": {
+                            "element": 0,
+                            "multiplier": 50.0
+                        }
+                    }
+                ]
+            },
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "heal_flat",
+                        "params": {
+                            "amount": 2000
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "name": "Elemental Transmutation",
+        "description": "Change all water gems to fire gems (legacy format)",
+        "type": "active",
+        "max_cd": 8,
+        "min_cd": 4,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "change_gem_element",
+                        "params": {
+                            "from": 1,
+                            "to": 2
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "name": "Temporal Acceleration",
+        "description": "Reduce all ally cooldowns by 3 for 2 turns",
+        "type": "active",
+        "max_cd": 14,
+        "min_cd": 9,
+        "max_level": 10,
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "type": "always_true",
+                        "params": {}
+                    }
+                ],
+                "outcomes": [
+                    {
+                        "type": "reduce_cooldown",
+                        "params": {
+                            "amount": 3,
+                            "duration_turns": 2
+                        }
+                    }
+                ]
             }
         ]
     }

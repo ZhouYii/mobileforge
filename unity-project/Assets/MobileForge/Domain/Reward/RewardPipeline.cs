@@ -24,6 +24,12 @@ namespace MobileForge.Domain
         /// <summary>Injected: grant stamina. (amount)</summary>
         public Action<int> OnGrantStamina { get; set; }
 
+        /// <summary>Injected: grant equipment. (equipmentDefId, level)</summary>
+        public Action<string, int> OnGrantEquipment { get; set; }
+
+        /// <summary>Injected: grant player EXP. (amount)</summary>
+        public Action<int> OnGrantPlayerExp { get; set; }
+
         public RewardPipeline(Action<string, Dictionary<string, object>> emitEvent = null)
         {
             _emitEvent = emitEvent;
@@ -87,6 +93,17 @@ namespace MobileForge.Domain
                     break;
                 case "stamina":
                     OnGrantStamina?.Invoke(count);
+                    result["success"] = true;
+                    break;
+                case "equipment":
+                    var equipId = reward.TryGetValue("id", out var eid) ? eid as string ?? "" : "";
+                    var equipLevel = reward.TryGetValue("level", out var elv) ? Convert.ToInt32(elv) : 1;
+                    OnGrantEquipment?.Invoke(equipId, equipLevel);
+                    result["success"] = true;
+                    result["equipment_id"] = equipId;
+                    break;
+                case "player_exp":
+                    OnGrantPlayerExp?.Invoke(count);
                     result["success"] = true;
                     break;
                 default:

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Editor script to programmatically create Main.unity scene.
 /// Run via: Unity.exe -batchmode -executeMethod SceneSetup.Setup -quit
-/// Creates: Camera, Canvas (540x960 reference), EventSystem, GameBootstrap, GameRenderer.
+/// Creates: Camera, Canvas (540x960 reference), EventSystem, GameBootstrap, UISystem (TosUISetup).
 /// </summary>
 public static class SceneSetup
 {
@@ -38,8 +38,9 @@ public static class SceneSetup
 
         canvasGO.AddComponent<GraphicRaycaster>();
 
-        // GameRenderer on the Canvas
-        canvasGO.AddComponent<GameRenderer>();
+        // UISystem — hosts TosUISetup which creates UIComponentRouter at runtime
+        var uiSystemGO = new GameObject("UISystem");
+        uiSystemGO.AddComponent<TosUISetup>();
 
         // EventSystem
         var eventGO = new GameObject("EventSystem");

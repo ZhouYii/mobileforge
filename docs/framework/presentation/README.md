@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The presentation layer is the engine-specific UI management layer. It provides screens, popups, overlays, toasts, lists, and HUD elements -- all built programmatically with a **code-first approach**. No scene files, no prefabs, no `.tscn` or `.prefab` dependencies. Everything is created and composed in code.
+The presentation layer is the engine-specific UI management layer. It provides screens, popups, overlays, toasts, lists, and HUD elements -- all built programmatically with a **code-first approach**. The core framework modules use no scene files or prefabs -- everything is created and composed in code. (The `MobileForge.UIComponents` extension adds a prefab-based Primitives tier on top of this layer for visual polish; see the [UI Components Extension](#ui-components-extension) section below.)
 
 - **Godot**: presentation classes extend `Node`, `Control`, or `ScrollContainer`. They are added to the scene tree at runtime.
 - **Unity**: presentation classes extend `MonoBehaviour` or are plain C# classes that manage `GameObject` hierarchies via code.
@@ -238,6 +238,17 @@ MobileForge/Presentation/
 ├── CurrencyBar.cs
 └── CardView.cs
 ```
+
+## UI Components Extension
+
+The `MobileForge.UIComponents` assembly extends this presentation layer with a two-tier system:
+
+- **Primitives** — prefab-backed visual components (MFButton, MFGemBoard, MFProgressBar, etc.) that provide designer-friendly polish while still supporting a code-first fallback.
+- **Pages** — code-based `PageBase<TScreen>` subclasses that compose Primitives into full screens, replacing the monolithic `GameRenderer` routing.
+
+This extension builds on top of the core presentation modules (UIRouter, BaseScreen, etc.) — it does not change them. `UIComponentRouter` subscribes to the same `UIRouter.OnNavigated` events and manages the Page lifecycle in parallel.
+
+See [UI Components Architecture](../ui-components-architecture.md) for full details.
 
 ## Further Reading
 

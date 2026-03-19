@@ -5,7 +5,7 @@
 | Engine   | Version        | Notes                                |
 |----------|----------------|--------------------------------------|
 | Godot    | 4.x (4.2+)    | GDScript. C# build not required.     |
-| Unity    | 2022.3+ LTS   | .NET Standard 2.1 or .NET Framework. |
+| Unity    | 6000.x (Unity 6) | .NET Standard 2.1 or .NET Framework. |
 
 Both engines need a JSON editor for definition files. VS Code with the JSON Schema extension is recommended.
 
@@ -84,9 +84,11 @@ Add `MobileForge.Infrastructure` and `MobileForge.Domain` to your assembly defin
 
 ### 3. Bootstrap
 
-Add the `MobileForgeBootstrap` MonoBehaviour to a GameObject in your first scene. It initializes all singletons in the correct order.
+Add `GameBootstrap` to a GameObject in your first scene. It creates a `TosGame` instance and loads JSON data.
 
-Alternatively, use `[RuntimeInitializeOnLoadMethod]` — the bootstrap handles this if you prefer code-only setup.
+For the UI system, `TosUISetup` is the entry point — it registers all game-specific page mappings with `UIComponentRegistry` and creates the `UIComponentRouter`. The editor menu item **MobileForge > Setup Main Scene** (in `SceneSetup.cs`) automates this by creating a `UISystem` GameObject that hosts `TosUISetup`.
+
+Alternatively, use `[RuntimeInitializeOnLoadMethod]` if you prefer code-only setup.
 
 ## Quick Start
 
@@ -179,29 +181,35 @@ unity -runTests -testPlatform EditMode -testFilter MobileForge
 mobileforge/
 ├── docs/
 │   └── framework/
-│       ├── README.md              ← you are here (architecture overview)
+│       ├── README.md              ← architecture overview
 │       ├── GETTING_STARTED.md     ← this file
 │       ├── CROSS_ENGINE_GUIDE.md
 │       ├── infrastructure/
-│       │   ├── README.md
-│       │   ├── event_bus.md
-│       │   ├── game_data.md
-│       │   └── player_state.md
 │       ├── domain/
 │       └── presentation/
-├── godot/
-│   └── addons/mobileforge/
+├── framework/
+│   └── godot/addons/mobileforge/
 │       ├── infrastructure/
 │       ├── domain/
 │       └── tests/
-├── unity/
-│   └── MobileForge/
-│       ├── Infrastructure/
-│       ├── Domain/
-│       └── Tests/
+├── games/tower-of-saviors/
+│   ├── godot/
+│   └── shared/data/              ← JSON definitions (monsters, skills, stages…)
+├── unity-project/
+│   └── Assets/
+│       ├── MobileForge/           ← core framework (Infrastructure, Domain)
+│       ├── MobileForge.UIComponents/
+│       │   ├── PageBase.cs
+│       │   ├── UIComponentRouter.cs
+│       │   ├── MFPrimitiveLibrary.cs
+│       │   ├── Primitives/        ← MFButton, MFGemBoard, etc.
+│       │   └── Pages/             ← TitlePage, BattlePage, etc.
+│       ├── TosUISetup.cs          ← game-specific page registration
+│       ├── GameBootstrap.cs
+│       └── Editor/SceneSetup.cs   ← menu item: MobileForge > Setup Main Scene
 └── shared/
-    ├── schemas/               ← JSON schemas for definition files
-    └── test_vectors/          ← shared input/output test data
+    ├── schemas/                   ← JSON schemas for definition files
+    └── test_vectors/              ← shared input/output test data
 ```
 
 ## Next Steps

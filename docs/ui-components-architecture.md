@@ -51,7 +51,8 @@ MobileForge.UIComponents       (Unity-specific UI library)
 
 Assembly-CSharp                (game-specific wiring)
   ├── TosUISetup.cs             Registers ToS screen→page mappings
-  └── GameBootstrap.cs          Creates UIComponentRouter
+  ├── GameBootstrap.cs          Creates TosGame, loads JSON data
+  └── Editor/SceneSetup.cs      Creates UISystem GameObject hosting TosUISetup
 ```
 
 ## Key Interfaces
@@ -146,4 +147,4 @@ ScriptableObject loaded from `Resources/MFPrimitiveLibrary`. Maps primitive type
 - **Fallback mode**: primitives work without prefabs (code creates minimal UI)
 - **MFPrimitiveLibrary override**: swap prefabs to retheme all pages
 - **Screens unchanged**: pure C# IScreen implementations don't know about UI components
-- **UIComponentRouter**: parallel to GameRenderer, subscribes to same OnNavigated event
+- **UIComponentRouter**: replaces GameRenderer (removed from scene), subscribes to OnNavigated event

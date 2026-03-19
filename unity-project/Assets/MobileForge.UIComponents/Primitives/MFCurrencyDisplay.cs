@@ -65,7 +65,7 @@ namespace MobileForge.UIComponents.Primitives
                 var labelLayout = labelGO.AddComponent<LayoutElement>();
                 labelLayout.flexibleWidth = 1;
                 _valueLabel = labelGO.AddComponent<Text>();
-                _valueLabel.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _valueLabel.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
                 _valueLabel.fontSize = 22;
                 _valueLabel.color = Color.white;
                 _valueLabel.alignment = TextAnchor.MiddleLeft;

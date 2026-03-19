@@ -173,7 +173,7 @@ namespace MobileForge.UIComponents.Primitives
             lr.offsetMin = new Vector2(10, 0);
             lr.offsetMax = new Vector2(-10, 0);
             var txt = labelGO.AddComponent<Text>();
-            txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             txt.fontSize = 20;
             txt.color = Color.white;
             txt.alignment = TextAnchor.MiddleLeft;

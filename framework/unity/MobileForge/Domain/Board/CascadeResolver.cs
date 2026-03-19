@@ -1,11 +1,18 @@
+using System;
 using System.Collections.Generic;
 
 namespace MobileForge.Domain
 {
     /// <summary>
     /// Resolves the full cascade after gems are moved.
-    /// Loop: detect matches -> remove -> gravity drop -> spawn -> repeat until no matches.
+    /// Loop: detect matches -> process statuses -> remove -> gravity -> spawn -> repeat.
     /// Returns List of CascadeStep — complete history for animation.
+    ///
+    /// Gem status handling:
+    /// - Chained: requires multiple matches to remove (reduces chain count)
+    /// - Marked: tracked for bonus damage multiplier
+    /// - Weathered: ticked each cascade step; destroyed if timer expires
+    /// - Burning: tracked for per-turn damage (processed externally)
     /// </summary>
     public static class CascadeResolver
     {
@@ -28,19 +35,47 @@ namespace MobileForge.Domain
                     foreach (int pos in matchResult.Positions)
                         removedSet.Add(pos);
                 }
+
+                // 3. Process gem statuses for matched gems
+                var chainedPositions = new HashSet<int>();
+                foreach (int pos in removedSet)
+                {
+                    var gem = board.GetGem(pos);
+                    if (gem == null) continue;
+
+                    // Chained gems: reduce chain counter, don't remove if still chained
+                    if (gem.HasStatus(GemStatus.Chained))
+                    {
+                        var chainEntry = gem.Statuses.Find(s => s.Type == GemStatus.Chained);
+                        if (chainEntry != null && chainEntry.Turns > 1)
+                        {
+                            chainEntry.Turns--;
+                            chainedPositions.Add(pos); // Keep this gem
+                        }
+                        else
+                        {
+                            gem.RemoveStatus(GemStatus.Chained); // Freed!
+                        }
+                    }
+                }
+
+                // Remove chained positions from the removal set
+                foreach (int pos in chainedPositions)
+                    removedSet.Remove(pos);
+
                 var removedPositions = new List<int>(removedSet);
                 removedPositions.Sort();
 
-                // 3. Remove matched gems
+                // 4. Remove matched gems (except still-chained ones)
                 foreach (int pos in removedPositions)
                     board.SetGem(pos, null);
 
-                // 4. Gravity: drop gems down to fill gaps (column by column, bottom to top)
+                // 5. Gravity: drop gems down to fill gaps (column by column, bottom to top)
                 var drops = new List<GemDrop>();
                 var config = board.Config;
                 for (int col = 0; col < config.Cols; col++)
                 {
-                    int writeRow = config.Rows - 1; // Bottom of column
+                    int writeRow = config.Rows - 1;
                     for (int readRow = config.Rows - 1; readRow >= 0; readRow--)
                     {
                         int pos = config.RcToPos(readRow, col);
@@ -59,7 +94,7 @@ namespace MobileForge.Domain
                     }
                 }
 
-                // 5. Spawn new gems in empty top slots
+                // 6. Spawn new gems in empty top slots
                 var spawned = new List<GemSpawn>();
                 for (int col = 0; col < config.Cols; col++)
                 {
@@ -75,12 +110,12 @@ namespace MobileForge.Domain
                         }
                         else
                         {
-                            break; // No more empty above a filled cell
+                            break;
                         }
                     }
                 }
 
-                // 6. Record this cascade step
+                // 7. Record this cascade step
                 var step = new CascadeStep
                 {
                     Matches = matches,
@@ -108,5 +143,68 @@ namespace MobileForge.Domain
 
             return steps;
         }
+
+        /// <summary>
+        /// Tick gem statuses on the entire board after a turn.
+        /// Returns a GemStatusTickResult with information about expired/triggered statuses.
+        /// Call this once per turn after cascade resolution.
+        /// </summary>
+        public static GemStatusTickResult TickBoardStatuses(BoardLogic board)
+        {
+            var result = new GemStatusTickResult();
+            var config = board.Config;
+
+            for (int pos = 0; pos < config.TotalCells; pos++)
+            {
+                var gem = board.GetGem(pos);
+                if (gem == null) continue;
+
+                // Burning gems deal damage each turn
+                if (gem.HasStatus(GemStatus.Burning))
+                {
+                    var entry = gem.Statuses.Find(s => s.Type == GemStatus.Burning);
+                    int burnDamage = entry?.Data is int dmg ? dmg : 100;
+                    result.BurnDamage += burnDamage;
+                    result.BurningPositions.Add(pos);
+                }
+
+                // Tick all statuses (decrement turns, remove expired)
+                var expired = GemModifier.TickStatuses(gem);
+
+                // Weathered gems that expire are destroyed
+                if (expired.Contains(GemStatus.Weathered))
+                {
+                    board.SetGem(pos, null);
+                    result.WeatheredDestroyed.Add(pos);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Count Marked gems in a set of positions (for bonus damage calculation).
+        /// </summary>
+        public static int CountMarkedGems(BoardLogic board, List<int> positions)
+        {
+            int count = 0;
+            foreach (int pos in positions)
+            {
+                var gem = board.GetGem(pos);
+                if (gem != null && gem.HasStatus(GemStatus.Marked))
+                    count++;
+            }
+            return count;
+        }
+    }
+
+    /// <summary>
+    /// Result of ticking gem statuses on the board after a turn.
+    /// </summary>
+    public class GemStatusTickResult
+    {
+        public int BurnDamage { get; set; }
+        public List<int> BurningPositions { get; set; } = new();
+        public List<int> WeatheredDestroyed { get; set; } = new();
     }
 }

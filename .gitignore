@@ -9,6 +9,9 @@ unity-project/UserSettings/
 unity-project/MemoryCaptures/
 unity-project/Recordings/
 
+# Build output (standalone builds)
+Build/
+
 # Unity meta files for symlinked directories are managed by Unity
 # but the Library cache is never committed
 

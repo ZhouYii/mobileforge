@@ -79,7 +79,7 @@ namespace MobileForge.UIComponents.Primitives
                 nameRect.offsetMin = new Vector2(2, 0);
                 nameRect.offsetMax = new Vector2(-2, 0);
                 _nameLabel = nameGO.AddComponent<Text>();
-                _nameLabel.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _nameLabel.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
                 _nameLabel.fontSize = 12;
                 _nameLabel.color = Color.white;
                 _nameLabel.alignment = TextAnchor.MiddleCenter;
@@ -96,7 +96,7 @@ namespace MobileForge.UIComponents.Primitives
                 lvlRect.offsetMin = new Vector2(2, 2);
                 lvlRect.offsetMax = new Vector2(-2, 0);
                 _levelLabel = lvlGO.AddComponent<Text>();
-                _levelLabel.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _levelLabel.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
                 _levelLabel.fontSize = 11;
                 _levelLabel.color = Color.yellow;
                 _levelLabel.alignment = TextAnchor.MiddleCenter;
@@ -110,7 +110,7 @@ namespace MobileForge.UIComponents.Primitives
                 rarityRect.offsetMin = new Vector2(24, 0);
                 rarityRect.offsetMax = new Vector2(-2, -2);
                 _rarityLabel = rarityGO.AddComponent<Text>();
-                _rarityLabel.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _rarityLabel.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
                 _rarityLabel.fontSize = 10;
                 _rarityLabel.color = Color.yellow;
                 _rarityLabel.alignment = TextAnchor.MiddleRight;

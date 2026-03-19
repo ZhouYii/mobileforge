@@ -7,6 +7,7 @@ namespace MobileForge.Domain
     /// <summary>
     /// Tracks quest progress via event matching.
     /// Pure C# — no MonoBehaviour dependency.
+    /// Supports daily/weekly auto-reset and progressive achievement tiers.
     /// </summary>
     public class QuestTracker
     {
@@ -14,11 +15,20 @@ namespace MobileForge.Domain
         private readonly Dictionary<string, QuestState> _active = new();
         private readonly HashSet<string> _completedUnclaimed = new();
         private readonly HashSet<string> _claimed = new();
+        private readonly Func<DateTime> _dateProvider;
+
+        // Reset tracking: category -> last reset date string "yyyy-MM-dd" (or "yyyy-Www" for weekly)
+        private readonly Dictionary<string, string> _lastResetKeys = new();
 
         public event Action<string> QuestActivated;
         public event Action<string> QuestCompleted;
         public event Action<string, int, int, int> QuestProgress; // questId, objectiveIndex, current, target
         public event Action<string> QuestClaimed;
+
+        public QuestTracker(Func<DateTime> dateProvider = null)
+        {
+            _dateProvider = dateProvider ?? (() => DateTime.UtcNow);
+        }
 
         /// <summary>Load quest definitions. Call once at startup.</summary>
         public void LoadQuestDefs(IEnumerable<QuestDef> defs)
@@ -118,6 +128,112 @@ namespace MobileForge.Domain
         /// <summary>Number of claimable quests.</summary>
         public int ClaimableCount => _completedUnclaimed.Count;
 
+        // ── Daily/Weekly Reset ──
+
+        /// <summary>
+        /// Check if daily/weekly quests need resetting and reactivate them.
+        /// Uses the same date-provider pattern as DailyLoginTracker.
+        /// </summary>
+        public int CheckAndResetCycle(MissionResetConfig config)
+        {
+            var now = _dateProvider();
+            string currentKey = GetResetKey(config, now);
+            string category = config.ResetCategory;
+
+            if (_lastResetKeys.TryGetValue(category, out var lastKey) && lastKey == currentKey)
+                return 0; // Already reset this cycle
+
+            _lastResetKeys[category] = currentKey;
+
+            // Remove all active/completed quests in this category and re-activate them
+            var toReset = _defs.Values
+                .Where(d => d.Category == category)
+                .Select(d => d.Id)
+                .ToList();
+
+            int reactivated = 0;
+            foreach (var id in toReset)
+            {
+                _active.Remove(id);
+                _completedUnclaimed.Remove(id);
+                _claimed.Remove(id);
+                if (ActivateQuest(id))
+                    reactivated++;
+            }
+
+            return reactivated;
+        }
+
+        /// <summary>
+        /// After claiming an achievement, auto-activate the next tier if one exists.
+        /// Returns the quest ID of the next tier, or null.
+        /// </summary>
+        public string ActivateNextTier(string achievementBaseId)
+        {
+            // Find the highest claimed tier for this achievement
+            int highestClaimed = -1;
+            foreach (var def in _defs.Values)
+            {
+                if (def.AchievementBaseId == achievementBaseId && _claimed.Contains(def.Id))
+                {
+                    if (def.AchievementTier > highestClaimed)
+                        highestClaimed = def.AchievementTier;
+                }
+            }
+
+            // Find the next tier
+            var nextTier = _defs.Values
+                .Where(d => d.AchievementBaseId == achievementBaseId && d.AchievementTier == highestClaimed + 1)
+                .FirstOrDefault();
+
+            if (nextTier != null && ActivateQuest(nextTier.Id))
+                return nextTier.Id;
+
+            return null;
+        }
+
+        /// <summary>Bulk-activate all quests in a category.</summary>
+        public int ActivateCategory(string category)
+        {
+            int count = 0;
+            foreach (var def in _defs.Values)
+            {
+                if (def.Category == category && ActivateQuest(def.Id))
+                    count++;
+            }
+            return count;
+        }
+
+        /// <summary>Get all quest IDs in a specific category (active or not).</summary>
+        public List<string> GetQuestsByCategory(string category) =>
+            _defs.Values.Where(d => d.Category == category).Select(d => d.Id).ToList();
+
+        /// <summary>Get quest IDs in a category that are active.</summary>
+        public List<string> GetActiveByCategory(string category) =>
+            _active.Where(kv => _defs.TryGetValue(kv.Key, out var def) && def.Category == category
+                && kv.Value.Status == QuestStatus.Active)
+                .Select(kv => kv.Key).ToList();
+
+        /// <summary>Get claimable count for a specific category (useful for badges).</summary>
+        public int GetClaimableCountByCategory(string category) =>
+            _completedUnclaimed.Count(id => _defs.TryGetValue(id, out var def) && def.Category == category);
+
+        private static string GetResetKey(MissionResetConfig config, DateTime now)
+        {
+            if (config.ResetCategory == QuestCategory.Weekly)
+            {
+                // Weekly: use ISO week number
+                var cal = System.Globalization.CultureInfo.InvariantCulture.Calendar;
+                int week = cal.GetWeekOfYear(now, System.Globalization.CalendarWeekRule.FirstFourDayWeek,
+                    (DayOfWeek)config.ResetDayOfWeek);
+                return $"{now.Year}-W{week:D2}";
+            }
+
+            // Daily: use date, but shift by reset hour
+            var shifted = now.AddHours(-config.ResetHourUtc);
+            return shifted.ToString("yyyy-MM-dd");
+        }
+
         /// <summary>Serialize for save system.</summary>
         public Dictionary<string, object> ToSaveDict()
         {
@@ -130,11 +246,16 @@ namespace MobileForge.Domain
                     ["status"] = kv.Value.Status,
                 };
             }
+            var resetKeysData = new Dictionary<string, object>();
+            foreach (var kv in _lastResetKeys)
+                resetKeysData[kv.Key] = kv.Value;
+
             return new Dictionary<string, object>
             {
                 ["active"] = activeData,
                 ["completed_unclaimed"] = new List<object>(_completedUnclaimed.Select(x => (object)x)),
                 ["claimed"] = new List<object>(_claimed.Select(x => (object)x)),
+                ["last_reset_keys"] = resetKeysData,
             };
         }
 
@@ -164,6 +285,10 @@ namespace MobileForge.Domain
 
             if (data.TryGetValue("claimed", out var clObj) && clObj is List<object> clList)
                 foreach (var id in clList) _claimed.Add(id.ToString());
+
+            _lastResetKeys.Clear();
+            if (data.TryGetValue("last_reset_keys", out var rkObj) && rkObj is Dictionary<string, object> rkData)
+                foreach (var kv in rkData) _lastResetKeys[kv.Key] = kv.Value?.ToString() ?? "";
         }
 
         private static bool FilterMatches(Dictionary<string, object> filter, Dictionary<string, object> payload)

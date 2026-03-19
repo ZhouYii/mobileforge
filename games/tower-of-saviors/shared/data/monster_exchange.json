@@ -43,5 +43,275 @@
         "required_min_rarity": 4,
         "required_element": 0,
         "exchange_limit": 1
+    },
+    {
+        "id": 6,
+        "name": "Poseidon Exchange",
+        "target_monster_id": 21,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 7,
+        "name": "Hephaestus Exchange",
+        "target_monster_id": 22,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 8,
+        "name": "Athena Exchange",
+        "target_monster_id": 23,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 9,
+        "name": "Apollo Exchange",
+        "target_monster_id": 24,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 10,
+        "name": "Artemis Exchange",
+        "target_monster_id": 25,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 11,
+        "name": "Freyr Exchange",
+        "target_monster_id": 26,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 12,
+        "name": "Tyr Exchange",
+        "target_monster_id": 27,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 13,
+        "name": "Freyja Exchange",
+        "target_monster_id": 28,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 14,
+        "name": "Thor Exchange",
+        "target_monster_id": 29,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 15,
+        "name": "Loki Exchange",
+        "target_monster_id": 30,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 16,
+        "name": "Tefnut Exchange",
+        "target_monster_id": 31,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 17,
+        "name": "Seth Exchange",
+        "target_monster_id": 32,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 18,
+        "name": "Shu Exchange",
+        "target_monster_id": 33,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 19,
+        "name": "Ra Exchange",
+        "target_monster_id": 34,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 20,
+        "name": "Osiris Exchange",
+        "target_monster_id": 35,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 21,
+        "name": "Dragon of the East Sea Exchange",
+        "target_monster_id": 36,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 22,
+        "name": "Little Lotus Exchange",
+        "target_monster_id": 37,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 23,
+        "name": "Bull King Exchange",
+        "target_monster_id": 38,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 24,
+        "name": "Monkey King Exchange",
+        "target_monster_id": 39,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 25,
+        "name": "Nine-tailed Vixen Exchange",
+        "target_monster_id": 40,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 26,
+        "name": "Qinglong the Sage Exchange",
+        "target_monster_id": 41,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 27,
+        "name": "Zhuque the Sage Exchange",
+        "target_monster_id": 42,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 28,
+        "name": "Xuanwu the Sage Exchange",
+        "target_monster_id": 43,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 29,
+        "name": "Baihu the Sage Exchange",
+        "target_monster_id": 44,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 30,
+        "name": "Taotie the Sage Exchange",
+        "target_monster_id": 45,
+        "required_count": 5,
+        "required_min_rarity": 4,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 31,
+        "name": "Poseidon, God of Raging Oceans Exchange",
+        "target_monster_id": 301,
+        "required_count": 8,
+        "required_min_rarity": 5,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 32,
+        "name": "Tyr of Incinerating Conflagration Exchange",
+        "target_monster_id": 302,
+        "required_count": 8,
+        "required_min_rarity": 5,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 33,
+        "name": "Athena, Goddess of Warfare Exchange",
+        "target_monster_id": 303,
+        "required_count": 8,
+        "required_min_rarity": 5,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 34,
+        "name": "Thor of Lustrous Fulmination Exchange",
+        "target_monster_id": 304,
+        "required_count": 8,
+        "required_min_rarity": 5,
+        "required_element": 0,
+        "exchange_limit": 1
+    },
+    {
+        "id": 35,
+        "name": "Loki, Corruption of the Deceased Exchange",
+        "target_monster_id": 305,
+        "required_count": 8,
+        "required_min_rarity": 5,
+        "required_element": 0,
+        "exchange_limit": 1
     }
 ]

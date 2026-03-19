@@ -30,6 +30,8 @@ Tower of Saviors is the **reference game** that MobileForge was designed around.
 | `MFLootTable` | Per-stage drop tables with guaranteed + weighted entries |
 | `MFEnemyAI` | Countdown-based enemy attacks with status effects |
 | `UIRouter` / `MFBaseScreen` | Screen stack navigation (title, dungeon, team, battle, result) |
+| `UIComponentRouter` / `PageBase` | Prefab-based page rendering (replaces GameRenderer in Unity) |
+| `TosUISetup` | Game-specific page registration (maps screenId → Page types) |
 
 ## Directory Structure
 
@@ -60,7 +62,34 @@ games/tower-of-saviors/
       element_chart.json         # Element advantage/disadvantage data
 ```
 
-## How to Run
+## Unity Directory Structure
+
+```
+unity-project/Assets/
+├── MobileForge/                    ← Core framework (Infrastructure, Domain, Presentation)
+├── MobileForge.UIComponents/
+│   ├── PageBase.cs                 ← Base class for all pages
+│   ├── UIComponentRouter.cs        ← Replaces GameRenderer routing
+│   ├── MFPrimitiveLibrary.cs       ← ScriptableObject: type → prefab map
+│   ├── Primitives/                 ← MFButton, MFOverlay, MFProgressBar, MFScrollList,
+│   │                                  MFScrollGrid, MFGemBoard, MFMonsterCard, MFCurrencyDisplay
+│   └── Pages/                      ← TitlePage, LevelSelectPage, TeamSelectPage, BattlePage,
+│                                      ResultPage, GachaPage, InventoryPage, ShopPage, PlaceholderPage
+├── TosUISetup.cs                   ← Registers ToS screen→page mappings
+├── GameBootstrap.cs                ← Creates TosGame, loads JSON data
+└── Editor/
+    └── SceneSetup.cs               ← Menu: MobileForge > Setup Main Scene
+```
+
+## Unity — How to Run
+
+1. Open `unity-project/` in **Unity 6** (6000.x).
+2. From the menu bar, run **MobileForge > Setup Main Scene** — this creates the Canvas, UISystem, and Bootstrap GameObjects.
+3. Press **Play** — the title screen appears via `TosUISetup` + `UIComponentRouter`.
+
+The `SceneSetup.cs` editor script creates a `UISystem` GameObject that hosts `TosUISetup`, which registers all 9 pages with `UIComponentRegistry`. On play, `UIComponentRouter` subscribes to `UIRouter.OnNavigated` and mounts the appropriate page for each screen transition.
+
+## How to Run (Godot)
 
 1. Open the MobileForge framework Godot project at `framework/godot/`.
 2. Ensure the `mobileforge` addon is enabled (Project > Project Settings > Plugins).

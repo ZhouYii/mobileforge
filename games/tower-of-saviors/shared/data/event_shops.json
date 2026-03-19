@@ -55,5 +55,92 @@
                 "buy_limit": 3
             }
         ]
+    },
+    {
+        "id": 2,
+        "name": "God Series Exchange",
+        "currency": "event_tokens",
+        "items": [
+            {
+                "id": 10,
+                "name": "Poseidon",
+                "type": "monster",
+                "item_id": 21,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 500,
+                "buy_limit": 1
+            },
+            {
+                "id": 11,
+                "name": "Hephaestus",
+                "type": "monster",
+                "item_id": 22,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 500,
+                "buy_limit": 1
+            },
+            {
+                "id": 12,
+                "name": "Athena",
+                "type": "monster",
+                "item_id": 23,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 500,
+                "buy_limit": 1
+            },
+            {
+                "id": 13,
+                "name": "Apollo",
+                "type": "monster",
+                "item_id": 24,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 500,
+                "buy_limit": 1
+            },
+            {
+                "id": 14,
+                "name": "Artemis",
+                "type": "monster",
+                "item_id": 25,
+                "count": 1,
+                "cost_currency": "event_tokens",
+                "cost_amount": 500,
+                "buy_limit": 1
+            },
+            {
+                "id": 20,
+                "name": "Spirit Jewel x3",
+                "type": "monster",
+                "item_id": 109,
+                "count": 3,
+                "cost_currency": "event_tokens",
+                "cost_amount": 80,
+                "buy_limit": 5
+            },
+            {
+                "id": 21,
+                "name": "Water Evo Soul x5",
+                "type": "monster",
+                "item_id": 104,
+                "count": 5,
+                "cost_currency": "event_tokens",
+                "cost_amount": 40,
+                "buy_limit": 10
+            },
+            {
+                "id": 22,
+                "name": "15 Gems",
+                "type": "currency",
+                "currency_reward": "gems",
+                "count": 15,
+                "cost_currency": "event_tokens",
+                "cost_amount": 200,
+                "buy_limit": 2
+            }
+        ]
     }
 ]
